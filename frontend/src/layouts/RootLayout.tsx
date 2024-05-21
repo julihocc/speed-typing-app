@@ -6,13 +6,13 @@ export default function RootLayout() {
     <>
       <Heading>Speed Typing App</Heading>
       <TabNav.Root>
-        <TabNav.Link>
+        <TabNav.Link asChild>
           <NavLink to="/">Home</NavLink>
         </TabNav.Link>
-        <TabNav.Link>
+        <TabNav.Link asChild>
           <NavLink to="/Login">Login</NavLink>
         </TabNav.Link>
-        <TabNav.Link>
+        <TabNav.Link asChild>
           <NavLink to="/Dashboard">Dashboard</NavLink>
         </TabNav.Link>
       </TabNav.Root>
