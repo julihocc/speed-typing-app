@@ -4,5 +4,10 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"github.copilot.editor.enableAutoCompletions": false,
+		"github.copilot.enable": {
+			"markdown": "true"
+		}
+	}
 }
