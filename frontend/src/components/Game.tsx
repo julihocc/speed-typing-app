@@ -90,7 +90,7 @@ export default function Game() {
         const color = colors[index];
         return (
           <Text key={`colored-${index}`} color={color as TextProps["color"]}>
-            {word}{" "}
+            {word}
           </Text>
         );
       });
@@ -109,7 +109,9 @@ export default function Game() {
       >
         <TextField.Slot />
       </TextField.Root>
-      <Flex>{colored}</Flex>
+      <Flex gapX="2">
+        {colored}
+      </Flex>
       <Box>Started at {initTime}</Box>
       <Box>End at {endTime}</Box>
     </Flex>
