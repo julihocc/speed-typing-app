@@ -30,21 +30,24 @@ export default function Home() {
 
   const handleOnChange = () => {
     const value = inputRef.current?.value;
-    // const captured = value?.split(" ") || [];
-    console.log(value);
-    setCaptured(value?.split(" ") || []);
+    const _captured = value?.split(" ") || [];
+    if (_captured.length <= words.length) {
+      setCaptured(_captured);
+    }
   };
 
   const handleOnKeyUp = () => {
-    const newStatus: Color[] = captured.map((word, index) => {
-      const current = words[index];
-      if (current) {
-        return word === current ? "green" : "red";
-      } else {
-        return null;
-      }
-    });
-    setColors(newStatus);
+    if (captured.length <= words.length) {
+      const newStatus: Color[] = captured.map((word, index) => {
+        const current = words[index];
+        if (current) {
+          return word === current ? "green" : "red";
+        } else {
+          return null;
+        }
+      });
+      setColors(newStatus);
+    }
   };
 
   useEffect(() => {
@@ -54,7 +57,11 @@ export default function Home() {
     if (captured) {
       const _colored = captured.map((word, index) => {
         const color = colors[index];
-        return <Text color={color as TextProps["color"]}>{word} </Text>;
+        return (
+          <Text key={`colored-${index}`} color={color as TextProps["color"]}>
+            {word}{" "}
+          </Text>
+        );
       });
       setColored(_colored);
     }
