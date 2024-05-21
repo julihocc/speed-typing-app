@@ -1,7 +1,7 @@
 // import Paragraph from "../components/Paragraph";
 // import InputArea from "../components/InputArea";
 import { useRef, useEffect, useState } from "react";
-import { Text, TextProps, TextField } from "@radix-ui/themes";
+import { Text, TextProps, TextField, Flex, Box } from "@radix-ui/themes";
 
 type Color = "green" | "red" | undefined;
 
@@ -20,6 +20,10 @@ export default function Home() {
 
   const [colored, setColored] = useState<JSX.Element[] | undefined>(undefined);
 
+  const [initTime, setInitTime] = useState<number | null>(null);
+
+  const [endTime, setEndTime] = useState<number | null>(null);
+
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
@@ -27,6 +31,9 @@ export default function Home() {
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === "Backspace") {
       event.preventDefault();
+    }
+    if (initTime === null) {
+      setInitTime(new Date().getTime());
     }
   };
 
@@ -49,6 +56,12 @@ export default function Home() {
         }
       });
       setNailed(nailedUpdated);
+    }
+    if (captured.length === words.length) {
+      if (endTime === null) {
+        const now = new Date().getTime()
+        setEndTime(now);
+      }
     }
   };
 
@@ -86,7 +99,7 @@ export default function Home() {
   }, [captured, colors]);
 
   return (
-    <div>
+    <Flex direction="column">
       <Text>{text}</Text>
       <TextField.Root
         ref={inputRef}
@@ -96,7 +109,9 @@ export default function Home() {
       >
         <TextField.Slot />
       </TextField.Root>
-      {colored}
-    </div>
+      <Flex>{colored}</Flex>
+      <Box>Started at {initTime}</Box>
+      <Box>End at {endTime}</Box>
+    </Flex>
   );
 }
