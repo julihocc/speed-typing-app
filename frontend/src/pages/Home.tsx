@@ -1,12 +1,12 @@
 // import Paragraph from "../components/Paragraph";
 // import InputArea from "../components/InputArea";
 import { useRef, useEffect, useState } from "react";
-import { Text, TextArea, TextProps } from "@radix-ui/themes";
+import { Text,   TextProps, TextField } from "@radix-ui/themes";
 
 type Color = "green" | "red" | null;
 
 export default function Home() {
-  const inputRef = useRef<HTMLTextAreaElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const text = "This is a paragraph component";
 
@@ -70,12 +70,20 @@ export default function Home() {
   return (
     <div>
       <Text>{text}</Text>
-      <TextArea
+      {/* <TextArea
         ref={inputRef}
         onKeyDown={handleKeyDown}
         onChange={handleOnChange}
         onKeyUp={handleOnKeyUp}
-      />
+      /> */}
+      <TextField.Root
+        ref={inputRef}
+        onKeyDown={handleKeyDown}
+        onChange={handleOnChange}
+        onKeyUp={handleOnKeyUp}
+      >
+        <TextField.Slot />
+      </TextField.Root>
       {colored}
     </div>
   );
