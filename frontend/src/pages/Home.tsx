@@ -50,7 +50,9 @@ export default function Home() {
       });
       setNailed(nailedUpdated);
     }
+  };
 
+  useEffect(() => {
     const colorsUpdated = nailed.map((ok) => {
       if (ok === true) {
         return "green";
@@ -64,7 +66,7 @@ export default function Home() {
     });
 
     setColors(colorsUpdated);
-  };
+  }, [nailed]);
 
   useEffect(() => {
     console.log(captured);
