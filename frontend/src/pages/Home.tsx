@@ -22,6 +22,12 @@ export default function Home() {
     inputRef.current?.focus();
   }, []);
 
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === "Backspace") {
+      event.preventDefault();
+    }
+  };
+
   const handleOnChange = () => {
     const value = inputRef.current?.value;
     // const captured = value?.split(" ") || [];
@@ -59,6 +65,7 @@ export default function Home() {
       <Text>{text}</Text>
       <TextArea
         ref={inputRef}
+        onKeyDown={handleKeyDown}
         onChange={handleOnChange}
         onKeyUp={handleOnKeyUp}
       />
