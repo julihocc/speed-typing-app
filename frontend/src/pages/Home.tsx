@@ -3,7 +3,7 @@
 import { useRef, useEffect, useState } from "react";
 import { Text, TextProps, TextField } from "@radix-ui/themes";
 
-type Color = "green" | "red" | null;
+type Color = "green" | "red" | undefined;
 
 export default function Home() {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -13,6 +13,8 @@ export default function Home() {
   const words = text.split(" ");
 
   const [captured, setCaptured] = useState<string[]>([]);
+
+  const [nailed, setNailed] = useState<(boolean | null)[]>([]);
 
   const [colors, setColors] = useState<Color[]>([]);
 
@@ -38,16 +40,30 @@ export default function Home() {
 
   const handleOnKeyUp = () => {
     if (captured.length <= words.length) {
-      const newStatus: Color[] = captured.map((word, index) => {
+      const nailedUpdated = captured.map((word, index) => {
         const current = words[index];
         if (current) {
-          return word === current ? "green" : "red";
+          return word === current;
         } else {
           return null;
         }
       });
-      setColors(newStatus);
+      setNailed(nailedUpdated);
     }
+
+    const colorsUpdated = nailed.map((ok) => {
+      if (ok === true) {
+        return "green";
+      }
+      if (ok === false) {
+        return "red";
+      }
+      if (ok === null) {
+        return undefined;
+      }
+    });
+
+    setColors(colorsUpdated);
   };
 
   useEffect(() => {
