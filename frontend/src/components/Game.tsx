@@ -1,7 +1,7 @@
-// import Paragraph from "../components/Paragraph";
-// import InputArea from "../components/InputArea";
+
 import { useRef, useEffect, useState } from "react";
 import { Text, TextProps, TextField, Flex, Box } from "@radix-ui/themes";
+import { useStore } from 'zustand'
 
 type Color = "green" | "red" | undefined;
 
@@ -12,7 +12,9 @@ export default function Game() {
 
   const words = text.split(" ");
 
-  const [captured, setCaptured] = useState<string[]>([]);
+  // const [captured, setCaptured] = useState<string[]>([]);
+  const captured = useStore(state => state.captured)
+  const setCaptured = useStore(state => state.setCaptured)
 
   const [nailed, setNailed] = useState<(boolean | null)[]>([]);
 
