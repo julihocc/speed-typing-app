@@ -1,7 +1,7 @@
 // import Paragraph from "../components/Paragraph";
 // import InputArea from "../components/InputArea";
 import { useRef, useEffect, useState } from "react";
-import { Text,   TextProps, TextField } from "@radix-ui/themes";
+import { Text, TextProps, TextField } from "@radix-ui/themes";
 
 type Color = "green" | "red" | null;
 
@@ -70,12 +70,6 @@ export default function Home() {
   return (
     <div>
       <Text>{text}</Text>
-      {/* <TextArea
-        ref={inputRef}
-        onKeyDown={handleKeyDown}
-        onChange={handleOnChange}
-        onKeyUp={handleOnKeyUp}
-      /> */}
       <TextField.Root
         ref={inputRef}
         onKeyDown={handleKeyDown}
