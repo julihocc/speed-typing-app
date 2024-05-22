@@ -17,6 +17,7 @@ interface GameSlice {
 interface TimerSlice {
   remainingTime: number;
   setRemainingTime: (remainingTime: number) => void;
+  resetTimer: () => void;
 }
 
 type BoundStore = GameSlice & TimerSlice;

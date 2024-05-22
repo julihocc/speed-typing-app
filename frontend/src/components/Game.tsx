@@ -35,6 +35,8 @@ export default function Game() {
 
   const resetGame = useBoundStore((state) => state.resetGame);
 
+  const resetTimer = useBoundStore((state) => state.resetTimer);
+
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
@@ -44,6 +46,7 @@ export default function Game() {
     console.log(`inputRef.current.value: ${value}`);
     if (!value) {
       resetGame();
+      resetTimer();
     }
   }, [inputRef.current?.value, resetGame]);
 

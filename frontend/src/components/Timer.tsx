@@ -11,18 +11,24 @@ export default function Timer() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setRemainingTime((prevTime) => {
-        if (prevTime <= 0) {
-          clearInterval(timer);
-          return 0;
-        } else {
-          return prevTime - 1;
-        }
-      });
+      // setRemainingTime((prevTime) => {
+      //   if (prevTime <= 0) {
+      //     clearInterval(timer);
+      //     return 0;
+      //   } else {
+      //     return prevTime - 1;
+      //   }
+      // });
+      if (remainingTime <= 0) {
+        clearInterval(timer);
+        setRemainingTime(0);
+      } else {
+        setRemainingTime(remainingTime - 1);
+      }
     }, 1000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [remainingTime, setRemainingTime]);
 
   useEffect(() => {
     setProgressPercentage((remainingTime / 60) * 100);
