@@ -7,9 +7,8 @@ import useBoundStore from "../store";
 export default function Game() {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const text = "This is a paragraph component";
-
-  const words = text.split(" ");
+  // const textToBeCaptured = "This is a paragraph component";
+  const [textToBeCaptured] = useState<string>("This is a paragraph component");
 
   const captured = useBoundStore((state) => state.captured);
   const setCaptured = useBoundStore((state) => state.setCaptured);
@@ -32,6 +31,9 @@ export default function Game() {
   const remainingTime = useBoundStore((state) => state.remainingTime);
   const setRemainingTime = useBoundStore((state) => state.setRemainingTime);
 
+  const words = useBoundStore((state) => state.words);
+  const setWords = useBoundStore((state) => state.setWords);
+
   const textFieldValue = useBoundStore((state) => state.textFieldValue);
   const setTextFieldValue = useBoundStore((state) => state.setTextFieldValue);
 
@@ -40,14 +42,22 @@ export default function Game() {
   }, []);
 
   useEffect(() => {
-    if (textFieldValue === null) {
+    setWords(textToBeCaptured.trim().split(" "));
+  }, [textToBeCaptured, setWords]);
+
+  // useEffect(() => {
+  //   setTextFieldValue(textToBeCaptured);
+  // }, [setTextFieldValue]);
+
+  useEffect(() => {
+    if (textFieldValue === undefined) {
       if (inputRef.current) {
         inputRef.current.value = "";
       }
     }
-    if (textFieldValue !== null) {
+    if (textFieldValue !== undefined) {
       if (inputRef.current) {
-        inputRef.current.value = textFieldValue
+        inputRef.current.value = textFieldValue;
       }
     }
   }, [textFieldValue]);
@@ -74,7 +84,7 @@ export default function Game() {
   };
 
   const handleOnChange = () => {
-    const value = inputRef.current?.value || null;
+    const value = inputRef.current?.value;
     setTextFieldValue(value);
     const _captured = value?.trim().split(" ") || [];
     if (_captured.length <= words.length) {
@@ -142,7 +152,7 @@ export default function Game() {
 
   return (
     <Flex direction="column" gap="4">
-      <Text>{text}</Text>
+      <Text>{textToBeCaptured}</Text>
       <TextField.Root
         ref={inputRef}
         onKeyDown={handleKeyDown}
