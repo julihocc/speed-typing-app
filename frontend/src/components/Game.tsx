@@ -11,25 +11,20 @@ export default function Game() {
 
   const words = text.split(" ");
 
-  // const [captured, setCaptured] = useState<string[]>([]);
   const captured = useBoundStore((state) => state.captured);
   const setCaptured = useBoundStore((state) => state.setCaptured);
 
-  // const [nailed, setNailed] = useState<(boolean | null)[]>([]);
   const nailed = useBoundStore((state) => state.nailed);
   const setNailed = useBoundStore((state) => state.setNailed);
 
-  // const [colors, setColors] = useState<Color[]>([]);
   const colors = useBoundStore((state) => state.colors);
   const setColors = useBoundStore((state) => state.setColors);
 
   const [colored, setColored] = useState<JSX.Element[] | undefined>(undefined);
 
-  // const [initTime, setInitTime] = useState<number | null>(null);
   const initTime = useBoundStore((state) => state.initTime);
   const setInitTime = useBoundStore((state) => state.setInitTime);
 
-  // const [endTime, setEndTime] = useState<number | null>(null);
   const endTime = useBoundStore((state) => state.endTime);
   const setEndTime = useBoundStore((state) => state.setEndTime);
 
