@@ -1,9 +1,8 @@
-import useBoundStore from '../store'
+import useBoundStore from "../store";
+import { Button } from "@radix-ui/themes";
 
 export default function ResetMatchRecords() {
-  const resetMatchRecords = useBoundStore((state) => state.resetMatchRecords)
+  const resetMatchRecords = useBoundStore((state) => state.resetMatchRecords);
 
-  return (
-    <button onClick={resetMatchRecords}>Reset match records</button>
-  )
+  return <Button onClick={resetMatchRecords}>Reset match records</Button>;
 }
