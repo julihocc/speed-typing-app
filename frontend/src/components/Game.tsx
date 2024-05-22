@@ -28,26 +28,38 @@ export default function Game() {
   const endTime = useBoundStore((state) => state.gameEndTime);
   const setEndTime = useBoundStore((state) => state.setGameEndTime);
 
-  const resetGame = useBoundStore((state) => state.resetGame);
-
-  const resetTimer = useBoundStore((state) => state.resetTimer);
-
   const initialTimerValue = useBoundStore((state) => state.initialTimerValue);
   const remainingTime = useBoundStore((state) => state.remainingTime);
   const setRemainingTime = useBoundStore((state) => state.setRemainingTime);
+
+  const textFieldValue = useBoundStore((state) => state.textFieldValue);
+  const setTextFieldValue = useBoundStore((state) => state.setTextFieldValue);
 
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
 
   useEffect(() => {
-    const value = inputRef.current?.value;
-    console.log(`inputRef.current.value: ${value}`);
-    if (!value) {
-      resetGame();
-      resetTimer();
+    if (textFieldValue === null) {
+      if (inputRef.current) {
+        inputRef.current.value = "";
+      }
     }
-  }, [inputRef.current?.value, resetGame, resetTimer]);
+    if (textFieldValue !== null) {
+      if (inputRef.current) {
+        inputRef.current.value = textFieldValue
+      }
+    }
+  }, [textFieldValue]);
+
+  // useEffect(() => {
+  //   const value = inputRef.current?.value;
+  //   console.log(`inputRef.current.value: ${value}`);
+  //   if (!value) {
+  //     resetGame();
+  //     resetTimer();
+  //   }
+  // }, [inputRef.current?.value, resetGame, resetTimer]);
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === "Backspace") {
@@ -62,7 +74,8 @@ export default function Game() {
   };
 
   const handleOnChange = () => {
-    const value = inputRef.current?.value;
+    const value = inputRef.current?.value || null;
+    setTextFieldValue(value);
     const _captured = value?.trim().split(" ") || [];
     if (_captured.length <= words.length) {
       setCaptured(_captured);

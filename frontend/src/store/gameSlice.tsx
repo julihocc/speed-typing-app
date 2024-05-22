@@ -21,6 +21,7 @@ export const createGameSlice: StateCreator<
   colors: [],
   gameStartTime: null,
   gameEndTime: null,
+  textFieldValue: null,
   setCaptured: (captured) =>
     set((state) => {
       state.captured = captured;
@@ -53,6 +54,12 @@ export const createGameSlice: StateCreator<
       state.colors = [];
       state.gameStartTime = null;
       state.gameEndTime = null;
+      state.textFieldValue = null;
+      return state;
+    }),
+  setTextFieldValue: (text) =>
+    set((state) => {
+      state.textFieldValue = text;
       return state;
     }),
 });

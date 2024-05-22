@@ -6,12 +6,14 @@ interface GameSlice {
   colors: Color[];
   gameStartTime: number | null;
   gameEndTime: number | null;
+  textFieldValue: string | null;
   setCaptured: (captured: string[]) => void;
   setNailed: (nailed: (boolean | null)[]) => void;
   setColors: (colors: Color[]) => void;
   setGameStartTime: (initTime: number | null) => void;
   setGameEndTime: (endTime: number | null) => void;
   resetGame: () => void;
+  setTextFieldValue: (text: string | null) => void;
 }
 
 interface TimerSlice {
