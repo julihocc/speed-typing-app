@@ -4,6 +4,7 @@ import useBoundStore from "../store";
 
 export default function Timer() {
   // const [remainingTime, setRemainingTime] = useState<number>(60);
+  const initialTimerValue = useBoundStore((state) => state.initialTimerValue);
   const remainingTime = useBoundStore((state) => state.remainingTime);
   const setRemainingTime = useBoundStore((state) => state.setRemainingTime);
 
@@ -11,12 +12,13 @@ export default function Timer() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-
-      if (remainingTime <= 0) {
-        clearInterval(timer);
-        setRemainingTime(0);
-      } else {
-        setRemainingTime(remainingTime - 1);
+      if (remainingTime !== null) {
+        if (remainingTime <= 0) {
+          clearInterval(timer);
+          setRemainingTime(0);
+        } else {
+          setRemainingTime(remainingTime - 1);
+        }
       }
     }, 1000);
 
@@ -24,7 +26,11 @@ export default function Timer() {
   }, [remainingTime, setRemainingTime]);
 
   useEffect(() => {
-    setProgressPercentage((remainingTime / 60) * 100);
+    if (remainingTime !== null) {
+      setProgressPercentage((remainingTime / 60) * 100);
+    } else {
+      setProgressPercentage(100);
+    }
   }, [remainingTime]);
 
   return (
@@ -34,7 +40,10 @@ export default function Timer() {
           <Progress value={progressPercentage} />
         </Box>
         <Box>
-          <Text>Time remaining: {remainingTime} s</Text>
+          <Text>
+            Time remaining:{" "}
+            {remainingTime === null ? initialTimerValue : remainingTime} s
+          </Text>
         </Box>
       </Flex>
     </div>

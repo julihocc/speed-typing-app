@@ -15,6 +15,7 @@ interface GameSlice {
 }
 
 interface TimerSlice {
+  initialTimerValue: number;
   remainingTime: number | null;
   setRemainingTime: (remainingTime: number | null) => void;
   resetTimer: () => void;

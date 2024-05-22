@@ -16,7 +16,8 @@ export const createTimerSlice: StateCreator<
   [],
   TimerSlice
 > = (set) => ({
-  remainingTime: 60,
+  initialTimerValue: 60,
+  remainingTime: null,
   setRemainingTime: (remainingTime) =>
     set((state) => {
       state.remainingTime = remainingTime;
@@ -24,7 +25,8 @@ export const createTimerSlice: StateCreator<
     }),
   resetTimer: () =>
     set((state) => {
-      state.remainingTime = 60;
+      state.initialTimerValue = 60;
+      state.remainingTime = null;
       return state;
     }),
 });

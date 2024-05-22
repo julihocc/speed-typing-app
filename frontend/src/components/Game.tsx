@@ -32,6 +32,10 @@ export default function Game() {
 
   const resetTimer = useBoundStore((state) => state.resetTimer);
 
+  const initialTimerValue = useBoundStore((state) => state.initialTimerValue);
+  const remainingTime = useBoundStore((state) => state.remainingTime);
+  const setRemainingTime = useBoundStore((state) => state.setRemainingTime);
+
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
@@ -51,6 +55,9 @@ export default function Game() {
     }
     if (initTime === null) {
       setInitTime(new Date().getTime());
+    }
+    if (remainingTime === null) {
+      setRemainingTime(initialTimerValue);
     }
   };
 
@@ -132,8 +139,9 @@ export default function Game() {
         <TextField.Slot />
       </TextField.Root>
       <Flex gapX="2">{colored}</Flex>
-      <Box>Started at {initTime}</Box>
-      <Box>End at {endTime}</Box>
+      {initTime && <Box>Started at {initTime}</Box>}
+      {endTime && <Box>End at {endTime}</Box>}
+      {initTime && endTime && <Box>Time taken: {endTime - initTime} ms</Box>}
     </Flex>
   );
 }
