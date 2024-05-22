@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Progress } from "@radix-ui/themes";
+import { Progress, Flex, Text, Box } from "@radix-ui/themes";
 import useBoundStore from "../store";
 
 export default function Timer() {
@@ -11,14 +11,7 @@ export default function Timer() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      // setRemainingTime((prevTime) => {
-      //   if (prevTime <= 0) {
-      //     clearInterval(timer);
-      //     return 0;
-      //   } else {
-      //     return prevTime - 1;
-      //   }
-      // });
+
       if (remainingTime <= 0) {
         clearInterval(timer);
         setRemainingTime(0);
@@ -36,7 +29,14 @@ export default function Timer() {
 
   return (
     <div>
-      <Progress value={progressPercentage} />
+      <Flex align="center" justify="center" gapX="4">
+        <Box minWidth="16rem">
+          <Progress value={progressPercentage} />
+        </Box>
+        <Box>
+          <Text>Time remaining: {remainingTime} s</Text>
+        </Box>
+      </Flex>
     </div>
   );
 }

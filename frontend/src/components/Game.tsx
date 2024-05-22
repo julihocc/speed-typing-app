@@ -48,7 +48,7 @@ export default function Game() {
       resetGame();
       resetTimer();
     }
-  }, [inputRef.current?.value, resetGame]);
+  }, [inputRef.current?.value, resetGame, resetTimer]);
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === "Backspace") {
@@ -126,7 +126,7 @@ export default function Game() {
   // }, [colored]);
 
   return (
-    <Flex direction="column">
+    <Flex direction="column" gap="4">
       <Text>{text}</Text>
       <TextField.Root
         ref={inputRef}
