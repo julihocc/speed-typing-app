@@ -7,7 +7,7 @@ immer;
 devtools;
 
 export const createGameSlice: StateCreator<
-  GameSlice & TimerSlice,
+  BoundStore,
   [
     ["zustand/immer", never],
     ["zustand/persist", unknown],
@@ -16,12 +16,18 @@ export const createGameSlice: StateCreator<
   [],
   GameSlice
 > = (set) => ({
+  words: [],
   captured: [],
   nailed: [],
   colors: [],
   gameStartTime: null,
   gameEndTime: null,
-  textFieldValue: null,
+  textFieldValue: undefined,
+  setTextFieldValue: (text) =>
+    set((state) => {
+      state.textFieldValue = text;
+      return state;
+    }),
   setCaptured: (captured) =>
     set((state) => {
       state.captured = captured;
@@ -49,17 +55,18 @@ export const createGameSlice: StateCreator<
     }),
   resetGame: () =>
     set((state) => {
+      state.words = [];
       state.captured = [];
       state.nailed = [];
       state.colors = [];
       state.gameStartTime = null;
       state.gameEndTime = null;
-      state.textFieldValue = null;
+      state.textFieldValue = undefined;
       return state;
     }),
-  setTextFieldValue: (text) =>
+  setWords: (text) =>
     set((state) => {
-      state.textFieldValue = text;
+      state.words = text;
       return state;
     }),
 });

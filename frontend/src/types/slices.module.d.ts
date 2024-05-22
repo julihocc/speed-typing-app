@@ -1,19 +1,21 @@
 type Color = "green" | "red" | undefined;
 
 interface GameSlice {
+  words: string[];
   captured: string[];
   nailed: (boolean | null)[];
   colors: Color[];
   gameStartTime: number | null;
   gameEndTime: number | null;
-  textFieldValue: string | null;
+  textFieldValue: string | undefined;
   setCaptured: (captured: string[]) => void;
   setNailed: (nailed: (boolean | null)[]) => void;
   setColors: (colors: Color[]) => void;
   setGameStartTime: (initTime: number | null) => void;
   setGameEndTime: (endTime: number | null) => void;
   resetGame: () => void;
-  setTextFieldValue: (text: string | null) => void;
+  setWords: (text: string[]) => void;
+  setTextFieldValue: (initialTextFieldValue: string | undefined) => void;
 }
 
 interface TimerSlice {
@@ -23,4 +25,22 @@ interface TimerSlice {
   resetTimer: () => void;
 }
 
-type BoundStore = GameSlice & TimerSlice;
+interface MatchRecord {
+  gameStartTime: number | null;
+  gameEndTime: number | null;
+  totalWords: number | null;
+  nailedWords: number | null;
+  totalTime: number | null;
+  initialTimerValue: number | null;
+  remainingTime: number | null;
+}
+
+interface StatsSlice {
+  matchRecords: MatchRecord[];
+  addMatchRecord: (matchRecord: MatchRecord) => void;
+  getMatchRecords: () => MatchRecord[];
+  resetMatchRecords: () => void;
+  resetStats: () => void;
+}
+
+type BoundStore = GameSlice & TimerSlice & StatsSlice;

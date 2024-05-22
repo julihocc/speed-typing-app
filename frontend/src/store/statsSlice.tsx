@@ -6,7 +6,7 @@ persist;
 immer;
 devtools;
 
-export const createTimerSlice: StateCreator<
+export const createStatsSlice: StateCreator<
   BoundStore,
   [
     ["zustand/immer", never],
@@ -14,19 +14,23 @@ export const createTimerSlice: StateCreator<
     ["zustand/devtools", never]
   ],
   [],
-  TimerSlice
-> = (set) => ({
-  initialTimerValue: 60,
-  remainingTime: null,
-  setRemainingTime: (remainingTime) =>
+  StatsSlice
+> = (set, get) => ({
+  matchRecords: [],
+  addMatchRecord: (matchRecord) =>
     set((state) => {
-      state.remainingTime = remainingTime;
+      state.matchRecords.push(matchRecord);
       return state;
     }),
-  resetTimer: () =>
+  resetStats: () =>
     set((state) => {
-      state.initialTimerValue = 60;
-      state.remainingTime = null;
+      state.matchRecords = [];
+      return state;
+    }),
+  getMatchRecords: () => get().matchRecords,
+  resetMatchRecords: () =>
+    set((state) => {
+      state.matchRecords = [];
       return state;
     }),
 });
