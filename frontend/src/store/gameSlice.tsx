@@ -6,34 +6,22 @@ persist;
 immer;
 devtools;
 
-type Color = "green" | "red" | undefined;
-export interface GameSlice {
-  captured: string[];
-  nailed: (boolean | null)[];
-  colors: Color[];
-  initTime: number | null;
-  endTime: number | null;
-  setCaptured: (captured: string[]) => void;
-  setNailed: (nailed: (boolean | null)[]) => void;
-  setColors: (colors: Color[]) => void;
-  setInitTime: (initTime: number | null) => void;
-  setEndTime: (endTime: number | null) => void;
-  resetGame: () => void;
-}
-
 export const createGameSlice: StateCreator<
-  GameSlice,
+  GameSlice & TimerSlice,
   [
     ["zustand/immer", never],
     ["zustand/persist", unknown],
     ["zustand/devtools", never]
-  ]
+  ],
+  [],
+  GameSlice
 > = (set) => ({
   captured: [],
   nailed: [],
   colors: [],
-  initTime: null,
-  endTime: null,
+  gameStartTime: null,
+  gameEndTime: null,
+  textFieldValue: null,
   setCaptured: (captured) =>
     set((state) => {
       state.captured = captured;
@@ -49,14 +37,14 @@ export const createGameSlice: StateCreator<
       state.colors = colors;
       return state;
     }),
-  setInitTime: (initTime) =>
+  setGameStartTime: (initTime) =>
     set((state) => {
-      state.initTime = initTime;
+      state.gameStartTime = initTime;
       return state;
     }),
-  setEndTime: (endTime) =>
+  setGameEndTime: (endTime) =>
     set((state) => {
-      state.endTime = endTime;
+      state.gameEndTime = endTime;
       return state;
     }),
   resetGame: () =>
@@ -64,8 +52,14 @@ export const createGameSlice: StateCreator<
       state.captured = [];
       state.nailed = [];
       state.colors = [];
-      state.initTime = null;
-      state.endTime = null;
+      state.gameStartTime = null;
+      state.gameEndTime = null;
+      state.textFieldValue = null;
       return state;
-    }), 
+    }),
+  setTextFieldValue: (text) =>
+    set((state) => {
+      state.textFieldValue = text;
+      return state;
+    }),
 });

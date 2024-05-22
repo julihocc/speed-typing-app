@@ -28,38 +28,22 @@ export default function Game() {
   const endTime = useBoundStore((state) => state.gameEndTime);
   const setEndTime = useBoundStore((state) => state.setGameEndTime);
 
-  const initialTimerValue = useBoundStore((state) => state.initialTimerValue);
-  const remainingTime = useBoundStore((state) => state.remainingTime);
-  const setRemainingTime = useBoundStore((state) => state.setRemainingTime);
+  const resetGame = useBoundStore((state) => state.resetGame);
 
-  const textFieldValue = useBoundStore((state) => state.textFieldValue);
-  const setTextFieldValue = useBoundStore((state) => state.setTextFieldValue);
+  const resetTimer = useBoundStore((state) => state.resetTimer);
 
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
 
   useEffect(() => {
-    if (textFieldValue === null) {
-      if (inputRef.current) {
-        inputRef.current.value = "";
-      }
+    const value = inputRef.current?.value;
+    console.log(`inputRef.current.value: ${value}`);
+    if (!value) {
+      resetGame();
+      resetTimer();
     }
-    if (textFieldValue !== null) {
-      if (inputRef.current) {
-        inputRef.current.value = textFieldValue
-      }
-    }
-  }, [textFieldValue]);
-
-  // useEffect(() => {
-  //   const value = inputRef.current?.value;
-  //   console.log(`inputRef.current.value: ${value}`);
-  //   if (!value) {
-  //     resetGame();
-  //     resetTimer();
-  //   }
-  // }, [inputRef.current?.value, resetGame, resetTimer]);
+  }, [inputRef.current?.value, resetGame, resetTimer]);
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === "Backspace") {
@@ -68,21 +52,17 @@ export default function Game() {
     if (initTime === null) {
       setInitTime(new Date().getTime());
     }
-    if (remainingTime === null) {
-      setRemainingTime(initialTimerValue);
-    }
   };
 
   const handleOnChange = () => {
-    const value = inputRef.current?.value || null;
-    setTextFieldValue(value);
-    const _captured = value?.trim().split(" ") || [];
+    const value = inputRef.current?.value;
+    const _captured = value?.split(" ") || [];
     if (_captured.length <= words.length) {
       setCaptured(_captured);
     }
   };
 
-  const handleOnKeyUp = (event: React.KeyboardEvent) => {
+  const handleOnKeyUp = () => {
     if (captured.length <= words.length) {
       const nailedUpdated = captured.map((word, index) => {
         const current = words[index];
@@ -95,13 +75,9 @@ export default function Game() {
       setNailed(nailedUpdated);
     }
     if (captured.length === words.length) {
-      console.log("Game over");
-      console.log(`event.key: ${event.key}`);
-      if (event.key === " ") {
-        if (endTime === null) {
-          const now = new Date().getTime();
-          setEndTime(now);
-        }
+      if (endTime === null) {
+        const now = new Date().getTime();
+        setEndTime(now);
       }
     }
   };
@@ -140,6 +116,10 @@ export default function Game() {
     }
   }, [captured, colors, setColored]);
 
+  // useEffect(() => {
+  //   console.log(`colored: ${JSON.stringify(colored, null, 2)}`);
+  // }, [colored]);
+
   return (
     <Flex direction="column" gap="4">
       <Text>{text}</Text>
@@ -148,14 +128,12 @@ export default function Game() {
         onKeyDown={handleKeyDown}
         onChange={handleOnChange}
         onKeyUp={handleOnKeyUp}
-        onPaste={(e) => e.preventDefault()}
       >
         <TextField.Slot />
       </TextField.Root>
       <Flex gapX="2">{colored}</Flex>
-      {initTime && <Box>Started at {initTime}</Box>}
-      {endTime && <Box>End at {endTime}</Box>}
-      {initTime && endTime && <Box>Time taken: {endTime - initTime} ms</Box>}
+      <Box>Started at {initTime}</Box>
+      <Box>End at {endTime}</Box>
     </Flex>
   );
 }
