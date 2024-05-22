@@ -135,6 +135,7 @@ export default function Game() {
         onKeyDown={handleKeyDown}
         onChange={handleOnChange}
         onKeyUp={handleOnKeyUp}
+        onPaste={(e) => e.preventDefault()}
       >
         <TextField.Slot />
       </TextField.Root>
