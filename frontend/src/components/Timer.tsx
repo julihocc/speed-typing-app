@@ -16,7 +16,8 @@ export default function Timer() {
         if (remainingTime <= 0) {
           clearInterval(timer);
           setRemainingTime(0);
-        } else {
+        }
+        if (remainingTime > 0) {
           setRemainingTime(remainingTime - 1);
         }
       }

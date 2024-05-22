@@ -22,11 +22,11 @@ export default function Game() {
 
   const [colored, setColored] = useState<JSX.Element[] | undefined>(undefined);
 
-  const initTime = useBoundStore((state) => state.initTime);
-  const setInitTime = useBoundStore((state) => state.setInitTime);
+  const initTime = useBoundStore((state) => state.gameStartTime);
+  const setInitTime = useBoundStore((state) => state.setGameStartTime);
 
-  const endTime = useBoundStore((state) => state.endTime);
-  const setEndTime = useBoundStore((state) => state.setEndTime);
+  const endTime = useBoundStore((state) => state.gameEndTime);
+  const setEndTime = useBoundStore((state) => state.setGameEndTime);
 
   const resetGame = useBoundStore((state) => state.resetGame);
 
@@ -126,10 +126,6 @@ export default function Game() {
       setColored(_colored);
     }
   }, [captured, colors, setColored]);
-
-  // useEffect(() => {
-  //   console.log(`colored: ${JSON.stringify(colored, null, 2)}`);
-  // }, [colored]);
 
   return (
     <Flex direction="column" gap="4">
