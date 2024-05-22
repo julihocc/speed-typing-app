@@ -32,7 +32,7 @@ export default function MatchRecordViewer() {
             <Table.Cell>{matchRecord.totalWords}</Table.Cell>
             <Table.Cell>{matchRecord.nailedWords}</Table.Cell>
             <Table.Cell>
-              {matchRecord.nailedWords === null
+              {(matchRecord.nailedWords === null || matchRecord.totalWords === null)
                 ? null
                 : `${Math.round(
                     (matchRecord.nailedWords / matchRecord.totalWords) * 100
