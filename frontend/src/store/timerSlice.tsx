@@ -6,18 +6,15 @@ persist;
 immer;
 devtools;
 
-export interface TimeSlice {
-  remainingTime: number;
-  setRemainingTime: (remainingTime: number) => void;
-}
-
-export const createTimeSlice: StateCreator<
-  TimeSlice,
+export const createTimerSlice: StateCreator<
+  GameSlice & TimerSlice,
   [
     ["zustand/immer", never],
     ["zustand/persist", unknown],
     ["zustand/devtools", never]
-  ]
+  ],
+  [],
+  TimerSlice
 > = (set) => ({
   remainingTime: 60,
   setRemainingTime: (remainingTime) =>

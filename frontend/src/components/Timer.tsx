@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import { Progress } from "@radix-ui/themes";
+import useBoundStore from "../store";
 
 export default function Timer() {
-  const [remainingTime, setRemainingTime] = useState<number>(60);
+  // const [remainingTime, setRemainingTime] = useState<number>(60);
+  const remainingTime = useBoundStore((state) => state.remainingTime);
+  const setRemainingTime = useBoundStore((state) => state.setRemainingTime);
 
   const [progressPercentage, setProgressPercentage] = useState<number>(100);
 

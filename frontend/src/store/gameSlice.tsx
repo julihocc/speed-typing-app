@@ -6,28 +6,15 @@ persist;
 immer;
 devtools;
 
-type Color = "green" | "red" | undefined;
-export interface GameSlice {
-  captured: string[];
-  nailed: (boolean | null)[];
-  colors: Color[];
-  initTime: number | null;
-  endTime: number | null;
-  setCaptured: (captured: string[]) => void;
-  setNailed: (nailed: (boolean | null)[]) => void;
-  setColors: (colors: Color[]) => void;
-  setInitTime: (initTime: number | null) => void;
-  setEndTime: (endTime: number | null) => void;
-  resetGame: () => void;
-}
-
 export const createGameSlice: StateCreator<
-  GameSlice,
+  GameSlice & TimerSlice,
   [
     ["zustand/immer", never],
     ["zustand/persist", unknown],
     ["zustand/devtools", never]
-  ]
+  ], 
+  [],
+  GameSlice
 > = (set) => ({
   captured: [],
   nailed: [],
@@ -67,5 +54,5 @@ export const createGameSlice: StateCreator<
       state.initTime = null;
       state.endTime = null;
       return state;
-    }), 
+    }),
 });

@@ -1,24 +1,21 @@
-import { create } from "zustand";
+import { create} from "zustand";
 import { devtools, persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 
-import { GameSlice, createGameSlice } from "./gameSlice";
-import { TimerSlice, createTimerSlice } from "./timerSlice";
+import { createGameSlice } from "./gameSlice";
+import { createTimerSlice } from "./timerSlice";
 
-type BoundedStore = GameSlice;
 
-// const useBoundStore = create<BoundedStore>()(
-//   devtools(persist(immer(createGameSlice), { name: "game" }))
-// );
-
-const useBoundStore = create<BoundedStore>()(
+const useBoundStore = create<BoundStore>()(
   devtools(
     persist(
-      immer((...a) => ({
-        ...createGameSlice(...a),
+      immer((state, set, api) => ({
+        ...createGameSlice(state, set, api), // Type assertion for 'api'
+        ...createTimerSlice(state, set, api), // Type assertion for 'api'
       })),
-      { name: "game" }
-    )
+      { name: "game-storage" }
+    ),
+    { name: "game-devtools" }
   )
 );
 
