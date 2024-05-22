@@ -1,7 +1,6 @@
-// import Paragraph from "../components/Paragraph";
-// import InputArea from "../components/InputArea";
 import { useRef, useEffect, useState } from "react";
 import { Text, TextProps, TextField, Flex, Box } from "@radix-ui/themes";
+// import { useBoundStore } from "../store";
 
 type Color = "green" | "red" | undefined;
 
@@ -13,6 +12,8 @@ export default function Game() {
   const words = text.split(" ");
 
   const [captured, setCaptured] = useState<string[]>([]);
+  // const captured = useBoundStore(state => state.captured)
+  // const setCaptured = useBoundStore(state => state.setCaptured)
 
   const [nailed, setNailed] = useState<(boolean | null)[]>([]);
 
@@ -109,9 +110,7 @@ export default function Game() {
       >
         <TextField.Slot />
       </TextField.Root>
-      <Flex gapX="2">
-        {colored}
-      </Flex>
+      <Flex gapX="2">{colored}</Flex>
       <Box>Started at {initTime}</Box>
       <Box>End at {endTime}</Box>
     </Flex>
