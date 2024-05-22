@@ -18,6 +18,7 @@ export interface GameSlice {
   setColors: (colors: Color[]) => void;
   setInitTime: (initTime: number | null) => void;
   setEndTime: (endTime: number | null) => void;
+  resetGame: () => void;
 }
 
 export const createGameSlice: StateCreator<
@@ -28,7 +29,7 @@ export const createGameSlice: StateCreator<
     ["zustand/devtools", never]
   ]
 > = (set) => ({
-  captured: ["hello"],
+  captured: [],
   nailed: [],
   colors: [],
   initTime: null,
@@ -58,4 +59,13 @@ export const createGameSlice: StateCreator<
       state.endTime = endTime;
       return state;
     }),
+  resetGame: () =>
+    set((state) => {
+      state.captured = [];
+      state.nailed = [];
+      state.colors = [];
+      state.initTime = null;
+      state.endTime = null;
+      return state;
+    }), 
 });

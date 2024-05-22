@@ -33,9 +33,19 @@ export default function Game() {
   const endTime = useBoundStore((state) => state.endTime);
   const setEndTime = useBoundStore((state) => state.setEndTime);
 
+  const resetGame = useBoundStore((state) => state.resetGame);
+
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
+
+  useEffect(() => {
+    const value = inputRef.current?.value;
+    console.log(`inputRef.current.value: ${value}`);
+    if (!value) {
+      resetGame();
+    }
+  }, [inputRef.current?.value, resetGame]);
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === "Backspace") {
@@ -91,8 +101,8 @@ export default function Game() {
   }, [nailed, setColors]);
 
   useEffect(() => {
-    console.log(captured);
-    console.log(colors);
+    // console.log(captured);
+    // console.log(colors);
 
     if (captured) {
       const _colored = captured.map((word, index) => {
@@ -103,14 +113,14 @@ export default function Game() {
           </Text>
         );
       });
-      console.log(`_colored: ${JSON.stringify(_colored, null, 2)}`);
+      // console.log(`_colored: ${JSON.stringify(_colored, null, 2)}`);
       setColored(_colored);
     }
   }, [captured, colors, setColored]);
 
-  useEffect(() => {
-    console.log(`colored: ${JSON.stringify(colored, null, 2)}`);
-  }, [colored]);
+  // useEffect(() => {
+  //   console.log(`colored: ${JSON.stringify(colored, null, 2)}`);
+  // }, [colored]);
 
   return (
     <Flex direction="column">
