@@ -7,6 +7,7 @@ export default function Timer() {
   const initialTimerValue = useBoundStore((state) => state.initialTimerValue);
   const remainingTime = useBoundStore((state) => state.remainingTime);
   const setRemainingTime = useBoundStore((state) => state.setRemainingTime);
+  const gameEndTime = useBoundStore((state) => state.gameEndTime);
 
   const [progressPercentage, setProgressPercentage] = useState<number>(100);
 
@@ -18,13 +19,18 @@ export default function Timer() {
           setRemainingTime(0);
         }
         if (remainingTime > 0) {
-          setRemainingTime(remainingTime - 1);
+          if (gameEndTime !== null) {
+            clearInterval(timer);
+          }
+          if (gameEndTime === null) {
+            setRemainingTime(remainingTime - 1);
+          }
         }
       }
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [remainingTime, setRemainingTime]);
+  }, [remainingTime, setRemainingTime, gameEndTime]);
 
   useEffect(() => {
     if (remainingTime !== null) {
