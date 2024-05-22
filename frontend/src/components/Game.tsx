@@ -63,13 +63,13 @@ export default function Game() {
 
   const handleOnChange = () => {
     const value = inputRef.current?.value;
-    const _captured = value?.split(" ") || [];
+    const _captured = value?.trim().split(" ") || [];
     if (_captured.length <= words.length) {
       setCaptured(_captured);
     }
   };
 
-  const handleOnKeyUp = () => {
+  const handleOnKeyUp = (event: React.KeyboardEvent) => {
     if (captured.length <= words.length) {
       const nailedUpdated = captured.map((word, index) => {
         const current = words[index];
@@ -82,9 +82,13 @@ export default function Game() {
       setNailed(nailedUpdated);
     }
     if (captured.length === words.length) {
-      if (endTime === null) {
-        const now = new Date().getTime();
-        setEndTime(now);
+      console.log("Game over");
+      console.log(`event.key: ${event.key}`);
+      if (event.key === " ") {
+        if (endTime === null) {
+          const now = new Date().getTime();
+          setEndTime(now);
+        }
       }
     }
   };
