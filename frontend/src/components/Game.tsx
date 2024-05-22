@@ -1,8 +1,8 @@
 import { useRef, useEffect, useState } from "react";
 import { Text, TextProps, TextField, Flex, Box } from "@radix-ui/themes";
-// import { useBoundStore } from "../store";
+import useBoundStore from "../store";
 
-type Color = "green" | "red" | undefined;
+// type Color = "green" | "red" | undefined;
 
 export default function Game() {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -11,19 +11,27 @@ export default function Game() {
 
   const words = text.split(" ");
 
-  const [captured, setCaptured] = useState<string[]>([]);
-  // const captured = useBoundStore(state => state.captured)
-  // const setCaptured = useBoundStore(state => state.setCaptured)
+  // const [captured, setCaptured] = useState<string[]>([]);
+  const captured = useBoundStore((state) => state.captured);
+  const setCaptured = useBoundStore((state) => state.setCaptured);
 
-  const [nailed, setNailed] = useState<(boolean | null)[]>([]);
+  // const [nailed, setNailed] = useState<(boolean | null)[]>([]);
+  const nailed = useBoundStore((state) => state.nailed);
+  const setNailed = useBoundStore((state) => state.setNailed);
 
-  const [colors, setColors] = useState<Color[]>([]);
+  // const [colors, setColors] = useState<Color[]>([]);
+  const colors = useBoundStore((state) => state.colors);
+  const setColors = useBoundStore((state) => state.setColors);
 
   const [colored, setColored] = useState<JSX.Element[] | undefined>(undefined);
 
-  const [initTime, setInitTime] = useState<number | null>(null);
+  // const [initTime, setInitTime] = useState<number | null>(null);
+  const initTime = useBoundStore((state) => state.initTime);
+  const setInitTime = useBoundStore((state) => state.setInitTime);
 
-  const [endTime, setEndTime] = useState<number | null>(null);
+  // const [endTime, setEndTime] = useState<number | null>(null);
+  const endTime = useBoundStore((state) => state.endTime);
+  const setEndTime = useBoundStore((state) => state.setEndTime);
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -80,7 +88,7 @@ export default function Game() {
     });
 
     setColors(colorsUpdated);
-  }, [nailed]);
+  }, [nailed, setColors]);
 
   useEffect(() => {
     console.log(captured);
@@ -95,9 +103,14 @@ export default function Game() {
           </Text>
         );
       });
+      console.log(`_colored: ${JSON.stringify(_colored, null, 2)}`);
       setColored(_colored);
     }
-  }, [captured, colors]);
+  }, [captured, colors, setColored]);
+
+  useEffect(() => {
+    console.log(`colored: ${JSON.stringify(colored, null, 2)}`);
+  }, [colored]);
 
   return (
     <Flex direction="column">
