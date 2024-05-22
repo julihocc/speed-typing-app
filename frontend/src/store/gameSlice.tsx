@@ -2,9 +2,9 @@ import { StateCreator } from "zustand";
 import { persist, devtools } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 
-persist
-immer 
-devtools 
+persist;
+immer;
+devtools;
 
 export interface GameSlice {
   captured: string[];
@@ -19,9 +19,10 @@ export const createGameSlice: StateCreator<
     ["zustand/devtools", never]
   ]
 > = (set) => ({
-  captured: [],
+  captured: ["hello"],
   setCaptured: (captured) =>
     set((state) => {
       state.captured = captured;
+      return state;
     }),
 });
