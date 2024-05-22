@@ -15,7 +15,7 @@ export const createStatsSlice: StateCreator<
   ],
   [],
   StatsSlice
-> = (set) => ({
+> = (set, get) => ({
   matchRecords: [],
   addMatchRecord: (matchRecord) =>
     set((state) => {
@@ -23,6 +23,12 @@ export const createStatsSlice: StateCreator<
       return state;
     }),
   resetStats: () =>
+    set((state) => {
+      state.matchRecords = [];
+      return state;
+    }),
+  getMatchRecords: () => get().matchRecords,
+  resetMatchRecords: () =>
     set((state) => {
       state.matchRecords = [];
       return state;

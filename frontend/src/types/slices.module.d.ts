@@ -28,8 +28,8 @@ interface TimerSlice {
 interface MatchRecord {
   gameStartTime: number | null;
   gameEndTime: number | null;
-  totalWords: number| null;
-  nailedWords: number| null;
+  totalWords: number | null;
+  nailedWords: number | null;
   totalTime: number | null;
   initialTimerValue: number | null;
   remainingTime: number | null;
@@ -38,6 +38,8 @@ interface MatchRecord {
 interface StatsSlice {
   matchRecords: MatchRecord[];
   addMatchRecord: (matchRecord: MatchRecord) => void;
+  getMatchRecords: () => MatchRecord[];
+  resetMatchRecords: () => void;
   resetStats: () => void;
 }
 
