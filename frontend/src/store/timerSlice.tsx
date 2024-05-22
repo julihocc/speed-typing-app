@@ -22,10 +22,9 @@ export const createTimerSlice: StateCreator<
       state.remainingTime = remainingTime;
       return state;
     }),
-  resetTimer: () => set(
-    (state) => {
+  resetTimer: () =>
+    set((state) => {
       state.remainingTime = 60;
       return state;
-    }
-  )
+    }),
 });
