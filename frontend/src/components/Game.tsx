@@ -1,6 +1,10 @@
 import { useRef, useEffect, useState } from "react";
-import { Text, TextProps, TextField, Flex, Box } from "@radix-ui/themes";
+// import { Text, TextProps, TextField, Flex, Box } from "@radix-ui/themes";
 import useBoundStore from "../store";
+// import { TextField, Typography } from "@material-ui/core";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
 
 // type Color = "green" | "red" | undefined;
 
@@ -43,7 +47,7 @@ export default function Game() {
 
   useEffect(() => {
     setWords(textToBeCaptured.trim().split(" "));
-  }, [textToBeCaptured, setWords]);
+  }, [setWords, textToBeCaptured]);
 
   // useEffect(() => {
   //   setTextFieldValue(textToBeCaptured);
@@ -140,9 +144,12 @@ export default function Game() {
       const _colored = captured.map((word, index) => {
         const color = colors[index];
         return (
-          <Text key={`colored-${index}`} color={color as TextProps["color"]}>
+          // <Text key={`colored-${index}`} color={color as TextProps["color"]}>
+          //   {word}
+          // </Text>
+          <Typography key={`colored-${index}`} style={{ color: color }}>
             {word}
-          </Text>
+          </Typography>
         );
       });
       // console.log(`_colored: ${JSON.stringify(_colored, null, 2)}`);
@@ -151,21 +158,37 @@ export default function Game() {
   }, [captured, colors, setColored]);
 
   return (
-    <Flex direction="column" gap="4">
-      <Text>{textToBeCaptured}</Text>
-      <TextField.Root
-        ref={inputRef}
+    // <Flex direction="column" gap="4">
+    //   <Text>{textToBeCaptured}</Text>
+    //   <TextField.Root
+    //     ref={inputRef}
+    //     onKeyDown={handleKeyDown}
+    //     onChange={handleOnChange}
+    //     onKeyUp={handleOnKeyUp}
+    //     onPaste={(e) => e.preventDefault()}
+    //   >
+    //     <TextField.Slot />
+    //   </TextField.Root>
+    //   <Flex gapX="2">{colored}</Flex>
+    //   {initTime && <Box>Started at {initTime}</Box>}
+    //   {endTime && <Box>End at {endTime}</Box>}
+    //   {initTime && endTime && <Box>Time taken: {endTime - initTime} ms</Box>}
+    // </Flex>
+    <Box display="flex" flexDirection="column" gap={4}>
+      <Typography>{textToBeCaptured}</Typography>
+      <TextField
+        inputRef={inputRef}
         onKeyDown={handleKeyDown}
         onChange={handleOnChange}
         onKeyUp={handleOnKeyUp}
         onPaste={(e) => e.preventDefault()}
-      >
-        <TextField.Slot />
-      </TextField.Root>
-      <Flex gapX="2">{colored}</Flex>
+      />
+      <Box display="flex" gap={2}>
+        {colored}
+      </Box>
       {initTime && <Box>Started at {initTime}</Box>}
       {endTime && <Box>End at {endTime}</Box>}
       {initTime && endTime && <Box>Time taken: {endTime - initTime} ms</Box>}
-    </Flex>
+    </Box>
   );
 }

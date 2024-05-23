@@ -1,4 +1,4 @@
-import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button } from '@mui/material';
+import { AlertDialog, Button } from "@radix-ui/themes";
 import useBoundStore from "../store";
 import { useState, useEffect } from "react";
 
@@ -56,7 +56,7 @@ export default function GameOverAlert() {
     initialTimerValue,
   ]);
 
-  const handleClose = () => {
+  const handleOnClick = () => {
     resetGame();
     resetTimer();
     addMatchRecord(matchRecord);
@@ -64,23 +64,15 @@ export default function GameOverAlert() {
     setOpen(false);
   };
 
-
   return (
-    <Dialog
-      open={open}
-      onClose={handleClose}
-    >
-      <DialogTitle>{"Game Over"}</DialogTitle>
-      <DialogContent>
-        <DialogContentText>
-          Your game has ended. Here are your results...
-        </DialogContentText>
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose}>
-          Close
-        </Button>
-      </DialogActions>
-    </Dialog>
+    <AlertDialog.Root open={open} onOpenChange={setOpen}>
+      <AlertDialog.Content>
+        <AlertDialog.Title>Game Over</AlertDialog.Title>
+        <AlertDialog.Description>Game over!</AlertDialog.Description>
+        <AlertDialog.Cancel>
+          <Button onClick={handleOnClick}>OK</Button>
+        </AlertDialog.Cancel>
+      </AlertDialog.Content>
+    </AlertDialog.Root>
   );
 }

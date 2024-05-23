@@ -1,5 +1,6 @@
 import useBoundStore from "../store";
-import { Button } from "@radix-ui/themes";
+// import { Button } from "@radix-ui/themes";
+import Button from "@mui/material/Button";
 
 export default function RestartGame() {
   const resetGame = useBoundStore((state) => state.resetGame);
@@ -8,6 +9,8 @@ export default function RestartGame() {
 
   return (
     <Button
+      variant="contained"
+      color="primary"
       onClick={() => {
         resetGame();
         resetTimer();

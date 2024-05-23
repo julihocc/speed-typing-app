@@ -1,15 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
-import "@radix-ui/themes/styles.css";
-import { Theme } from "@radix-ui/themes";
 import GameOverAlert from "./components/GameOverAlert";
+
+// import { ThemeProvider } from "@mui/material/styles";
+// import discordTheme from "./themes/discordTheme";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <Theme appearance="dark" radius="full">
+    <>
+      {/* <ThemeProvider theme={discordTheme}> */}
       <GameOverAlert />
       <App />
-    </Theme>
+      {/* </ThemeProvider> */}
+    </>
   </React.StrictMode>
 );
