@@ -1,0 +1,10 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@font-face {
+  font-family: "Geist Sans";
+  src: url("src/assets/fonts/GeistVF.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+}
