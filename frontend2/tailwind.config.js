@@ -2,6 +2,9 @@
 /** @type {import('tailwindcss').Config} */
 // (Optional) Import default theme when using a custom font (Step 7)
 // import defaultTheme from "tailwindcss/defaultTheme";
+import forms from "@tailwindcss/forms";
+import radix from "tailwindcss-radix";
+
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
@@ -9,10 +12,6 @@ export default {
       // fontFamily: {
       //   sans: ["Geist Sans", ...defaultTheme.fontFamily.sans],
       // },
-      colors: {
-        primary: 'var(--radix-color-accent)',
-        secondary: 'var(--radix-color-secondary)',
-      },
       keyframes: {
         hide: {
           from: { opacity: "1" },
@@ -76,5 +75,5 @@ export default {
       },
     },
   },
-  plugins: [require("@tailwindcss/forms")],
+  plugins: [forms, radix()],
 };

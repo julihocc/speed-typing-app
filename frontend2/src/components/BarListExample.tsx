@@ -9,5 +9,10 @@ const data = [
 ];
 
 export const BarListExample = () => {
-  return <BarList data={data} className="w-full h-96" />;
+  return (
+    <BarList
+      data={data}
+      // className="radix-progress-bar radix-state-active:bg-blue-500"
+    />
+  );
 };
