@@ -1,11 +1,12 @@
 import MatchRecordViewer from "../components/MatchRecordViewer";
 import ResetMatchRecords from "../components/ResetMatchRecords";
-import HistoricalMatchAccuracy from "../components/historicalMatchAccuracy";
+import HistoricalMatchAccuracy from "../components/HistoricalMatchAccuracy";
+import SpeedWatcher from "../components/SpeedWatcher";
 
 export default function Dashboard() {
   return (
     <div>
-      <h1>Dashboard</h1>
+      <SpeedWatcher />
       <HistoricalMatchAccuracy />
       <ResetMatchRecords />
       <MatchRecordViewer />
