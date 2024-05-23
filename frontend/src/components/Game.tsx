@@ -47,7 +47,7 @@ export default function Game() {
 
   useEffect(() => {
     setWords(textToBeCaptured.trim().split(" "));
-  }, [textToBeCaptured, setWords]);
+  }, [setWords, textToBeCaptured]);
 
   // useEffect(() => {
   //   setTextFieldValue(textToBeCaptured);

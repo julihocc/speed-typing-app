@@ -55,7 +55,7 @@ export const createGameSlice: StateCreator<
     }),
   resetGame: () =>
     set((state) => {
-      state.words = [];
+      // state.words = [];
       state.captured = [];
       state.nailed = [];
       state.colors = [];
