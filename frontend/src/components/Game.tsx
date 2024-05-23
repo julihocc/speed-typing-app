@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 export default function Game() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [colored, setColored] = useState<JSX.Element[] | undefined>(undefined);
-  const [textToBeCaptured] = useState<string>("This is a paragraph component");
+  const [textToBeCaptured, setTextToBeCaptured] = useState<string>("");
 
   const {
     textFieldValue,
@@ -27,11 +27,30 @@ export default function Game() {
     setNailed,
     captured,
     setCaptured,
+    randomIndex,
+    setRandomIndex,
   } = useBoundStore();
 
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
+
+  useEffect(() => {
+    if (randomIndex === null) {
+      setRandomIndex(Math.floor(Math.random() * 71));
+    }
+  }, [setRandomIndex, randomIndex]);
+
+  useEffect(() => {
+    // const random = Math.floor(Math.random() * 71);
+    const url = "http://localhost:3000/" + randomIndex;
+    fetch(url)
+      .then((response) => response.text())
+      .then((data) => {
+        const obj = JSON.parse(data);
+        setTextToBeCaptured(obj.quote);
+      });
+  }, [randomIndex, setTextToBeCaptured]);
 
   useEffect(() => {
     setWords(textToBeCaptured.trim().split(" "));
