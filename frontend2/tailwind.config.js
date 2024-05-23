@@ -9,6 +9,10 @@ export default {
       // fontFamily: {
       //   sans: ["Geist Sans", ...defaultTheme.fontFamily.sans],
       // },
+      colors: {
+        primary: 'var(--radix-color-accent)',
+        secondary: 'var(--radix-color-secondary)',
+      },
       keyframes: {
         hide: {
           from: { opacity: "1" },
