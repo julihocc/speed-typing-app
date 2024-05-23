@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
-import { Progress, Flex, Text, Box } from "@radix-ui/themes";
+// import { Progress, Flex, Text, Box } from "@radix-ui/themes";
 import useBoundStore from "../store";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import LinearProgress from "@mui/material/LinearProgress";
 
 export default function Timer() {
   // const [remainingTime, setRemainingTime] = useState<number>(60);
@@ -42,17 +45,17 @@ export default function Timer() {
 
   return (
     <div>
-      <Flex align="center" justify="center" gapX="4">
+      <Box display="flex" alignItems="center" justifyContent="center" gap={4}>
         <Box minWidth="16rem">
-          <Progress value={progressPercentage} />
+          <LinearProgress variant="determinate" value={progressPercentage} />
         </Box>
         <Box>
-          <Text>
+          <Typography variant="body1">
             Time remaining:{" "}
             {remainingTime === null ? initialTimerValue : remainingTime} s
-          </Text>
+          </Typography>
         </Box>
-      </Flex>
+      </Box>
     </div>
   );
 }
