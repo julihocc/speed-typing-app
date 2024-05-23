@@ -6,17 +6,18 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
+import Container from "@mui/material/Container";
 
 export default function RootLayout() {
   return (
-    <>
-      <Box sx={{ flexGrow: 1 }}>
+    <Container>
+      <Box sx={{ flexGrow: 1 }} >
         <AppBar position="static">
           <Toolbar>
-            <Typography variant="h3" sx={{ flexGrow: 1 }} >
+            <Typography variant="h3" sx={{ flexGrow: 1 }}>
               Speed Typing App
             </Typography>
-            <ButtonGroup color="secondary" variant="contained">
+            <ButtonGroup color="secondary" variant="contained" disableElevation>
               <Button>
                 <NavLink
                   to="/"
@@ -46,6 +47,6 @@ export default function RootLayout() {
         </AppBar>
       </Box>
       <Outlet />
-    </>
+    </Container>
   );
 }
