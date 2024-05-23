@@ -1,45 +1,33 @@
 import { useRef, useEffect, useState } from "react";
-// import { Text, TextProps, TextField, Flex, Box } from "@radix-ui/themes";
 import useBoundStore from "../store";
-// import { TextField, Typography } from "@material-ui/core";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 
-// type Color = "green" | "red" | undefined;
-
 export default function Game() {
   const inputRef = useRef<HTMLInputElement>(null);
-
-  // const textToBeCaptured = "This is a paragraph component";
+  const [colored, setColored] = useState<JSX.Element[] | undefined>(undefined);
   const [textToBeCaptured] = useState<string>("This is a paragraph component");
 
-  const captured = useBoundStore((state) => state.captured);
-  const setCaptured = useBoundStore((state) => state.setCaptured);
-
-  const nailed = useBoundStore((state) => state.nailed);
-  const setNailed = useBoundStore((state) => state.setNailed);
-
-  const colors = useBoundStore((state) => state.colors);
-  const setColors = useBoundStore((state) => state.setColors);
-
-  const [colored, setColored] = useState<JSX.Element[] | undefined>(undefined);
-
-  const initTime = useBoundStore((state) => state.gameStartTime);
-  const setInitTime = useBoundStore((state) => state.setGameStartTime);
-
-  const endTime = useBoundStore((state) => state.gameEndTime);
-  const setEndTime = useBoundStore((state) => state.setGameEndTime);
-
-  const initialTimerValue = useBoundStore((state) => state.initialTimerValue);
-  const remainingTime = useBoundStore((state) => state.remainingTime);
-  const setRemainingTime = useBoundStore((state) => state.setRemainingTime);
-
-  const words = useBoundStore((state) => state.words);
-  const setWords = useBoundStore((state) => state.setWords);
-
-  const textFieldValue = useBoundStore((state) => state.textFieldValue);
-  const setTextFieldValue = useBoundStore((state) => state.setTextFieldValue);
+  const {
+    textFieldValue,
+    setTextFieldValue,
+    words,
+    setWords,
+    initialTimerValue,
+    remainingTime,
+    setRemainingTime,
+    gameEndTime,
+    setGameEndTime,
+    gameStartTime,
+    setGameStartTime,
+    colors,
+    setColors,
+    nailed,
+    setNailed,
+    captured,
+    setCaptured,
+  } = useBoundStore();
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -48,10 +36,6 @@ export default function Game() {
   useEffect(() => {
     setWords(textToBeCaptured.trim().split(" "));
   }, [setWords, textToBeCaptured]);
-
-  // useEffect(() => {
-  //   setTextFieldValue(textToBeCaptured);
-  // }, [setTextFieldValue]);
 
   useEffect(() => {
     if (textFieldValue === undefined) {
@@ -66,21 +50,12 @@ export default function Game() {
     }
   }, [textFieldValue]);
 
-  // useEffect(() => {
-  //   const value = inputRef.current?.value;
-  //   console.log(`inputRef.current.value: ${value}`);
-  //   if (!value) {
-  //     resetGame();
-  //     resetTimer();
-  //   }
-  // }, [inputRef.current?.value, resetGame, resetTimer]);
-
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === "Backspace") {
       event.preventDefault();
     }
-    if (initTime === null) {
-      setInitTime(new Date().getTime());
+    if (gameStartTime === null) {
+      setGameStartTime(new Date().getTime());
     }
     if (remainingTime === null) {
       setRemainingTime(initialTimerValue);
@@ -112,9 +87,9 @@ export default function Game() {
       console.log("Game over");
       console.log(`event.key: ${event.key}`);
       if (event.key === " ") {
-        if (endTime === null) {
+        if (gameEndTime === null) {
           const now = new Date().getTime();
-          setEndTime(now);
+          setGameEndTime(now);
         }
       }
     }
@@ -137,9 +112,6 @@ export default function Game() {
   }, [nailed, setColors]);
 
   useEffect(() => {
-    // console.log(captured);
-    // console.log(colors);
-
     if (captured) {
       const _colored = captured.map((word, index) => {
         const color = colors[index];
@@ -158,22 +130,6 @@ export default function Game() {
   }, [captured, colors, setColored]);
 
   return (
-    // <Flex direction="column" gap="4">
-    //   <Text>{textToBeCaptured}</Text>
-    //   <TextField.Root
-    //     ref={inputRef}
-    //     onKeyDown={handleKeyDown}
-    //     onChange={handleOnChange}
-    //     onKeyUp={handleOnKeyUp}
-    //     onPaste={(e) => e.preventDefault()}
-    //   >
-    //     <TextField.Slot />
-    //   </TextField.Root>
-    //   <Flex gapX="2">{colored}</Flex>
-    //   {initTime && <Box>Started at {initTime}</Box>}
-    //   {endTime && <Box>End at {endTime}</Box>}
-    //   {initTime && endTime && <Box>Time taken: {endTime - initTime} ms</Box>}
-    // </Flex>
     <Box display="flex" flexDirection="column" gap={4}>
       <Typography>{textToBeCaptured}</Typography>
       <TextField
@@ -186,9 +142,11 @@ export default function Game() {
       <Box display="flex" gap={2}>
         {colored}
       </Box>
-      {initTime && <Box>Started at {initTime}</Box>}
-      {endTime && <Box>End at {endTime}</Box>}
-      {initTime && endTime && <Box>Time taken: {endTime - initTime} ms</Box>}
+      {gameStartTime && <Box>Started at {gameStartTime}</Box>}
+      {gameEndTime && <Box>End at {gameEndTime}</Box>}
+      {gameStartTime && gameEndTime && (
+        <Box>Time taken: {gameEndTime - gameStartTime} ms</Box>
+      )}
     </Box>
   );
 }
