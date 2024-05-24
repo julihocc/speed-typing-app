@@ -136,10 +136,11 @@ export default function Game() {
       const _colored = captured.map((word, index) => {
         const color = colors[index];
         return (
-          // <Text key={`colored-${index}`} color={color as TextProps["color"]}>
-          //   {word}
-          // </Text>
-          <Typography key={`colored-${index}`} style={{ color: color }}>
+          <Typography
+            variant="h5"
+            key={`colored-${index}`}
+            sx={{ display: "inline", color: color, margin: 1 }}
+          >
             {word}
           </Typography>
         );
@@ -152,7 +153,7 @@ export default function Game() {
   return (
     <Box display="flex" flexDirection="column" gap={4}>
       <Paper>
-        <Typography variant="h1">{textToBeCaptured}</Typography>
+        <Typography variant="h5">{textToBeCaptured}</Typography>
       </Paper>
       <TextField
         inputRef={inputRef}
@@ -161,14 +162,9 @@ export default function Game() {
         onKeyUp={handleOnKeyUp}
         onPaste={(e) => e.preventDefault()}
       />
-      <Box display="flex" gap={2}>
-        {colored}
+      <Box display="flex">
+        <Paper>{colored}</Paper>
       </Box>
-      {gameStartTime && <Box>Started at {gameStartTime}</Box>}
-      {gameEndTime && <Box>End at {gameEndTime}</Box>}
-      {gameStartTime && gameEndTime && (
-        <Box>Time taken: {gameEndTime - gameStartTime} ms</Box>
-      )}
     </Box>
   );
 }

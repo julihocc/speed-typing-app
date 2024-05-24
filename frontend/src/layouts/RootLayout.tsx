@@ -14,7 +14,7 @@ export default function RootLayout() {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
-            <Typography variant="h1" component="div" sx={{ flexGrow: 1 }}>
+            <Typography variant="h3" component="div" sx={{ flexGrow: 1 }}>
               Speed Typing App
             </Typography>
             <ButtonGroup color="secondary" variant="contained" disableElevation>

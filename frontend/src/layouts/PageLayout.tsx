@@ -9,7 +9,7 @@ type PageLayoutProps = {
 export default function PageLayout({ children, title }: PageLayoutProps) {
   return (
     <Container maxWidth="md">
-      <Typography variant="h3" gutterBottom>
+      <Typography variant="h4" gutterBottom>
         {title}
       </Typography>
       {children}
