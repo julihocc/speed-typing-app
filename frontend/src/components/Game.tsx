@@ -152,9 +152,14 @@ export default function Game() {
 
   return (
     <Box display="flex" flexDirection="column" gap={4}>
-      <Paper>
-        <Typography variant="h5">{textToBeCaptured}</Typography>
-      </Paper>
+      <Box sx={{ margin: 2 }}>
+        <Paper variant="outlined">
+          <Typography variant="h5" sx={{ margin: 2, padding: 2 }}>
+            {textToBeCaptured}
+          </Typography>
+        </Paper>
+      </Box>
+
       <TextField
         inputRef={inputRef}
         onKeyDown={handleKeyDown}

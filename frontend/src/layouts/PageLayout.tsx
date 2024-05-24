@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Container, Typography, AppBar } from "@mui/material";
+import { Container, Typography, AppBar, Toolbar } from "@mui/material";
 
 type PageLayoutProps = {
   children: ReactNode;
@@ -8,11 +8,13 @@ type PageLayoutProps = {
 
 export default function PageLayout({ children, title }: PageLayoutProps) {
   return (
-    <Container >
+    <Container>
       <AppBar position="static" color="secondary">
-        <Typography variant="h4" gutterBottom>
-          {title}
-        </Typography>
+        <Toolbar>
+          <Typography variant="h4" gutterBottom>
+            {title}
+          </Typography>
+        </Toolbar>
       </AppBar>
       {children}
     </Container>
