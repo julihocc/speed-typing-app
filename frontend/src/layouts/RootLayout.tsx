@@ -10,45 +10,51 @@ import Box from "@mui/material/Box";
 
 export default function RootLayout() {
   return (
-    <Container maxWidth="md">
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
-          <Toolbar>
-            <Typography variant="h3" component="div" sx={{ flexGrow: 1 }}>
-              Speed Typing App
-            </Typography>
-            <ButtonGroup color="secondary" variant="contained" disableElevation>
-              <Button>
-                <NavLink
-                  to="/"
-                  style={{ textDecoration: "none", color: "inherit" }}
-                >
-                  Home
-                </NavLink>
-              </Button>
+    <>
+      <Container>
+        <Box sx={{ flexGrow: 1 }}>
+          <AppBar position="static">
+            <Toolbar>
+              <Typography variant="h3" component="div" sx={{ flexGrow: 1 }}>
+                Speed Typing App
+              </Typography>
+              <ButtonGroup
+                color="secondary"
+                variant="contained"
+                disableElevation
+              >
+                <Button>
+                  <NavLink
+                    to="/"
+                    style={{ textDecoration: "none", color: "inherit" }}
+                  >
+                    Home
+                  </NavLink>
+                </Button>
 
-              <Button>
-                <NavLink
-                  to="/Dashboard"
-                  style={{ textDecoration: "none", color: "inherit" }}
-                >
-                  Dashboard
-                </NavLink>
-              </Button>
+                <Button>
+                  <NavLink
+                    to="/Dashboard"
+                    style={{ textDecoration: "none", color: "inherit" }}
+                  >
+                    Dashboard
+                  </NavLink>
+                </Button>
 
-              <Button>
-                <NavLink
-                  to="/Login"
-                  style={{ textDecoration: "none", color: "inherit" }}
-                >
-                  Login
-                </NavLink>
-              </Button>
-            </ButtonGroup>
-          </Toolbar>
-        </AppBar>
-      </Box>
+                <Button>
+                  <NavLink
+                    to="/Login"
+                    style={{ textDecoration: "none", color: "inherit" }}
+                  >
+                    Login
+                  </NavLink>
+                </Button>
+              </ButtonGroup>
+            </Toolbar>
+          </AppBar>
+        </Box>
+      </Container>
       <Outlet />
-    </Container>
+    </>
   );
 }
