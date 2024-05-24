@@ -1,7 +1,9 @@
+import PageLayout from "../layouts/PageLayout";
+
 export default function Login() {
   return (
-    <div>
-      <h1>Login</h1>
-    </div>
+    <PageLayout title="Login">
+      <></>
+    </PageLayout>
   );
 }

@@ -3,6 +3,7 @@ import useBoundStore from "../store";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import Paper from "@mui/material/Paper";
 
 export default function Game() {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -150,7 +151,9 @@ export default function Game() {
 
   return (
     <Box display="flex" flexDirection="column" gap={4}>
-      <Typography>{textToBeCaptured}</Typography>
+      <Paper>
+        <Typography variant="h1">{textToBeCaptured}</Typography>
+      </Paper>
       <TextField
         inputRef={inputRef}
         onKeyDown={handleKeyDown}
