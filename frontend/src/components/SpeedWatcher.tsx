@@ -1,6 +1,7 @@
 import useBoundStore from "../store";
 import { useState, useEffect } from "react";
 import { BarChart } from "@mui/x-charts/BarChart";
+import { Container, Typography, Card, CardContent } from "@mui/material";
 
 export default function SpeedWatcher() {
   const { matchRecords } = useBoundStore();
@@ -42,14 +43,20 @@ export default function SpeedWatcher() {
   }, [matchRecords]);
 
   return (
-    <div>
-      <h2>Speed Watcher</h2>
-      <p>
-        <strong>Max Speed:</strong> {maxSpeed.toFixed(2)} words per second
-      </p>
-      <p>
-        <strong>Min Speed:</strong> {minSpeed.toFixed(2)} words per second
-      </p>
+    <Container>
+      <Typography variant="h5">Speed Watcher</Typography>
+
+      <Card>
+        <CardContent>
+          Max Speed: {maxSpeed.toFixed(2)} words per second
+        </CardContent>
+      </Card>
+      <Card>
+        <CardContent>
+          Min Speed: {minSpeed.toFixed(2)} words per second
+        </CardContent>
+      </Card>
+
       <BarChart
         width={800}
         height={400}
@@ -61,6 +68,6 @@ export default function SpeedWatcher() {
         ]}
         xAxis={[{ scaleType: "band", data: dates }]}
       />
-    </div>
+    </Container>
   );
 }

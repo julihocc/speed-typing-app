@@ -1,6 +1,7 @@
 import useBoundStore from "../store";
 import { useState, useEffect } from "react";
 import { LineChart } from "@mui/x-charts/LineChart";
+import { Container, Typography } from "@mui/material";
 
 export default function HistoricalMatchAccuracy() {
   const { matchRecords } = useBoundStore();
@@ -33,8 +34,8 @@ export default function HistoricalMatchAccuracy() {
   }, [matchRecords]);
 
   return (
-    <>
-      <h2>Historical Match Accuracy</h2>
+    <Container>
+      <Typography variant="h5">Historical Match Accuracy</Typography>
       <LineChart
         width={800}
         height={400}
@@ -47,6 +48,6 @@ export default function HistoricalMatchAccuracy() {
         ]}
         xAxis={[{ scaleType: "point", data: dates }]}
       />
-    </>
+    </Container>
   );
 }

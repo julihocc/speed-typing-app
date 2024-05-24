@@ -26,20 +26,22 @@ export default function RootLayout() {
                   Home
                 </NavLink>
               </Button>
-              <Button>
-                <NavLink
-                  to="/Login"
-                  style={{ textDecoration: "none", color: "inherit" }}
-                >
-                  Login
-                </NavLink>
-              </Button>
+
               <Button>
                 <NavLink
                   to="/Dashboard"
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
                   Dashboard
+                </NavLink>
+              </Button>
+
+              <Button>
+                <NavLink
+                  to="/Login"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  Login
                 </NavLink>
               </Button>
             </ButtonGroup>

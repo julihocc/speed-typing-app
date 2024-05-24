@@ -45,7 +45,7 @@ export default function Timer() {
 
   return (
     <div>
-      <Box display="flex" alignItems="center" justifyContent="center" gap={4}>
+      <Box display="flex" alignItems="center" gap={4} margin={2}>
         <Box minWidth="16rem">
           <LinearProgress variant="determinate" value={progressPercentage} />
         </Box>
