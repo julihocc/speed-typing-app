@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from "react";
-import useBoundStore from "../bound-store";
+import useBoundStore from "../../stores/bound-store";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";

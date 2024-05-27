@@ -1,4 +1,4 @@
-import useBoundStore from "../bound-store";
+import useBoundStore from "../../stores/bound-store";
 // import { Button } from "@radix-ui/themes";
 import Button from "@mui/material/Button";
 

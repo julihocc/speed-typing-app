@@ -1,4 +1,4 @@
-import useBoundStore from "../bound-store";
+import useBoundStore from "../../stores/bound-store";
 import { Button } from "@mui/material";
 
 export default function ResetMatchRecords() {
