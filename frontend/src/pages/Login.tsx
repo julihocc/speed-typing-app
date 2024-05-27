@@ -5,6 +5,7 @@ import { useState } from "react";
 import useIndexedStore from "../stores/indexed-store";
 import useBoundStore from "../stores/bound-store";
 import { encrypt } from "../utils/encrypt";
+import { useNavigate } from "react-router-dom";
 
 import { TextField, Button, Typography, Container, Box } from "@mui/material";
 
@@ -17,6 +18,7 @@ export default function Login() {
     setCurrentUserIsAuthenticated,
     setCurrentUserMatchRecords,
   } = useBoundStore();
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,6 +38,8 @@ export default function Login() {
     setCurrentUserMatchRecords(user.matchRecords);
     setCapturedEmail("");
     setCapturedPassword("");
+
+    return navigate("/Dashboard");
   };
 
   return (

@@ -13,11 +13,18 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   // const [avatar, setAvatar] = useState("");
-  const { addUser } = useIndexedStore();
+  const { addUser, getUserByEmail } = useIndexedStore();
   const navigate = useNavigate();
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+
+    const existingUser = getUserByEmail(email);
+
+    if (existingUser) {
+      console.error("User already exists");
+      return;
+    }
 
     if (password !== confirmPassword) {
       console.error("Passwords do not match");
