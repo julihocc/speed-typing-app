@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import { TextField, Button, Typography, Container, Box } from "@mui/material";
 import useIndexedStore from "../stores/indexed-store";
 import { useNavigate } from "react-router-dom";
+import { encrypt } from "../utils/encrypt";
 
 function SignUp() {
   const [firstName, setFirstName] = useState("");
@@ -27,9 +28,9 @@ function SignUp() {
       firstName,
       lastName,
       email,
-      password,
+      password: encrypt(password),
       avatar: "",
-      history: [],
+      matchRecords: [],
     };
 
     addUser(newUser);

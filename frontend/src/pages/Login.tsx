@@ -4,7 +4,7 @@ import { useState } from "react";
 // import useIndexedStore from "../../stores/indexed-store";
 import useIndexedStore from "../stores/indexed-store";
 import useBoundStore from "../stores/bound-store";
-import {encrypt} from "../utils/encryption";
+import { encrypt } from "../utils/encrypt";
 
 import { TextField, Button, Typography, Container, Box } from "@mui/material";
 
