@@ -53,6 +53,8 @@ export default function Game() {
       });
   }, [randomIndex, setTextToBeCaptured]);
 
+
+
   useEffect(() => {
     setWords(textToBeCaptured.trim().split(" "));
   }, [setWords, textToBeCaptured]);
