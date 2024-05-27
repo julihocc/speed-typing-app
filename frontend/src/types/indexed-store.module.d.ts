@@ -1,4 +1,4 @@
-interface UserSlice {
+interface  UserSlice  {
   username: string;
   email: string;
   password: string;
