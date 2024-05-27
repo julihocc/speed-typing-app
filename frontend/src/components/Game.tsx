@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from "react";
-import useBoundStore from "../store";
+import useBoundStore from "../bound-store";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
@@ -52,8 +52,6 @@ export default function Game() {
         setTextToBeCaptured(obj.quote);
       });
   }, [randomIndex, setTextToBeCaptured]);
-
-
 
   useEffect(() => {
     setWords(textToBeCaptured.trim().split(" "));

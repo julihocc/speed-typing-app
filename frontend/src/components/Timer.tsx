@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 // import { Progress, Flex, Text, Box } from "@radix-ui/themes";
-import useBoundStore from "../store";
+import useBoundStore from "../bound-store";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import LinearProgress from "@mui/material/LinearProgress";

@@ -1,5 +1,12 @@
-import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button } from '@mui/material';
-import useBoundStore from "../store";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+  Button,
+} from "@mui/material";
+import useBoundStore from "../bound-store";
 import { useState, useEffect } from "react";
 
 export const nullMatchRecord: MatchRecord = {
@@ -64,12 +71,8 @@ export default function GameOverAlert() {
     setOpen(false);
   };
 
-
   return (
-    <Dialog
-      open={open}
-      onClose={handleClose}
-    >
+    <Dialog open={open} onClose={handleClose}>
       <DialogTitle>{"Game Over"}</DialogTitle>
       <DialogContent>
         <DialogContentText>
@@ -77,9 +80,7 @@ export default function GameOverAlert() {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>
-          Close
-        </Button>
+        <Button onClick={handleClose}>Close</Button>
       </DialogActions>
     </Dialog>
   );
