@@ -1,14 +1,14 @@
 import { create } from "zustand";
 import { devtools, persist, createJSONStorage } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
+import storage from "./storage";
+import { createUsersSlice } from "./usersSlice";
 
-import { createUserSlice, storage } from "./userSlice";
-
-const useIndexedStore = create<IndexedStore>()(
+const useIndexedStore = create<IIndexedStore>()(
   devtools(
     persist(
       immer((state, set, api) => ({
-        ...createUserSlice(state, set, api),
+        ...createUsersSlice(state, set, api),
       })),
       {
         name: "user-storage",

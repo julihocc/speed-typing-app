@@ -5,6 +5,7 @@ import { immer } from "zustand/middleware/immer";
 import { createGameSlice } from "./gameSlice";
 import { createTimerSlice } from "./timerSlice";
 import { createStatsSlice } from "./statsSlice";
+import { createUserSlice } from "./userSlice";
 
 const useBoundStore = create<BoundStore>()(
   devtools(
@@ -13,6 +14,7 @@ const useBoundStore = create<BoundStore>()(
         ...createGameSlice(state, set, api), 
         ...createTimerSlice(state, set, api),
         ...createStatsSlice(state, set, api),
+        ...createUserSlice(state, set, api),
       })),
       {
         name: "game-storage",

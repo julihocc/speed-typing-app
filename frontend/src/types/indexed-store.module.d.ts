@@ -1,10 +1,15 @@
-interface  UserSlice  {
-  username: string;
+interface IUser {
+  firstName: string;
+  lastName: string;
   email: string;
+  avatar: string;
   password: string;
-  setUsername: (username: string) => void;
-  setEmail: (email: string) => void;
-  setPassword: (password: string) => void;
 }
 
-type IndexedStore = UserSlice;
+interface IUsers {
+  users: IUser[];
+  addUser: (user: IUser) => void;
+  removeUser: (email: string) => void;
+}
+
+type IIndexedStore = IUsers;

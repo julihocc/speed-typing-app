@@ -45,4 +45,14 @@ interface StatsSlice {
   resetStats: () => void;
 }
 
-type BoundStore = GameSlice & TimerSlice & StatsSlice;
+interface UserSlice {
+  username: string;
+  email: string;
+  password: string;
+  setUsername: (username: string) => void;
+  setEmail: (email: string) => void;
+  setPassword: (password: string) => void;
+}
+
+type BoundStore = GameSlice & TimerSlice & StatsSlice & UserSlice;
+
