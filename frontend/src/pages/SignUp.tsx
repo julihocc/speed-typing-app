@@ -8,7 +8,6 @@ import {
   Typography,
   Container,
   Box,
-  Link,
 } from "@mui/material";
 
 function SignUp() {
