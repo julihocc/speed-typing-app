@@ -17,11 +17,11 @@ const useBoundStore = create<BoundStore>()(
         ...createUserSlice(state, set, api),
       })),
       {
-        name: "game-storage",
+        name: "session-storage",
         storage: createJSONStorage(() => sessionStorage),
       }
     ),
-    { name: "game-devtools" }
+    { name: "session-devtools" }
   )
 );
 

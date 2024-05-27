@@ -11,11 +11,11 @@ const useIndexedStore = create<IIndexedStore>()(
         ...createUsersSlice(state, set, api),
       })),
       {
-        name: "user-storage",
+        name: "indexed-storage",
         storage: createJSONStorage(() => storage),
       }
     ),
-    { name: "user-devtools" }
+    { name: "indexed-devtools" }
   )
 );
 
