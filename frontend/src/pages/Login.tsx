@@ -1,18 +1,13 @@
 import PageLayout from "../layouts/PageLayout";
-import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import useIndexedStore from "../../stores/indexed-store";
 
-import {
-  TextField,
-  Button,
-  Typography,
-  Container,
-  Box,
-} from "@mui/material";
+import { TextField, Button, Typography, Container, Box } from "@mui/material";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  const { email, setEmail, password, setPassword } = useIndexedStore();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
