@@ -1,4 +1,4 @@
-import useBoundStore from "../store";
+import useBoundStore from "../stores/bound-store";
 import {
   Table,
   TableBody,

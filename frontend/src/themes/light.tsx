@@ -1,5 +1,7 @@
 import { createTheme } from "@mui/material/styles";
 
+// TODO improve theme
+
 const light = createTheme({
   palette: {
     primary: {

@@ -6,31 +6,26 @@ persist;
 immer;
 devtools;
 
-export const createStatsSlice: StateCreator<
-  BoundStore,
+export const createUsersSlice: StateCreator<
+  IIndexedStore,
   [
     ["zustand/immer", never],
     ["zustand/persist", unknown],
     ["zustand/devtools", never]
   ],
   [],
-  StatsSlice
+  IUsers
 > = (set, get) => ({
-  matchRecords: [],
-  addMatchRecord: (matchRecord) =>
+  users: [],
+  addUser: (user) =>
     set((state) => {
-      state.matchRecords.push(matchRecord);
+      state.users.push(user);
       return state;
     }),
-  resetStats: () =>
+  removeUser: (email) =>
     set((state) => {
-      state.matchRecords = [];
+      state.users = state.users.filter((user) => user.email !== email);
       return state;
     }),
-  getMatchRecords: () => get().matchRecords,
-  resetMatchRecords: () =>
-    set((state) => {
-      state.matchRecords = [];
-      return state;
-    }),
+  getUserByEmail: (email) => get().users.find((user) => user.email === email),
 });
