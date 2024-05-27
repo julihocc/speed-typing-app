@@ -15,7 +15,7 @@ export const createUsersSlice: StateCreator<
   ],
   [],
   IUsers
-> = (set) => ({
+> = (set, get) => ({
   users: [],
   addUser: (user) =>
     set((state) => {
@@ -27,4 +27,5 @@ export const createUsersSlice: StateCreator<
       state.users = state.users.filter((user) => user.email !== email);
       return state;
     }),
+  getUserByEmail: (email) => get().users.find((user) => user.email === email),
 });

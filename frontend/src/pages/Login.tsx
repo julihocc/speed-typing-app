@@ -2,17 +2,32 @@ import PageLayout from "../layouts/PageLayout";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 // import useIndexedStore from "../../stores/indexed-store";
+import useIndexedStore from "../stores/indexed-store";
+import useBoundStore from "../stores/bound-store";
 
 import { TextField, Button, Typography, Container, Box } from "@mui/material";
 
 export default function Login() {
   const [capturedEmail, setCapturedEmail] = useState("");
   const [capturedPassword, setCapturedPassword] = useState("");
+  const { getUserByEmail } = useIndexedStore();
+  const { setCurrentUserEmail, setCurrentUserPassword } = useBoundStore();
 
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log(`Logging in with ${capturedEmail} and ${capturedEmail}`);
+    const user = getUserByEmail(capturedEmail);
+    if (!user) {
+      console.error("User not found");
+      return;
+    }
+    if (user.password !== capturedPassword) {
+      console.error("Invalid password");
+      return;
+    }
+    setCurrentUserEmail(user.email);
+    setCurrentUserPassword(user.password);
     setCapturedEmail("");
     setCapturedPassword("");
   };

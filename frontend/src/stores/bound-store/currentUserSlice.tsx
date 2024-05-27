@@ -7,7 +7,7 @@ persist;
 immer;
 devtools;
 
-export const createUserSlice: StateCreator<
+export const createCurrentUserSlice: StateCreator<
   BoundStore,
   [
     ["zustand/immer", never],
@@ -15,28 +15,22 @@ export const createUserSlice: StateCreator<
     ["zustand/devtools", never]
   ],
   [],
-  UserSlice
+  CurrentUserSlice
 > = (set) => ({
-  username: "",
-  email: "",
-  password: "",
-  setUsername: (username) =>
+  currentUserEmail: "",
+  currentUserPassword: "",
+  setCurrentUserEmail: (email) =>
     set((state) => {
-      state.username = username;
+      state.currentUserEmail = email;
       return state;
     }),
-  setEmail: (email) =>
-    set((state) => {
-      state.email = email;
-      return state;
-    }),
-  setPassword: (password) =>
+  setCurrentUserPassword: (password) =>
     set((state) => {
       // const salt = bcrypt.genSaltSync(10);
       // const hashedPassword = bcrypt.hashSync(password, salt);
       const hashedPassword = encryptPassword(password);
       console.log("Password has been hashed", hashedPassword);
-      state.password = hashedPassword;
+      state.currentUserPassword = hashedPassword;
       return state;
     }),
 });
