@@ -4,6 +4,7 @@ import { useState } from "react";
 // import useIndexedStore from "../../stores/indexed-store";
 import useIndexedStore from "../stores/indexed-store";
 import useBoundStore from "../stores/bound-store";
+import {encrypt} from "../utils/encryption";
 
 import { TextField, Button, Typography, Container, Box } from "@mui/material";
 
@@ -25,7 +26,7 @@ export default function Login() {
       console.error("User not found");
       return;
     }
-    if (currentUser.password !== capturedPassword) {
+    if (currentUser.password !== encrypt(capturedPassword)) {
       console.error("Invalid password");
       return;
     }
