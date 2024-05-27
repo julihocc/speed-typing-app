@@ -1,32 +1,40 @@
 import React, { useState } from "react";
 import PageLayout from "../layouts/PageLayout";
 import { NavLink } from "react-router-dom";
-
-import {
-  TextField,
-  Button,
-  Typography,
-  Container,
-  Box,
-} from "@mui/material";
+import { TextField, Button, Typography, Container, Box } from "@mui/material";
+import useIndexedStore from "../stores/indexed-store";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  // const [avatar, setAvatar] = useState("");
+  const { addUser } = useIndexedStore();
+  const navigate = useNavigate();
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
-    // Basic client-side validation (add more as needed)
     if (password !== confirmPassword) {
-      // Handle password mismatch error (e.g., show error message)
+      console.error("Passwords do not match");
       return;
     }
 
-    // Here, you'd typically add your sign-up logic (API call, validation, etc.)
-    console.log("Sign-up submitted:", { name, email, password });
+    const newUser: IUser = {
+      firstName,
+      lastName,
+      email,
+      password,
+      avatar: "",
+      history: [],
+    };
+
+    addUser(newUser);
+
+    return navigate("/Login");
   };
 
   return (
@@ -38,11 +46,18 @@ function SignUp() {
           </Typography>
           <form onSubmit={handleSubmit}>
             <TextField
-              label="Name"
+              label="Firstname"
               fullWidth
               margin="normal"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+            <TextField
+              label="Lastname"
+              fullWidth
+              margin="normal"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
             />
             <TextField
               label="Email"
@@ -79,9 +94,6 @@ function SignUp() {
             </Button>
           </form>
           <Box mt={2} textAlign="center">
-            {/* <Link href="/login" underline="hover">
-              Already have an account? Login
-            </Link> */}
             <NavLink to="/Login">Already have an account? Login</NavLink>
           </Box>
         </Box>
