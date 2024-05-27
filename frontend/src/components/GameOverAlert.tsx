@@ -6,7 +6,7 @@ import {
   DialogActions,
   Button,
 } from "@mui/material";
-import useBoundStore from "../../stores/bound-store";
+import useBoundStore from "../stores/bound-store";
 import { useState, useEffect } from "react";
 
 export const nullMatchRecord: MatchRecord = {

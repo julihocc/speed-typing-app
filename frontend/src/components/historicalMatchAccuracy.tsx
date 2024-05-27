@@ -1,4 +1,4 @@
-import useBoundStore from "../../stores/bound-store";
+import useBoundStore from "../stores/bound-store";
 import { useState, useEffect } from "react";
 import { LineChart } from "@mui/x-charts/LineChart";
 import { Container, Typography } from "@mui/material";

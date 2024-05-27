@@ -1,4 +1,4 @@
-import useBoundStore from "../../stores/bound-store";
+import useBoundStore from "../stores/bound-store";
 import { useState, useEffect } from "react";
 import { BarChart } from "@mui/x-charts/BarChart";
 import { Container, Typography, Card, CardContent } from "@mui/material";

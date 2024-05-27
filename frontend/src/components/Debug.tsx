@@ -1,4 +1,4 @@
-import useBoundStore from "../../stores/bound-store";
+import useBoundStore from "../stores/bound-store";
 
 const Debug = () => {
   const captured = useBoundStore((state) => state.captured);

@@ -1,7 +1,7 @@
 import { StateCreator } from "zustand";
-import { persist, devtools,  } from "zustand/middleware";
+import { persist, devtools } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
-import { encryptPassword } from "../utils/encrypt";
+import { encryptPassword } from "../../utils/encrypt";
 
 persist;
 immer;
