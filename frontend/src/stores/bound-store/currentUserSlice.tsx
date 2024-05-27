@@ -1,7 +1,6 @@
 import { StateCreator } from "zustand";
 import { persist, devtools } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
-import { encrypt } from "../../utils/encrypt";
 
 persist;
 immer;
@@ -18,17 +17,21 @@ export const createCurrentUserSlice: StateCreator<
   CurrentUserSlice
 > = (set) => ({
   currentUserEmail: null,
-  currentUserPassword: null,
+  currentUserIsAuthenticated: false,
   setCurrentUserEmail: (email) =>
     set((state) => {
       state.currentUserEmail = email;
       return state;
     }),
-  setCurrentUserPassword: (password) =>
+  setCurrentUserIsAuthenticated: (isAuthenticated) =>
     set((state) => {
-      const hashedPassword = encrypt(password);
-      console.log("Password has been hashed", hashedPassword);
-      state.currentUserPassword = hashedPassword;
+      state.currentUserIsAuthenticated = isAuthenticated;
+      return state;
+    }),
+  logout: () =>
+    set((state) => {
+      state.currentUserEmail = null;
+      state.currentUserIsAuthenticated = false;
       return state;
     }),
 });

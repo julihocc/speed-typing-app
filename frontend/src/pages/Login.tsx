@@ -14,25 +14,26 @@ export default function Login() {
   const { getUserByEmail } = useIndexedStore();
   const {
     setCurrentUserEmail,
-    setCurrentUserPassword,
+    setCurrentUserIsAuthenticated,
     setCurrentUserMatchRecords,
   } = useBoundStore();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log(`Logging in with ${capturedEmail} and ${capturedEmail}`);
-    const currentUser = getUserByEmail(capturedEmail);
-    if (!currentUser) {
+    const user = getUserByEmail(capturedEmail);
+    console.log("Current user", user);
+    if (!user) {
       console.error("User not found");
       return;
     }
-    if (currentUser.password !== encrypt(capturedPassword)) {
+    if (user.password !== encrypt(capturedPassword)) {
       console.error("Invalid password");
       return;
     }
-    setCurrentUserEmail(currentUser.email);
-    setCurrentUserPassword(currentUser.password);
-    setCurrentUserMatchRecords(currentUser.matchRecords);
+    setCurrentUserEmail(user.email);
+    setCurrentUserIsAuthenticated(user.password === encrypt(capturedPassword));
+    setCurrentUserMatchRecords(user.matchRecords);
     setCapturedEmail("");
     setCapturedPassword("");
   };

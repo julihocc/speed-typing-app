@@ -47,10 +47,11 @@ interface StatsSlice {
 }
 
 interface CurrentUserSlice {
-  currentUserEmail: string|null;
-  currentUserPassword: string|null;
+  currentUserEmail: string | null;
+  currentUserIsAuthenticated: boolean;
   setCurrentUserEmail: (email: string) => void;
-  setCurrentUserPassword: (password: string) => void;
+  setCurrentUserIsAuthenticated: (isAuthenticated: boolean) => void;
+  logout: () => void;
 }
 
 type BoundStore = GameSlice & TimerSlice & StatsSlice & CurrentUserSlice;

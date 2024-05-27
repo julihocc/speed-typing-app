@@ -7,8 +7,11 @@ import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
+import Logout from "../components/Logout";
+import useBoundStore from "../stores/bound-store";
 
 export default function RootLayout() {
+  const { currentUserIsAuthenticated } = useBoundStore();
   return (
     <>
       <Container>
@@ -41,14 +44,18 @@ export default function RootLayout() {
                   </NavLink>
                 </Button>
 
-                <Button>
-                  <NavLink
-                    to="/Login"
-                    style={{ textDecoration: "none", color: "inherit" }}
-                  >
-                    Login
-                  </NavLink>
-                </Button>
+                {!currentUserIsAuthenticated ? (
+                  <Button>
+                    <NavLink
+                      to="/Login"
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      Login
+                    </NavLink>
+                  </Button>
+                ) : (
+                  <Logout />
+                )}
               </ButtonGroup>
             </Toolbar>
           </AppBar>

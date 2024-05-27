@@ -7,7 +7,7 @@ import useBoundStore from "../stores/bound-store";
 
 export default function Dashboard() {
   const { currentUserEmail } = useBoundStore();
-  if (currentUserEmail===null) {
+  if (currentUserEmail === null) {
     return null;
   }
   return (
