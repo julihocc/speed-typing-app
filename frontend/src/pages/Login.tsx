@@ -5,8 +5,6 @@ import useIndexedStore from "../../stores/indexed-store";
 import { TextField, Button, Typography, Container, Box } from "@mui/material";
 
 export default function Login() {
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
   const { email, setEmail, password, setPassword } = useIndexedStore();
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -27,7 +25,7 @@ export default function Login() {
               type="email"
               fullWidth
               margin="normal"
-              value={email}
+              // value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
@@ -35,7 +33,7 @@ export default function Login() {
               type="password"
               fullWidth
               margin="normal"
-              value={password}
+              // value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
             <Button

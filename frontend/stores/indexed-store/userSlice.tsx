@@ -1,7 +1,8 @@
 import { StateCreator } from "zustand";
-import { persist, devtools, createJSONStorage, StateStorage } from "zustand/middleware";
+import { persist, devtools, StateStorage } from "zustand/middleware";
 import { get, set, del } from "idb-keyval";
 import { immer } from "zustand/middleware/immer";
+import bcrypt from "bcryptjs";
 
 persist;
 immer;
@@ -47,7 +48,10 @@ export const createUserSlice: StateCreator<
     }),
   setPassword: (password) =>
     set((state) => {
-      state.password = password;
+      const salt = bcrypt.genSaltSync(10);
+      const hashedPassword = bcrypt.hashSync(password, salt);
+      console.log("Password has been hashed", hashedPassword);
+      state.password = hashedPassword;
       return state;
     }),
 });
