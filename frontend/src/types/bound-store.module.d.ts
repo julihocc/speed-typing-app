@@ -43,11 +43,12 @@ interface StatsSlice {
   getMatchRecords: () => MatchRecord[];
   resetMatchRecords: () => void;
   resetStats: () => void;
+  setCurrentUserMatchRecords: (matchRecords: MatchRecord[]) => void;
 }
 
 interface CurrentUserSlice {
-  currentUserEmail: string;
-  currentUserPassword: string;
+  currentUserEmail: string|null;
+  currentUserPassword: string|null;
   setCurrentUserEmail: (email: string) => void;
   setCurrentUserPassword: (password: string) => void;
 }

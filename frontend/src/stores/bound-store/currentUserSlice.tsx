@@ -17,8 +17,8 @@ export const createCurrentUserSlice: StateCreator<
   [],
   CurrentUserSlice
 > = (set) => ({
-  currentUserEmail: "",
-  currentUserPassword: "",
+  currentUserEmail: null,
+  currentUserPassword: null,
   setCurrentUserEmail: (email) =>
     set((state) => {
       state.currentUserEmail = email;
@@ -26,8 +26,6 @@ export const createCurrentUserSlice: StateCreator<
     }),
   setCurrentUserPassword: (password) =>
     set((state) => {
-      // const salt = bcrypt.genSaltSync(10);
-      // const hashedPassword = bcrypt.hashSync(password, salt);
       const hashedPassword = encryptPassword(password);
       console.log("Password has been hashed", hashedPassword);
       state.currentUserPassword = hashedPassword;

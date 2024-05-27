@@ -33,4 +33,9 @@ export const createStatsSlice: StateCreator<
       state.matchRecords = [];
       return state;
     }),
+  setCurrentUserMatchRecords: (matchRecords) =>
+    set((state) => {
+      state.matchRecords = matchRecords;
+      return state;
+    }),
 });

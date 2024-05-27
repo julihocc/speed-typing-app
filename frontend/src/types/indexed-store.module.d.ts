@@ -4,7 +4,7 @@ interface IUser {
   email: string;
   avatar: string;
   password: string;
-  history: MatchRecords[];
+  matchRecords: MatchRecord[];
 }
 
 interface IUsers {
