@@ -4,8 +4,10 @@ import useIndexedStore from "../stores/indexed-store";
 
 export default function ResetMatchRecords() {
   // const resetMatchRecords = useBoundStore((state) => state.resetMatchRecords);
-  const { currentUser } = useBoundStore();
-  const { resetMatchRecords } = useIndexedStore();
+  const { currentUserEmail } = useBoundStore();
+  const { resetMatchRecords, getUserByEmail } = useIndexedStore();
+
+  const currentUser = getUserByEmail(currentUserEmail);
 
   const handleOnClick = () => {
     console.log("Resetting match records");
@@ -13,7 +15,7 @@ export default function ResetMatchRecords() {
       console.error("No user found");
       return;
     }
-    console.log(currentUser.email);
+    console.log("...for ",currentUser.email);
     resetMatchRecords(currentUser.email);
   };
 

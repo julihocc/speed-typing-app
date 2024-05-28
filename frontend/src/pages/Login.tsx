@@ -13,11 +13,8 @@ export default function Login() {
   const [capturedEmail, setCapturedEmail] = useState("");
   const [capturedPassword, setCapturedPassword] = useState("");
   const { getUserByEmail } = useIndexedStore();
-  const {
-    setCurrentUser,
-    setCurrentUserEmail,
-    setCurrentUserIsAuthenticated,
-  } = useBoundStore();
+  const { setCurrentUserEmail, setCurrentUserIsAuthenticated } =
+    useBoundStore();
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -33,7 +30,6 @@ export default function Login() {
       console.error("Invalid password");
       return;
     }
-    setCurrentUser(user);
     setCurrentUserEmail(user.email);
     setCurrentUserIsAuthenticated(user.password === encrypt(capturedPassword));
     setCapturedEmail("");

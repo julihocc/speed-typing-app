@@ -27,7 +27,10 @@ export const createUsersSlice: StateCreator<
       state.users = state.users.filter((user) => user.email !== email);
       return state;
     }),
-  getUserByEmail: (email) => get().users.find((user) => user.email === email),
+  getUserByEmail: (email) => {
+    if (!email) return undefined;
+    return get().users.find((user) => user.email === email);
+  },
   pushMatchRecord: (email, matchRecord) =>
     set((state) => {
       const user = state.users.find((user) => user.email === email);
@@ -40,6 +43,9 @@ export const createUsersSlice: StateCreator<
     }),
   resetMatchRecords: (email) =>
     set((state) => {
+      if (!email) {
+        return state;
+      }
       const user = state.users.find((user) => user.email === email);
       if (!user) {
         console.error("User not found");

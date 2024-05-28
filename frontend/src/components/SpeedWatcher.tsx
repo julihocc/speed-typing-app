@@ -1,4 +1,5 @@
 import useBoundStore from "../stores/bound-store";
+import useIndexedStore from "../stores/indexed-store";
 import { useState, useEffect } from "react";
 import { BarChart } from "@mui/x-charts/BarChart";
 import { Container, Typography, Card, CardContent } from "@mui/material";
@@ -8,7 +9,11 @@ export default function SpeedWatcher() {
   const [dates, setDates] = useState<string[] | null>([]);
   const [maxSpeed, setMaxSpeed] = useState<number>(0);
   const [minSpeed, setMinSpeed] = useState<number>(0);
-  const { currentUser } = useBoundStore();
+  // const { currentUser } = useBoundStore();
+  const { currentUserEmail } = useBoundStore();
+  const { getUserByEmail } = useIndexedStore();
+
+  const currentUser = getUserByEmail(currentUserEmail);
 
   useEffect(() => {
     const _speeds = currentUser

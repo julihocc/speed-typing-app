@@ -1,10 +1,15 @@
 import useBoundStore from "../stores/bound-store";
+import useIndexedStore from "../stores/indexed-store";
 import { useState, useEffect } from "react";
 import { LineChart } from "@mui/x-charts/LineChart";
 import { Container, Typography } from "@mui/material";
 
 export default function HistoricalMatchAccuracy() {
-  const { currentUser } = useBoundStore();
+  const { currentUserEmail } = useBoundStore();
+  const { getUserByEmail } = useIndexedStore();
+
+  const currentUser = getUserByEmail(currentUserEmail);
+
   const [historicalAccuracy, setHistoricalAccuracy] = useState<number[] | null>(
     []
   );

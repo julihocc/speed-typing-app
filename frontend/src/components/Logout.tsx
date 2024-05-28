@@ -2,12 +2,16 @@ import { Button } from "@mui/material";
 import useBoundStore from "../stores/bound-store";
 
 const Logout = () => {
-  const { logout, resetMatchRecords } = useBoundStore();
+  const {
+    logout,
+    // currentUserEmail
+  } = useBoundStore();
+  // const { resetMatchRecords } = useIndexedStore();
   return (
     <Button
       onClick={() => {
         logout();
-        resetMatchRecords();
+        // resetMatchRecords(currentUserEmail);
       }}
     >
       Logout

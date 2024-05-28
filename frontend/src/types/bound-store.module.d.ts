@@ -38,10 +38,8 @@ interface MatchRecord {
 }
 
 interface CurrentUserSlice {
-  currentUser: IUser | null;
   currentUserEmail: string | null;
   currentUserIsAuthenticated: boolean;
-  setCurrentUser: (user: IUser) => void;
   setCurrentUserEmail: (email: string) => void;
   setCurrentUserIsAuthenticated: (isAuthenticated: boolean) => void;
   logout: () => void;

@@ -16,14 +16,8 @@ export const createCurrentUserSlice: StateCreator<
   [],
   CurrentUserSlice
 > = (set) => ({
-  currentUser: null,
   currentUserEmail: null,
   currentUserIsAuthenticated: false,
-  setCurrentUser: (user) =>
-    set((state) => {
-      state.currentUser = user;
-      return state;
-    }),
   setCurrentUserEmail: (email) =>
     set((state) => {
       state.currentUserEmail = email;
