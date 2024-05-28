@@ -14,9 +14,9 @@ export default function Login() {
   const [capturedPassword, setCapturedPassword] = useState("");
   const { getUserByEmail } = useIndexedStore();
   const {
+    setCurrentUser,
     setCurrentUserEmail,
     setCurrentUserIsAuthenticated,
-    setCurrentUserMatchRecords,
   } = useBoundStore();
   const navigate = useNavigate();
 
@@ -33,9 +33,9 @@ export default function Login() {
       console.error("Invalid password");
       return;
     }
+    setCurrentUser(user);
     setCurrentUserEmail(user.email);
     setCurrentUserIsAuthenticated(user.password === encrypt(capturedPassword));
-    setCurrentUserMatchRecords(user.matchRecords);
     setCapturedEmail("");
     setCapturedPassword("");
 

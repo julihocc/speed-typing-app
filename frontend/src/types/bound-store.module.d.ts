@@ -37,21 +37,14 @@ interface MatchRecord {
   remainingTime: number | null;
 }
 
-interface StatsSlice {
-  matchRecords: MatchRecord[];
-  addMatchRecord: (matchRecord: MatchRecord) => void;
-  getMatchRecords: () => MatchRecord[];
-  resetMatchRecords: () => void;
-  resetStats: () => void;
-  setCurrentUserMatchRecords: (matchRecords: MatchRecord[]) => void;
-}
-
 interface CurrentUserSlice {
+  currentUser: IUser | null;
   currentUserEmail: string | null;
   currentUserIsAuthenticated: boolean;
+  setCurrentUser: (user: IUser) => void;
   setCurrentUserEmail: (email: string) => void;
   setCurrentUserIsAuthenticated: (isAuthenticated: boolean) => void;
   logout: () => void;
 }
 
-type BoundStore = GameSlice & TimerSlice & StatsSlice & CurrentUserSlice;
+type BoundStore = GameSlice & TimerSlice & CurrentUserSlice;
