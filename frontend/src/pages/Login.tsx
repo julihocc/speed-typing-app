@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 // import useIndexedStore from "../../stores/indexed-store";
 import useIndexedStore from "../stores/indexed-store";
-import useBoundStore from "../stores/bound-store";
+import useSessionStore from "../stores/session-store";
 import { encrypt } from "../utils/encrypt";
 import { useNavigate } from "react-router-dom";
 
@@ -14,7 +14,7 @@ export default function Login() {
   const [capturedPassword, setCapturedPassword] = useState("");
   const { getUserByEmail } = useIndexedStore();
   const { setCurrentUserEmail, setCurrentUserIsAuthenticated } =
-    useBoundStore();
+    useSessionStore();
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {

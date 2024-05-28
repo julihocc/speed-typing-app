@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 // import { Progress, Flex, Text, Box } from "@radix-ui/themes";
-import useBoundStore from "../stores/bound-store";
+import useSessionStore from "../stores/session-store";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import LinearProgress from "@mui/material/LinearProgress";
 
 export default function Timer() {
   // const [remainingTime, setRemainingTime] = useState<number>(60);
-  const initialTimerValue = useBoundStore((state) => state.initialTimerValue);
-  const remainingTime = useBoundStore((state) => state.remainingTime);
-  const setRemainingTime = useBoundStore((state) => state.setRemainingTime);
-  const gameEndTime = useBoundStore((state) => state.gameEndTime);
+  const initialTimerValue = useSessionStore((state) => state.initialTimerValue);
+  const remainingTime = useSessionStore((state) => state.remainingTime);
+  const setRemainingTime = useSessionStore((state) => state.setRemainingTime);
+  const gameEndTime = useSessionStore((state) => state.gameEndTime);
 
   const [progressPercentage, setProgressPercentage] = useState<number>(100);
 

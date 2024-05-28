@@ -7,7 +7,7 @@ immer;
 devtools;
 
 export const createTimerSlice: StateCreator<
-  BoundStore,
+  SessionStore,
   [
     ["zustand/immer", never],
     ["zustand/persist", unknown],

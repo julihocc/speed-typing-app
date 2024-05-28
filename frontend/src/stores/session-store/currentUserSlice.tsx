@@ -7,7 +7,7 @@ immer;
 devtools;
 
 export const createCurrentUserSlice: StateCreator<
-  BoundStore,
+  SessionStore,
   [
     ["zustand/immer", never],
     ["zustand/persist", unknown],
@@ -34,6 +34,4 @@ export const createCurrentUserSlice: StateCreator<
       state.currentUserIsAuthenticated = false;
       return state;
     }),
-
-
 });

@@ -8,10 +8,10 @@ import ButtonGroup from "@mui/material/ButtonGroup";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Logout from "../components/Logout";
-import useBoundStore from "../stores/bound-store";
+import useSessionStore from "../stores/session-store";
 
 export default function RootLayout() {
-  const { currentUserIsAuthenticated } = useBoundStore();
+  const { currentUserIsAuthenticated } = useSessionStore();
   return (
     <>
       <Container>

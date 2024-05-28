@@ -3,11 +3,10 @@ import ResetMatchRecords from "../components/ResetMatchRecords";
 import HistoricalMatchAccuracy from "../components/HistoricalMatchAccuracy";
 import SpeedWatcher from "../components/SpeedWatcher";
 import PageLayout from "../layouts/PageLayout";
-import useBoundStore from "../stores/bound-store";
+import useSessionStore from "../stores/session-store";
 
 export default function Dashboard() {
-  const { currentUserEmail } = useBoundStore();
-
+  const { currentUserEmail } = useSessionStore();
 
   if (currentUserEmail === null) {
     return null;

@@ -1,4 +1,4 @@
-import useBoundStore from "../stores/bound-store";
+import useSessionStore from "../stores/session-store";
 import useIndexedStore from "../stores/indexed-store";
 import {
   Table,
@@ -25,7 +25,7 @@ function numberToDate(number: number | null) {
 export default function MatchRecordViewer() {
   // const matchRecords = useBoundStore((state) => state.matchRecords);
   // const { currentUser } = useBoundStore();
-  const { currentUserEmail } = useBoundStore();
+  const { currentUserEmail } = useSessionStore();
   const { getUserByEmail } = useIndexedStore();
 
   const currentUser = getUserByEmail(currentUserEmail);
@@ -43,27 +43,28 @@ export default function MatchRecordViewer() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {currentUser && currentUser.matchRecords.map((matchRecord, index) => (
-            <TableRow key={index}>
-              <TableCell component="th" scope="row">
-                {numberToDate(matchRecord.gameStartTime)}
-              </TableCell>
-              <TableCell align="right">{matchRecord.totalWords}</TableCell>
-              <TableCell align="right">{matchRecord.nailedWords}</TableCell>
-              <TableCell align="right">
-                {matchRecord.nailedWords === null ||
-                matchRecord.totalWords === null
-                  ? null
-                  : `${Math.round(
-                      (matchRecord.nailedWords / matchRecord.totalWords) * 100
-                    )}%`}
-              </TableCell>
-              <TableCell align="right">
-                {matchRecord.totalTime &&
-                  Math.floor(matchRecord.totalTime / 1000)}
-              </TableCell>
-            </TableRow>
-          ))}
+          {currentUser &&
+            currentUser.matchRecords.map((matchRecord, index) => (
+              <TableRow key={index}>
+                <TableCell component="th" scope="row">
+                  {numberToDate(matchRecord.gameStartTime)}
+                </TableCell>
+                <TableCell align="right">{matchRecord.totalWords}</TableCell>
+                <TableCell align="right">{matchRecord.nailedWords}</TableCell>
+                <TableCell align="right">
+                  {matchRecord.nailedWords === null ||
+                  matchRecord.totalWords === null
+                    ? null
+                    : `${Math.round(
+                        (matchRecord.nailedWords / matchRecord.totalWords) * 100
+                      )}%`}
+                </TableCell>
+                <TableCell align="right">
+                  {matchRecord.totalTime &&
+                    Math.floor(matchRecord.totalTime / 1000)}
+                </TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </TableContainer>

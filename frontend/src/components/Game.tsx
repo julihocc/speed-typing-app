@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from "react";
-import useBoundStore from "../stores/bound-store";
+import useSessionStore from "../stores/session-store";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
@@ -30,9 +30,7 @@ export default function Game() {
     setCaptured,
     randomIndex,
     setRandomIndex,
-  } = useBoundStore();
-
-  
+  } = useSessionStore();
 
   useEffect(() => {
     inputRef.current?.focus();

@@ -45,4 +45,4 @@ interface CurrentUserSlice {
   logout: () => void;
 }
 
-type BoundStore = GameSlice & TimerSlice & CurrentUserSlice;
+type SessionStore = GameSlice & TimerSlice & CurrentUserSlice;

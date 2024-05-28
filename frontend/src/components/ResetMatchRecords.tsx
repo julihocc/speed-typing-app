@@ -1,10 +1,10 @@
-import useBoundStore from "../stores/bound-store";
+import useSessionStore from "../stores/session-store";
 import { Button } from "@mui/material";
 import useIndexedStore from "../stores/indexed-store";
 
 export default function ResetMatchRecords() {
   // const resetMatchRecords = useBoundStore((state) => state.resetMatchRecords);
-  const { currentUserEmail } = useBoundStore();
+  const { currentUserEmail } = useSessionStore();
   const { resetMatchRecords, getUserByEmail } = useIndexedStore();
 
   const currentUser = getUserByEmail(currentUserEmail);
@@ -15,7 +15,7 @@ export default function ResetMatchRecords() {
       console.error("No user found");
       return;
     }
-    console.log("...for ",currentUser.email);
+    console.log("...for ", currentUser.email);
     resetMatchRecords(currentUser.email);
   };
 

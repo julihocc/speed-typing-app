@@ -6,7 +6,7 @@ import { createGameSlice } from "./gameSlice";
 import { createTimerSlice } from "./timerSlice";
 import { createCurrentUserSlice } from "./currentUserSlice";
 
-const useBoundStore = create<BoundStore>()(
+const useSessionStore = create<SessionStore>()(
   devtools(
     persist(
       immer((state, set, api) => ({
@@ -23,4 +23,4 @@ const useBoundStore = create<BoundStore>()(
   )
 );
 
-export default useBoundStore;
+export default useSessionStore;

@@ -6,7 +6,7 @@ import {
   DialogActions,
   Button,
 } from "@mui/material";
-import useBoundStore from "../stores/bound-store";
+import useSessionStore from "../stores/session-store";
 import { useState, useEffect } from "react";
 import useIndexedStore from "../stores/indexed-store";
 
@@ -35,10 +35,9 @@ export default function GameOverAlert() {
     resetTimer,
     currentUserEmail,
     currentUserIsAuthenticated,
-  } = useBoundStore();
+  } = useSessionStore();
 
   const { pushMatchRecord } = useIndexedStore();
-
 
   useEffect(() => {
     if (gameEndTime !== null || remainingTime === 0) {
@@ -85,7 +84,6 @@ export default function GameOverAlert() {
     setMatchRecord(nullMatchRecord);
     setOpen(false);
   };
-
 
   return (
     <Dialog open={open} onClose={handleClose}>
