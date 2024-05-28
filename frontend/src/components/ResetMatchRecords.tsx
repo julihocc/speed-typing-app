@@ -1,11 +1,26 @@
 import useBoundStore from "../stores/bound-store";
 import { Button } from "@mui/material";
+import useIndexedStore from "../stores/indexed-store";
 
 export default function ResetMatchRecords() {
-  const resetMatchRecords = useBoundStore((state) => state.resetMatchRecords);
+  // const resetMatchRecords = useBoundStore((state) => state.resetMatchRecords);
+  const { currentUserEmail } = useBoundStore();
+  const { resetMatchRecords, getUserByEmail } = useIndexedStore();
+
+  const currentUser = getUserByEmail(currentUserEmail);
+
+  const handleOnClick = () => {
+    console.log("Resetting match records");
+    if (!currentUser) {
+      console.error("No user found");
+      return;
+    }
+    console.log("...for ",currentUser.email);
+    resetMatchRecords(currentUser.email);
+  };
 
   return (
-    <Button variant="outlined" onClick={resetMatchRecords}>
+    <Button variant="outlined" onClick={handleOnClick}>
       Reset Match Records
     </Button>
   );

@@ -34,4 +34,6 @@ export const createCurrentUserSlice: StateCreator<
       state.currentUserIsAuthenticated = false;
       return state;
     }),
+
+
 });

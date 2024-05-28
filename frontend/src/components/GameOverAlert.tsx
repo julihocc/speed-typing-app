@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import useBoundStore from "../stores/bound-store";
 import { useState, useEffect } from "react";
+import useIndexedStore from "../stores/indexed-store";
 
 export const nullMatchRecord: MatchRecord = {
   gameStartTime: null,
@@ -23,15 +24,21 @@ export default function GameOverAlert() {
   const [open, setOpen] = useState(false);
   const [matchRecord, setMatchRecord] = useState<MatchRecord>(nullMatchRecord);
 
-  const gameStartTime = useBoundStore((state) => state.gameStartTime);
-  const gameEndTime = useBoundStore((state) => state.gameEndTime);
-  const words = useBoundStore((state) => state.words);
-  const nailed = useBoundStore((state) => state.nailed);
-  const initialTimerValue = useBoundStore((state) => state.initialTimerValue);
-  const remainingTime = useBoundStore((state) => state.remainingTime);
-  const resetGame = useBoundStore((state) => state.resetGame);
-  const resetTimer = useBoundStore((state) => state.resetTimer);
-  const addMatchRecord = useBoundStore((state) => state.addMatchRecord);
+  const {
+    gameStartTime,
+    gameEndTime,
+    words,
+    nailed,
+    initialTimerValue,
+    remainingTime,
+    resetGame,
+    resetTimer,
+    currentUserEmail,
+    currentUserIsAuthenticated,
+  } = useBoundStore();
+
+  const { pushMatchRecord } = useIndexedStore();
+
 
   useEffect(() => {
     if (gameEndTime !== null || remainingTime === 0) {
@@ -66,10 +73,19 @@ export default function GameOverAlert() {
   const handleClose = () => {
     resetGame();
     resetTimer();
-    addMatchRecord(matchRecord);
+    // addMatchRecord(matchRecord);
+    if (currentUserIsAuthenticated && currentUserEmail) {
+      console.log(
+        `Pushing match record for ${currentUserEmail}: ${JSON.stringify(
+          matchRecord
+        )}`
+      );
+      pushMatchRecord(currentUserEmail, matchRecord);
+    }
     setMatchRecord(nullMatchRecord);
     setOpen(false);
   };
+
 
   return (
     <Dialog open={open} onClose={handleClose}>

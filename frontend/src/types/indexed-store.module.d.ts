@@ -11,7 +11,9 @@ interface IUsers {
   users: IUser[];
   addUser: (user: IUser) => void;
   removeUser: (email: string) => void;
-  getUserByEmail: (email: string) => IUser | undefined;
+  getUserByEmail: (email: string | null) => IUser | undefined;
+  pushMatchRecord: (email: string, matchRecord: MatchRecord) => void;
+  resetMatchRecords: (email: string | null) => void;
 }
 
 type IIndexedStore = IUsers;

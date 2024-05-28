@@ -32,6 +32,8 @@ export default function Game() {
     setRandomIndex,
   } = useBoundStore();
 
+  
+
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
@@ -44,10 +46,17 @@ export default function Game() {
 
   useEffect(() => {
     // const random = Math.floor(Math.random() * 71);
+    if (randomIndex === null) {
+      return;
+    }
     const url = "http://localhost:3000/" + randomIndex;
     fetch(url)
       .then((response) => response.text())
       .then((data) => {
+        if (data === "Not Found") {
+          console.error("Not Found");
+          return;
+        }
         const obj = JSON.parse(data);
         setTextToBeCaptured(obj.quote);
       });

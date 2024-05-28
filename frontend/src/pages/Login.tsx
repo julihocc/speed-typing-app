@@ -13,11 +13,8 @@ export default function Login() {
   const [capturedEmail, setCapturedEmail] = useState("");
   const [capturedPassword, setCapturedPassword] = useState("");
   const { getUserByEmail } = useIndexedStore();
-  const {
-    setCurrentUserEmail,
-    setCurrentUserIsAuthenticated,
-    setCurrentUserMatchRecords,
-  } = useBoundStore();
+  const { setCurrentUserEmail, setCurrentUserIsAuthenticated } =
+    useBoundStore();
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -35,7 +32,6 @@ export default function Login() {
     }
     setCurrentUserEmail(user.email);
     setCurrentUserIsAuthenticated(user.password === encrypt(capturedPassword));
-    setCurrentUserMatchRecords(user.matchRecords);
     setCapturedEmail("");
     setCapturedPassword("");
 

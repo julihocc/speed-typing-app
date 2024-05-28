@@ -1,4 +1,5 @@
 import useBoundStore from "../stores/bound-store";
+import useIndexedStore from "../stores/indexed-store";
 import {
   Table,
   TableBody,
@@ -22,7 +23,12 @@ function numberToDate(number: number | null) {
 }
 
 export default function MatchRecordViewer() {
-  const matchRecords = useBoundStore((state) => state.getMatchRecords());
+  // const matchRecords = useBoundStore((state) => state.matchRecords);
+  // const { currentUser } = useBoundStore();
+  const { currentUserEmail } = useBoundStore();
+  const { getUserByEmail } = useIndexedStore();
+
+  const currentUser = getUserByEmail(currentUserEmail);
 
   return (
     <TableContainer component={Paper}>
@@ -37,7 +43,7 @@ export default function MatchRecordViewer() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {matchRecords.map((matchRecord, index) => (
+          {currentUser && currentUser.matchRecords.map((matchRecord, index) => (
             <TableRow key={index}>
               <TableCell component="th" scope="row">
                 {numberToDate(matchRecord.gameStartTime)}

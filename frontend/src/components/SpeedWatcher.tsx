@@ -1,46 +1,56 @@
 import useBoundStore from "../stores/bound-store";
+import useIndexedStore from "../stores/indexed-store";
 import { useState, useEffect } from "react";
 import { BarChart } from "@mui/x-charts/BarChart";
 import { Container, Typography, Card, CardContent } from "@mui/material";
 
 export default function SpeedWatcher() {
-  const { matchRecords } = useBoundStore();
-  const [speeds, setSpeeds] = useState<number[]>([]);
-  const [dates, setDates] = useState<string[]>([]);
+  const [speeds, setSpeeds] = useState<number[] | null>([]);
+  const [dates, setDates] = useState<string[] | null>([]);
   const [maxSpeed, setMaxSpeed] = useState<number>(0);
   const [minSpeed, setMinSpeed] = useState<number>(0);
+  // const { currentUser } = useBoundStore();
+  const { currentUserEmail } = useBoundStore();
+  const { getUserByEmail } = useIndexedStore();
+
+  const currentUser = getUserByEmail(currentUserEmail);
 
   useEffect(() => {
-    const _speeds = matchRecords.map((record) => {
-      if (record.gameStartTime === null) return 0;
-      if (record.gameEndTime === null) return 0;
-      if (record.totalWords === null) return 0;
-      const timeDiff = record.gameEndTime - record.gameStartTime;
-      const timeInSeconds = timeDiff / 1000;
-      return record.totalWords / timeInSeconds;
-    });
+    const _speeds = currentUser
+      ? currentUser.matchRecords.map((record) => {
+          if (record.gameStartTime === null) return 0;
+          if (record.gameEndTime === null) return 0;
+          if (record.totalWords === null) return 0;
+          const timeDiff = record.gameEndTime - record.gameStartTime;
+          const timeInSeconds = timeDiff / 1000;
+          return record.totalWords / timeInSeconds;
+        })
+      : null;
 
     setSpeeds(_speeds);
-  }, [matchRecords]);
+  }, [currentUser, currentUser?.matchRecords]);
 
   useEffect(() => {
+    if (speeds === null) return;
     setMinSpeed(Math.min(...speeds));
     setMaxSpeed(Math.max(...speeds));
   }, [speeds]);
 
   useEffect(() => {
-    const _dates = matchRecords.map((record) => {
-      if (record.gameStartTime === null) return "";
-      return new Date(record.gameStartTime).toLocaleString("en-US", {
-        hour: "numeric",
-        minute: "numeric",
-        second: "numeric",
-        hour12: true,
-      });
-    });
+    const _dates = currentUser
+      ? currentUser.matchRecords.map((record) => {
+          if (record.gameStartTime === null) return "";
+          return new Date(record.gameStartTime).toLocaleString("en-US", {
+            hour: "numeric",
+            minute: "numeric",
+            second: "numeric",
+            hour12: true,
+          });
+        })
+      : null;
 
     setDates(_dates);
-  }, [matchRecords]);
+  }, [currentUser, currentUser?.matchRecords]);
 
   return (
     <Container>
@@ -62,11 +72,11 @@ export default function SpeedWatcher() {
         height={400}
         series={[
           {
-            data: speeds,
+            data: speeds || [],
             label: "Speed (words per second)",
           },
         ]}
-        xAxis={[{ scaleType: "band", data: dates }]}
+        xAxis={[{ scaleType: "band", data: dates || [] }]}
       />
     </Container>
   );
