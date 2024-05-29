@@ -7,8 +7,12 @@ import {
   Button,
 } from "@mui/material";
 import useSessionStore from "../stores/session-store";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import useIndexedStore from "../stores/indexed-store";
+import {
+  useSetOpenWhenGameEndTimeIsNotNull,
+  useSetMatchRecordWhenTimeIsOver,
+} from "../hooks/GameAlertHooks";
 
 export const nullMatchRecord: MatchRecord = {
   gameStartTime: null,
@@ -38,34 +42,32 @@ export default function GameOverAlert() {
 
   const { pushMatchRecord } = useIndexedStore();
 
-  useEffect(() => {
-    if (gameEndTime !== null ) {
-      setOpen(true);
-    }
-  }, [gameEndTime]);
+  useSetOpenWhenGameEndTimeIsNotNull(gameEndTime, setOpen);
 
-  useEffect(() => {
-    if (gameStartTime !== null && gameEndTime !== null) {
-      const totalWords = words.length;
-      const nailedWords = nailed.filter((nailed) => nailed === true).length;
-      const totalTime = gameEndTime - gameStartTime;
-      setMatchRecord({
-        gameStartTime,
-        gameEndTime,
-        totalWords,
-        nailedWords,
-        totalTime,
-        remainingTime: initialTimerValue,
-        initialTimerValue,
-      });
-    }
-  }, [
+  // useEffect(() => {
+  //   if (gameStartTime !== null && gameEndTime !== null) {
+  //     const totalWords = words.length;
+  //     const nailedWords = nailed.filter((nailed) => nailed === true).length;
+  //     const totalTime = gameEndTime - gameStartTime;
+  //     setMatchRecord({
+  //       gameStartTime,
+  //       gameEndTime,
+  //       totalWords,
+  //       nailedWords,
+  //       totalTime,
+  //       remainingTime: initialTimerValue,
+  //       initialTimerValue,
+  //     });
+  //   }
+  // }, [gameStartTime, gameEndTime, words, nailed, initialTimerValue]);
+  useSetMatchRecordWhenTimeIsOver(
     gameStartTime,
     gameEndTime,
     words,
     nailed,
     initialTimerValue,
-  ]);
+    setMatchRecord
+  );
 
   const handleClose = () => {
     resetGame();
