@@ -3,7 +3,7 @@ type Color = "green" | "red" | undefined;
 type GameMode = "1" | "2" | "3";
 
 interface GameSlice {
-  words: string[];
+  chars: string[];
   captured: string[];
   nailed: (boolean | null)[];
   colors: Color[];
@@ -18,7 +18,7 @@ interface GameSlice {
   setGameStartTime: (initTime: number | null) => void;
   setGameEndTime: (endTime: number | null) => void;
   resetGame: () => void;
-  setWords: (text: string[]) => void;
+  setChars: (text: string[]) => void;
   setTextFieldValue: (initialTextFieldValue: string | undefined) => void;
   setRandomIndex: (randomIndex: number | null) => void;
   setGameMode: (gameMode: GameMode) => void;

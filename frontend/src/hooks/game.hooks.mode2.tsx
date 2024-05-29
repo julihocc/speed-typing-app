@@ -1,12 +1,14 @@
 import { useEffect } from "react";
 import Typography from "@mui/material/Typography";
 
+// OK
 export const useFocusInput = (inputRef: React.RefObject<HTMLInputElement>) => {
   useEffect(() => {
     inputRef.current?.focus();
   }, [inputRef]);
-};
+}; 
 
+// Modified
 export function useSetRandomIndex(
   randomIndex: number | null,
   setRandomIndex: (randomIndex: number | null) => void
@@ -16,8 +18,9 @@ export function useSetRandomIndex(
       setRandomIndex(Math.floor(Math.random() * 71));
     }
   }, [setRandomIndex, randomIndex]);
-}
+} 
 
+// Modified and splitted into two hooks
 export function useSetRandomText(
   randomIndex: number | null,
   setTextToBeCaptured: React.Dispatch<React.SetStateAction<string>>
@@ -41,6 +44,7 @@ export function useSetRandomText(
   }, [randomIndex, setTextToBeCaptured]);
 }
 
+// Modified words -> chars
 export function useSetWords(
   textToBeCaptured: string,
   setWords: (text: string[]) => void
@@ -50,6 +54,7 @@ export function useSetWords(
   }, [setWords, textToBeCaptured]);
 }
 
+// Modified
 export function useTextFieldValue(
   textFieldValue: string | undefined,
   inputRef: React.RefObject<HTMLInputElement>
@@ -68,6 +73,7 @@ export function useTextFieldValue(
   }, [textFieldValue, inputRef]);
 }
 
+// OK
 export function useSetColors(
   nailed: (boolean | null)[],
   setColors: (colors: Color[]) => void
@@ -89,6 +95,7 @@ export function useSetColors(
   }, [nailed, setColors]);
 }
 
+// OK
 export function useSetColored(
   captured: string[],
   colors: Color[],

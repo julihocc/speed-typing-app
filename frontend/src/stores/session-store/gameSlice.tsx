@@ -16,7 +16,7 @@ export const createGameSlice: StateCreator<
   [],
   GameSlice
 > = (set) => ({
-  words: [],
+  chars: [],
   captured: [],
   nailed: [],
   colors: [],
@@ -67,9 +67,9 @@ export const createGameSlice: StateCreator<
       state.randomIndex = null;
       return state;
     }),
-  setWords: (text) =>
+  setChars: (text) =>
     set((state) => {
-      state.words = text;
+      state.chars = text;
       return state;
     }),
   setRandomIndex: (randomIndex) =>

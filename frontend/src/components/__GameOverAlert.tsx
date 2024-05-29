@@ -27,7 +27,7 @@ export default function GameOverAlert() {
   const {
     gameStartTime,
     gameEndTime,
-    words,
+    chars: words,
     nailed,
     initialTimerValue,
     remainingTime,

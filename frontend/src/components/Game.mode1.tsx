@@ -29,8 +29,8 @@ export default function Game() {
   const {
     textFieldValue,
     setTextFieldValue,
-    words,
-    setWords,
+    chars: words,
+    setChars: setWords,
     gameEndTime,
     setGameEndTime,
     gameStartTime,
