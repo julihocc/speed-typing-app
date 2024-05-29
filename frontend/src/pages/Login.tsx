@@ -84,7 +84,7 @@ export default function Login() {
       <Container maxWidth="xs">
         <Box mt={8} p={3} boxShadow={3}>
           <Typography variant="h5" align="center" gutterBottom>
-            Loginaa
+            Login
           </Typography>
           <form onSubmit={handleSubmit(onSubmit)}>
             <TextField
