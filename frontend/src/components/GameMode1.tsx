@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
-// import { useFocusInput } from "../hooks/useFocusInput";
+
 import {
   useFocusInput,
   useSetRandomIndex,
@@ -14,6 +14,8 @@ import {
   useSetColors,
   useSetColored,
 } from "../hooks/GameHooks";
+
+import { setHandleKeyDown } from "../handlers/GameHandlers";
 
 export default function Game() {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -39,64 +41,25 @@ export default function Game() {
     setRandomIndex,
   } = useSessionStore();
 
-  // useEffect(() => {
-  //   inputRef.current?.focus();
-  // }, []);
   useFocusInput(inputRef);
 
-  // useEffect(() => {
-  //   if (randomIndex === null) {
-  //     setRandomIndex(Math.floor(Math.random() * 71));
-  //   }
-  // }, [setRandomIndex, randomIndex]);
   useSetRandomIndex(randomIndex, setRandomIndex);
 
-  // useEffect(() => {
-  //   // const random = Math.floor(Math.random() * 71);
-  //   if (randomIndex === null) {
-  //     return;
-  //   }
-  //   const url = "http://localhost:3000/" + randomIndex;
-  //   fetch(url)
-  //     .then((response) => response.text())
-  //     .then((data) => {
-  //       if (data === "Not Found") {
-  //         console.error("Not Found");
-  //         return;
-  //       }
-  //       const obj = JSON.parse(data);
-  //       setTextToBeCaptured(obj.quote);
-  //     });
-  // }, [randomIndex, setTextToBeCaptured]);
   useSetRandomText(randomIndex, setTextToBeCaptured);
 
-  // useEffect(() => {
-  //   setWords(textToBeCaptured.trim().split(""));
-  // }, [setWords, textToBeCaptured]);
   useSetWords(textToBeCaptured, setWords);
 
-  // useEffect(() => {
-  //   if (textFieldValue === undefined) {
-  //     if (inputRef.current) {
-  //       inputRef.current.value = "";
-  //     }
-  //   }
-  //   if (textFieldValue !== undefined) {
-  //     if (inputRef.current) {
-  //       inputRef.current.value = textFieldValue;
-  //     }
-  //   }
-  // }, [textFieldValue]);
   useTextFieldValue(textFieldValue, inputRef);
 
-  const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (event.key === "Backspace") {
-      event.preventDefault();
-    }
-    if (gameStartTime === null) {
-      setGameStartTime(new Date().getTime());
-    }
-  };
+  // const handleKeyDown = (event: React.KeyboardEvent) => {
+  //   if (event.key === "Backspace") {
+  //     event.preventDefault();
+  //   }
+  //   if (gameStartTime === null) {
+  //     setGameStartTime(new Date().getTime());
+  //   }
+  // };
+  const handleKeyDown = setHandleKeyDown(gameStartTime, setGameStartTime);
 
   const handleOnChange = () => {
     const value = inputRef.current?.value;
@@ -131,41 +94,8 @@ export default function Game() {
     }
   };
 
-  // useEffect(() => {
-  //   const colorsUpdated = nailed.map((ok) => {
-  //     if (ok === true) {
-  //       return "green";
-  //     }
-  //     if (ok === false) {
-  //       return "red";
-  //     }
-  //     if (ok === null) {
-  //       return undefined;
-  //     }
-  //   });
-
-  //   setColors(colorsUpdated);
-  // }, [nailed, setColors]);
   useSetColors(nailed, setColors);
 
-  // useEffect(() => {
-  //   if (captured) {
-  //     const _colored = captured.map((word, index) => {
-  //       const color = colors[index];
-  //       return (
-  //         <Typography
-  //           variant="h5"
-  //           key={`colored-${index}`}
-  //           sx={{ display: "inline", color: color, margin: 1 }}
-  //         >
-  //           {word}
-  //         </Typography>
-  //       );
-  //     });
-  //     // console.log(`_colored: ${JSON.stringify(_colored, null, 2)}`);
-  //     setColored(_colored);
-  //   }
-  // }, [captured, colors, setColored]);
   useSetColored(captured, colors, setColored);
 
   return (
