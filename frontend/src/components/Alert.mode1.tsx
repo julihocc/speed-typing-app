@@ -7,8 +7,13 @@ import {
   Button,
 } from "@mui/material";
 import useSessionStore from "../stores/session-store";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import useIndexedStore from "../stores/indexed-store";
+import {
+  useSetOpenWhenGameEndTimeIsNotNull,
+  useSetMatchRecordWhenTimeIsOver,
+} from "../hooks/alert.hooks.mode1";
+import { setHandleClose } from "../handlers/alert.handlers.mode1";
 
 export const nullMatchRecord: MatchRecord = {
   gameStartTime: null,
@@ -30,7 +35,6 @@ export default function GameOverAlert() {
     words,
     nailed,
     initialTimerValue,
-    remainingTime,
     resetGame,
     resetTimer,
     currentUserEmail,
@@ -39,51 +43,28 @@ export default function GameOverAlert() {
 
   const { pushMatchRecord } = useIndexedStore();
 
-  useEffect(() => {
-    if (gameEndTime !== null || remainingTime === 0) {
-      setOpen(true);
-    }
-  }, [gameEndTime, remainingTime]);
+  useSetOpenWhenGameEndTimeIsNotNull(gameEndTime, setOpen);
 
-  useEffect(() => {
-    if (gameStartTime !== null && gameEndTime !== null) {
-      const totalWords = words.length;
-      const nailedWords = nailed.filter((nailed) => nailed === true).length;
-      const totalTime = gameEndTime - gameStartTime;
-      setMatchRecord({
-        gameStartTime,
-        gameEndTime,
-        totalWords,
-        nailedWords,
-        totalTime,
-        remainingTime,
-        initialTimerValue,
-      });
-    }
-  }, [
+  useSetMatchRecordWhenTimeIsOver(
     gameStartTime,
     gameEndTime,
     words,
     nailed,
-    remainingTime,
     initialTimerValue,
-  ]);
+    setMatchRecord
+  );
 
-  const handleClose = () => {
-    resetGame();
-    resetTimer();
-    // addMatchRecord(matchRecord);
-    if (currentUserIsAuthenticated && currentUserEmail) {
-      console.log(
-        `Pushing match record for ${currentUserEmail}: ${JSON.stringify(
-          matchRecord
-        )}`
-      );
-      pushMatchRecord(currentUserEmail, matchRecord);
-    }
-    setMatchRecord(nullMatchRecord);
-    setOpen(false);
-  };
+  const handleClose = setHandleClose(
+    resetGame,
+    resetTimer,
+    currentUserEmail,
+    currentUserIsAuthenticated,
+    matchRecord,
+    pushMatchRecord,
+    setMatchRecord,
+    setOpen,
+    nullMatchRecord
+  );
 
   return (
     <Dialog open={open} onClose={handleClose}>

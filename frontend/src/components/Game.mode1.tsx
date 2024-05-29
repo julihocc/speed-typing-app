@@ -13,13 +13,13 @@ import {
   useTextFieldValue,
   useSetColors,
   useSetColored,
-} from "../hooks/GameHooks";
+} from "../hooks/game.hooks.mode1";
 
 import {
   setHandleKeyDown,
   setHandleOnChange,
   setHandleOnKeyUp,
-} from "../handlers/GameHandlers";
+} from "../handlers/game.handlers.mode1";
 
 export default function Game() {
   const inputRef = useRef<HTMLInputElement>(null);

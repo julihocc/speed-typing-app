@@ -12,8 +12,8 @@ import useIndexedStore from "../stores/indexed-store";
 import {
   useSetOpenWhenGameEndTimeIsNotNull,
   useSetMatchRecordWhenTimeIsOver,
-} from "../hooks/GameAlertHooks";
-import { setHandleClose } from "../handlers/GameAlertHandlers";
+} from "../hooks/alert.hooks.mode2";
+import { setHandleClose } from "../handlers/alert.handlers.mode2";
 
 export const nullMatchRecord: MatchRecord = {
   gameStartTime: null,
@@ -64,7 +64,7 @@ export default function GameOverAlert() {
     setMatchRecord,
     setOpen,
     nullMatchRecord
-  )
+  );
 
   return (
     <Dialog open={open} onClose={handleClose}>
