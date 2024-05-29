@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 export default function RestartGame() {
   const resetGame = useSessionStore((state) => state.resetGame);
   const resetTimer = useSessionStore((state) => state.resetTimer);
-  const gameEndTime = useSessionStore((state) => state.gameEndTime);
+  // const gameEndTime = useSessionStore((state) => state.gameEndTime);
 
   return (
     <Button
@@ -15,7 +15,7 @@ export default function RestartGame() {
         resetGame();
         resetTimer();
       }}
-      disabled={gameEndTime === null ? true : false}
+      // disabled={gameEndTime === null ? true : false}
     >
       Restart Game
     </Button>

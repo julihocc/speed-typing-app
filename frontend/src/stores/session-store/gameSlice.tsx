@@ -24,6 +24,7 @@ export const createGameSlice: StateCreator<
   gameEndTime: null,
   textFieldValue: undefined,
   randomIndex: null,
+  gameMode: "1",
   setTextFieldValue: (text) =>
     set((state) => {
       state.textFieldValue = text;
@@ -74,6 +75,11 @@ export const createGameSlice: StateCreator<
   setRandomIndex: (randomIndex) =>
     set((state) => {
       state.randomIndex = randomIndex;
+      return state;
+    }),
+  setGameMode: (gameMode) =>
+    set((state) => {
+      state.gameMode = gameMode;
       return state;
     }),
 });
