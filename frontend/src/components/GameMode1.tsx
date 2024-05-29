@@ -4,6 +4,12 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
+// import { useFocusInput } from "../hooks/useFocusInput";
+import {
+  useFocusInput,
+  useSetRandomIndex,
+  useSetRandomText,
+} from "../hooks/GameHooks";
 
 export default function Game() {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -29,33 +35,36 @@ export default function Game() {
     setRandomIndex,
   } = useSessionStore();
 
-  useEffect(() => {
-    inputRef.current?.focus();
-  }, []);
+  // useEffect(() => {
+  //   inputRef.current?.focus();
+  // }, []);
+  useFocusInput(inputRef);
 
-  useEffect(() => {
-    if (randomIndex === null) {
-      setRandomIndex(Math.floor(Math.random() * 71));
-    }
-  }, [setRandomIndex, randomIndex]);
+  // useEffect(() => {
+  //   if (randomIndex === null) {
+  //     setRandomIndex(Math.floor(Math.random() * 71));
+  //   }
+  // }, [setRandomIndex, randomIndex]);
+  useSetRandomIndex(randomIndex, setRandomIndex);
 
-  useEffect(() => {
-    // const random = Math.floor(Math.random() * 71);
-    if (randomIndex === null) {
-      return;
-    }
-    const url = "http://localhost:3000/" + randomIndex;
-    fetch(url)
-      .then((response) => response.text())
-      .then((data) => {
-        if (data === "Not Found") {
-          console.error("Not Found");
-          return;
-        }
-        const obj = JSON.parse(data);
-        setTextToBeCaptured(obj.quote);
-      });
-  }, [randomIndex, setTextToBeCaptured]);
+  // useEffect(() => {
+  //   // const random = Math.floor(Math.random() * 71);
+  //   if (randomIndex === null) {
+  //     return;
+  //   }
+  //   const url = "http://localhost:3000/" + randomIndex;
+  //   fetch(url)
+  //     .then((response) => response.text())
+  //     .then((data) => {
+  //       if (data === "Not Found") {
+  //         console.error("Not Found");
+  //         return;
+  //       }
+  //       const obj = JSON.parse(data);
+  //       setTextToBeCaptured(obj.quote);
+  //     });
+  // }, [randomIndex, setTextToBeCaptured]);
+  useSetRandomText(randomIndex, setTextToBeCaptured);
 
   useEffect(() => {
     setWords(textToBeCaptured.trim().split(""));
