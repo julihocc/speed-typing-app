@@ -55,6 +55,10 @@ export default function Game() {
 
   useTextFieldValue(textFieldValue, inputRef);
 
+  useSetColors(nailed, setColors);
+
+  useSetColored(captured, colors, setColored);
+
   const handleKeyDown = setHandleKeyDown(gameStartTime, setGameStartTime);
 
   const handleOnChange = setHandleOnChange(
@@ -64,29 +68,6 @@ export default function Game() {
     words
   );
 
-  // const handleOnKeyUp = (event: React.KeyboardEvent) => {
-  //   if (captured.length <= words.length) {
-  //     const nailedUpdated = captured.map((word, index) => {
-  //       const current = words[index];
-  //       if (current) {
-  //         return word === current;
-  //       } else {
-  //         return null;
-  //       }
-  //     });
-  //     setNailed(nailedUpdated);
-  //   }
-  //   if (captured.length === words.length) {
-  //     console.log("Game over");
-  //     console.log(`event.key: ${event.key}`);
-  //     if (event.key === " ") {
-  //       if (gameEndTime === null) {
-  //         const now = new Date().getTime();
-  //         setGameEndTime(now);
-  //       }
-  //     }
-  //   }
-  // };
   const handleOnKeyUp = setHandleOnKeyUp(
     captured,
     words,
@@ -94,10 +75,6 @@ export default function Game() {
     gameEndTime,
     setGameEndTime
   );
-
-  useSetColors(nailed, setColors);
-
-  useSetColored(captured, colors, setColored);
 
   return (
     <Box display="flex" flexDirection="column" gap={4}>
