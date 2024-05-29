@@ -81,54 +81,54 @@ export default function Login() {
 
   return (
     <>
-      <PageLayout title="Login">
-        <Container maxWidth="xs">
-          <Box mt={8} p={3} boxShadow={3}>
-            <Typography variant="h5" align="center" gutterBottom>
-              Login
-            </Typography>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <TextField
-                label="Email"
-                type="email"
-                fullWidth
-                margin="normal"
-                // value={capturedEmail}
-                // onChange={(e) => setCapturedEmail(e.target.value)}
-                {...register("email")}
-                error={!!errors.email}
-                helperText={errors.email?.message}
-              />
-              <TextField
-                label="Password"
-                type="password"
-                fullWidth
-                margin="normal"
-                // value={capturedPassword}
-                // onChange={(e) => setCapturedPassword(e.target.value)}
-                {...register("password")}
-                error={!!errors.password}
-                helperText={errors.password?.message}
-              />
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                fullWidth
-                sx={{ mt: 2 }}
-                // onClick={handleSubmit}
-              >
-                Login
-              </Button>
-            </form>
-            <Box mt={2} textAlign="center">
-              <NavLink to="/SignUp">Don't have an account? Sign Up</NavLink>
-            </Box>
-          </Box>
-        </Container>
+      {/* <PageLayout title="Login"> */}
+      {/* <Container maxWidth="xs"> */}
+      <Box mt={8} p={3} boxShadow={3}>
+        <Typography variant="h5" align="center" gutterBottom>
+          Login
+        </Typography>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <TextField
+            label="Email"
+            type="email"
+            fullWidth
+            margin="normal"
+            // value={capturedEmail}
+            // onChange={(e) => setCapturedEmail(e.target.value)}
+            {...register("email")}
+            error={!!errors.email}
+            helperText={errors.email?.message}
+          />
+          <TextField
+            label="Password"
+            type="password"
+            fullWidth
+            margin="normal"
+            // value={capturedPassword}
+            // onChange={(e) => setCapturedPassword(e.target.value)}
+            {...register("password")}
+            error={!!errors.password}
+            helperText={errors.password?.message}
+          />
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            fullWidth
+            sx={{ mt: 2 }}
+            // onClick={handleSubmit}
+          >
+            Login
+          </Button>
+        </form>
+        <Box mt={2} textAlign="center">
+          <NavLink to="/SignUp">Don't have an account? Sign Up</NavLink>
+        </Box>
+      </Box>
+      {/* </Container> */}
 
-        <DevTool control={control} />
-      </PageLayout>
+      <DevTool control={control} />
+      {/* </PageLayout> */}
     </>
   );
 }
