@@ -15,7 +15,7 @@ import {
   useSetColored,
 } from "../hooks/GameHooks";
 
-import { setHandleKeyDown } from "../handlers/GameHandlers";
+import { setHandleKeyDown, setHandleOnChange } from "../handlers/GameHandlers";
 
 export default function Game() {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -51,24 +51,22 @@ export default function Game() {
 
   useTextFieldValue(textFieldValue, inputRef);
 
-  // const handleKeyDown = (event: React.KeyboardEvent) => {
-  //   if (event.key === "Backspace") {
-  //     event.preventDefault();
-  //   }
-  //   if (gameStartTime === null) {
-  //     setGameStartTime(new Date().getTime());
-  //   }
-  // };
   const handleKeyDown = setHandleKeyDown(gameStartTime, setGameStartTime);
 
-  const handleOnChange = () => {
-    const value = inputRef.current?.value;
-    setTextFieldValue(value);
-    const _captured = value?.trim().split("") || [];
-    if (_captured.length <= words.length) {
-      setCaptured(_captured);
-    }
-  };
+  // const handleOnChange = () => {
+  //   const value = inputRef.current?.value;
+  //   setTextFieldValue(value);
+  //   const _captured = value?.trim().split("") || [];
+  //   if (_captured.length <= words.length) {
+  //     setCaptured(_captured);
+  //   }
+  // };
+  const handleOnChange = setHandleOnChange(
+    inputRef,
+    setTextFieldValue,
+    setCaptured,
+    words
+  );
 
   const handleOnKeyUp = (event: React.KeyboardEvent) => {
     if (captured.length <= words.length) {

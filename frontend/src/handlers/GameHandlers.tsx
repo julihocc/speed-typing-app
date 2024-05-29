@@ -12,3 +12,21 @@ export function setHandleKeyDown(
   };
   return handleKeyDown;
 }
+
+export function setHandleOnChange(
+  inputRef: React.RefObject<HTMLInputElement>,
+  setTextFieldValue: (value: string | undefined) => void,
+  setCaptured: (captured: string[]) => void,
+  words: string[]
+) {
+  const handleOnChange = () => {
+    const value = inputRef.current?.value;
+    setTextFieldValue(value);
+    const _captured = value?.trim().split("") || [];
+    if (_captured.length <= words.length) {
+      setCaptured(_captured);
+    }
+  };
+
+  return handleOnChange;
+}
