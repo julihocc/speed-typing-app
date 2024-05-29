@@ -116,33 +116,7 @@ function SignUp() {
               error={!!errors.lastName}
               helperText={errors.lastName?.message}
             />
-            {/* <TextField
-              label="Email"
-              type="email"
-              fullWidth
-              margin="normal"
-              {...register("email", {
-                required: true,
-                pattern: {
-                  value: /\S+@\S+\.\S+/,
-                  message: "Invalid email address",
-                },
-                validate: {
-                  isUnique: (value) => {
-                    console.log("Checking if email is unique", value);
-                    const user = getUserByEmail(value);
-                    if (user) {
-                      console.error("Email is already in use");
-                      return "Email is already in use";
-                    }
-                    console.log("Email is unique!", user);
-                    return true;
-                  },
-                },
-              })}
-              error={!!errors.email}
-              helperText={errors.email?.message}
-            /> */}
+
             <TextField
               label="Email"
               type="email"
