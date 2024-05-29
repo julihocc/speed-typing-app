@@ -78,19 +78,6 @@ function SignUp() {
     console.log("Form errors", errors);
   };
 
-  // const emailValidationRules = {
-  //   required: "Email is required",
-  //   pattern: {
-  //     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-  //     message: "Invalid email address",
-  //   },
-  //   validate: {
-  //     isUnique: async (value: string) => {
-  //       const user = await getUserByEmail(value);
-  //       return !user || "Email is already in use";
-  //     },
-  //   },
-  // };
 
   return (
     <PageLayout title="Sign up">
