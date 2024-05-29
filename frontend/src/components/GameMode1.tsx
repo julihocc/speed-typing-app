@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import useSessionStore from "../stores/session-store";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -9,6 +9,10 @@ import {
   useFocusInput,
   useSetRandomIndex,
   useSetRandomText,
+  useSetWords,
+  useTextFieldValue,
+  useSetColors,
+  useSetColored,
 } from "../hooks/GameHooks";
 
 export default function Game() {
@@ -66,22 +70,24 @@ export default function Game() {
   // }, [randomIndex, setTextToBeCaptured]);
   useSetRandomText(randomIndex, setTextToBeCaptured);
 
-  useEffect(() => {
-    setWords(textToBeCaptured.trim().split(""));
-  }, [setWords, textToBeCaptured]);
+  // useEffect(() => {
+  //   setWords(textToBeCaptured.trim().split(""));
+  // }, [setWords, textToBeCaptured]);
+  useSetWords(textToBeCaptured, setWords);
 
-  useEffect(() => {
-    if (textFieldValue === undefined) {
-      if (inputRef.current) {
-        inputRef.current.value = "";
-      }
-    }
-    if (textFieldValue !== undefined) {
-      if (inputRef.current) {
-        inputRef.current.value = textFieldValue;
-      }
-    }
-  }, [textFieldValue]);
+  // useEffect(() => {
+  //   if (textFieldValue === undefined) {
+  //     if (inputRef.current) {
+  //       inputRef.current.value = "";
+  //     }
+  //   }
+  //   if (textFieldValue !== undefined) {
+  //     if (inputRef.current) {
+  //       inputRef.current.value = textFieldValue;
+  //     }
+  //   }
+  // }, [textFieldValue]);
+  useTextFieldValue(textFieldValue, inputRef);
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === "Backspace") {
@@ -125,40 +131,42 @@ export default function Game() {
     }
   };
 
-  useEffect(() => {
-    const colorsUpdated = nailed.map((ok) => {
-      if (ok === true) {
-        return "green";
-      }
-      if (ok === false) {
-        return "red";
-      }
-      if (ok === null) {
-        return undefined;
-      }
-    });
+  // useEffect(() => {
+  //   const colorsUpdated = nailed.map((ok) => {
+  //     if (ok === true) {
+  //       return "green";
+  //     }
+  //     if (ok === false) {
+  //       return "red";
+  //     }
+  //     if (ok === null) {
+  //       return undefined;
+  //     }
+  //   });
 
-    setColors(colorsUpdated);
-  }, [nailed, setColors]);
+  //   setColors(colorsUpdated);
+  // }, [nailed, setColors]);
+  useSetColors(nailed, setColors);
 
-  useEffect(() => {
-    if (captured) {
-      const _colored = captured.map((word, index) => {
-        const color = colors[index];
-        return (
-          <Typography
-            variant="h5"
-            key={`colored-${index}`}
-            sx={{ display: "inline", color: color, margin: 1 }}
-          >
-            {word}
-          </Typography>
-        );
-      });
-      // console.log(`_colored: ${JSON.stringify(_colored, null, 2)}`);
-      setColored(_colored);
-    }
-  }, [captured, colors, setColored]);
+  // useEffect(() => {
+  //   if (captured) {
+  //     const _colored = captured.map((word, index) => {
+  //       const color = colors[index];
+  //       return (
+  //         <Typography
+  //           variant="h5"
+  //           key={`colored-${index}`}
+  //           sx={{ display: "inline", color: color, margin: 1 }}
+  //         >
+  //           {word}
+  //         </Typography>
+  //       );
+  //     });
+  //     // console.log(`_colored: ${JSON.stringify(_colored, null, 2)}`);
+  //     setColored(_colored);
+  //   }
+  // }, [captured, colors, setColored]);
+  useSetColored(captured, colors, setColored);
 
   return (
     <Box display="flex" flexDirection="column" gap={4}>
