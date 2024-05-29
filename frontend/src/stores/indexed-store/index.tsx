@@ -14,7 +14,7 @@ const useIndexedStore = create<IIndexedStore>()(
       {
         name: "indexed-storage",
         // storage: createJSONStorage(() => storage),
-        storage: createJSONStorage(() => sessionStorage),
+        // storage: createJSONStorage(() => sessionStorage),
       }
     ),
     { name: "indexed-devtools" }
