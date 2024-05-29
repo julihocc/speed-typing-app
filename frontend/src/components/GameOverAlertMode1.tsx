@@ -13,6 +13,7 @@ import {
   useSetOpenWhenGameEndTimeIsNotNull,
   useSetMatchRecordWhenTimeIsOver,
 } from "../hooks/GameAlertHooks";
+import { setHandleClose } from "../handlers/GameAlertHandlers";
 
 export const nullMatchRecord: MatchRecord = {
   gameStartTime: null,
@@ -44,22 +45,6 @@ export default function GameOverAlert() {
 
   useSetOpenWhenGameEndTimeIsNotNull(gameEndTime, setOpen);
 
-  // useEffect(() => {
-  //   if (gameStartTime !== null && gameEndTime !== null) {
-  //     const totalWords = words.length;
-  //     const nailedWords = nailed.filter((nailed) => nailed === true).length;
-  //     const totalTime = gameEndTime - gameStartTime;
-  //     setMatchRecord({
-  //       gameStartTime,
-  //       gameEndTime,
-  //       totalWords,
-  //       nailedWords,
-  //       totalTime,
-  //       remainingTime: initialTimerValue,
-  //       initialTimerValue,
-  //     });
-  //   }
-  // }, [gameStartTime, gameEndTime, words, nailed, initialTimerValue]);
   useSetMatchRecordWhenTimeIsOver(
     gameStartTime,
     gameEndTime,
@@ -69,21 +54,17 @@ export default function GameOverAlert() {
     setMatchRecord
   );
 
-  const handleClose = () => {
-    resetGame();
-    resetTimer();
-    // addMatchRecord(matchRecord);
-    if (currentUserIsAuthenticated && currentUserEmail) {
-      console.log(
-        `Pushing match record for ${currentUserEmail}: ${JSON.stringify(
-          matchRecord
-        )}`
-      );
-      pushMatchRecord(currentUserEmail, matchRecord);
-    }
-    setMatchRecord(nullMatchRecord);
-    setOpen(false);
-  };
+  const handleClose = setHandleClose(
+    resetGame,
+    resetTimer,
+    currentUserEmail,
+    currentUserIsAuthenticated,
+    matchRecord,
+    pushMatchRecord,
+    setMatchRecord,
+    setOpen,
+    nullMatchRecord
+  )
 
   return (
     <Dialog open={open} onClose={handleClose}>
