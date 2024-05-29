@@ -4,7 +4,7 @@ import { TextField, Button, Typography, Container, Box } from "@mui/material";
 import useIndexedStore from "../stores/indexed-store";
 import { useNavigate } from "react-router-dom";
 import { encrypt } from "../utils/encrypt";
-import { useForm } from "react-hook-form";
+import { useForm, FieldErrors } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { DevTool } from "@hookform/devtools";
@@ -13,7 +13,8 @@ const signUpSchema = z
   .object({
     firstName: z.string().min(2, "First name must be at least 2 characters"),
     lastName: z.string().min(2, "Last name must be at least 2 characters"),
-    email: z.string().email("Invalid email address"),
+    // email: z.string().email("Invalid email address"),
+    email: z.string(),
     password: z.string().min(6, "Password must be at least 6 characters"),
     confirmPassword: z.string().min(1, "Please confirm your password"),
   })
@@ -30,8 +31,6 @@ function SignUp() {
     handleSubmit,
     formState: { errors },
     control,
-    getValues,
-    setError,
   } = useForm<SignUpInput>({
     resolver: zodResolver(signUpSchema),
     mode: "all",
@@ -63,6 +62,10 @@ function SignUp() {
     navigate("/Login");
   };
 
+  const onError = (errors: FieldErrors<SignUpInput>) => {
+    console.log("Form errors", errors);
+  };
+
   return (
     <PageLayout title="Sign up">
       <Container maxWidth="xs">
@@ -70,7 +73,7 @@ function SignUp() {
           <Typography variant="h5" align="center" gutterBottom>
             Sign Up
           </Typography>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onSubmit, onError)} noValidate>
             <TextField
               label="Firstname"
               fullWidth
@@ -93,10 +96,7 @@ function SignUp() {
               fullWidth
               margin="normal"
               {...register("email", {
-                required: {
-                  value: true,
-                  message: "Email is required",
-                },
+                required: true,
                 pattern: {
                   value: /\S+@\S+\.\S+/,
                   message: "Invalid email address",
