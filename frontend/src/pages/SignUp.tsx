@@ -13,8 +13,7 @@ const signUpSchema = z
   .object({
     firstName: z.string().min(2, "First name must be at least 2 characters"),
     lastName: z.string().min(2, "Last name must be at least 2 characters"),
-    // email: z.string().email("Invalid email address"),
-    email: z.string(),
+    email: z.string().email("Invalid email address"),
     password: z.string().min(6, "Password must be at least 6 characters"),
     confirmPassword: z.string().min(1, "Please confirm your password"),
   })
@@ -33,7 +32,7 @@ function SignUp() {
     control,
   } = useForm<SignUpInput>({
     resolver: zodResolver(signUpSchema),
-    mode: "all",
+    mode: "onTouched",
   });
 
   // const [avatar, setAvatar] = useState("");
@@ -65,6 +64,20 @@ function SignUp() {
   const onError = (errors: FieldErrors<SignUpInput>) => {
     console.log("Form errors", errors);
   };
+
+  // const emailValidationRules = {
+  //   required: "Email is required",
+  //   pattern: {
+  //     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+  //     message: "Invalid email address",
+  //   },
+  //   validate: {
+  //     isUnique: async (value: string) => {
+  //       const user = await getUserByEmail(value);
+  //       return !user || "Email is already in use";
+  //     },
+  //   },
+  // };
 
   return (
     <PageLayout title="Sign up">
@@ -117,6 +130,7 @@ function SignUp() {
               error={!!errors.email}
               helperText={errors.email?.message}
             />
+
             <TextField
               label="Password"
               type="password"
