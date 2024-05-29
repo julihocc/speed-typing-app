@@ -13,9 +13,22 @@ const signUpSchema = z
   .object({
     firstName: z.string().min(2, "First name must be at least 2 characters"),
     lastName: z.string().min(2, "Last name must be at least 2 characters"),
-    email: z.string().email("Invalid email address"),
+    // email: z.string().email("Invalid email address"),
     password: z.string().min(6, "Password must be at least 6 characters"),
     confirmPassword: z.string().min(1, "Please confirm your password"),
+    email: z
+      .string()
+      .email("Invalid email address")
+      .refine(
+        (data) => {
+          // const user = await getUserByEmail(data);
+          console.log("Checking if email is unique", data);
+          const user = useIndexedStore.getState().getUserByEmail(data);
+          console.log(user ? "Email is already in use" : "Email is unique!");
+          return !user;
+        },
+        { message: "Email is already in use" }
+      ),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords do not match",
@@ -103,7 +116,7 @@ function SignUp() {
               error={!!errors.lastName}
               helperText={errors.lastName?.message}
             />
-            <TextField
+            {/* <TextField
               label="Email"
               type="email"
               fullWidth
@@ -129,8 +142,16 @@ function SignUp() {
               })}
               error={!!errors.email}
               helperText={errors.email?.message}
+            /> */}
+            <TextField
+              label="Email"
+              type="email"
+              fullWidth
+              margin="normal"
+              {...register("email")}
+              error={!!errors.email}
+              helperText={errors.email?.message}
             />
-
             <TextField
               label="Password"
               type="password"
