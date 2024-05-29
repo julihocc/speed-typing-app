@@ -15,7 +15,11 @@ import {
   useSetColored,
 } from "../hooks/GameHooks";
 
-import { setHandleKeyDown, setHandleOnChange } from "../handlers/GameHandlers";
+import {
+  setHandleKeyDown,
+  setHandleOnChange,
+  setHandleOnKeyUp,
+} from "../handlers/GameHandlers";
 
 export default function Game() {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -53,14 +57,6 @@ export default function Game() {
 
   const handleKeyDown = setHandleKeyDown(gameStartTime, setGameStartTime);
 
-  // const handleOnChange = () => {
-  //   const value = inputRef.current?.value;
-  //   setTextFieldValue(value);
-  //   const _captured = value?.trim().split("") || [];
-  //   if (_captured.length <= words.length) {
-  //     setCaptured(_captured);
-  //   }
-  // };
   const handleOnChange = setHandleOnChange(
     inputRef,
     setTextFieldValue,
@@ -68,29 +64,36 @@ export default function Game() {
     words
   );
 
-  const handleOnKeyUp = (event: React.KeyboardEvent) => {
-    if (captured.length <= words.length) {
-      const nailedUpdated = captured.map((word, index) => {
-        const current = words[index];
-        if (current) {
-          return word === current;
-        } else {
-          return null;
-        }
-      });
-      setNailed(nailedUpdated);
-    }
-    if (captured.length === words.length) {
-      console.log("Game over");
-      console.log(`event.key: ${event.key}`);
-      if (event.key === " ") {
-        if (gameEndTime === null) {
-          const now = new Date().getTime();
-          setGameEndTime(now);
-        }
-      }
-    }
-  };
+  // const handleOnKeyUp = (event: React.KeyboardEvent) => {
+  //   if (captured.length <= words.length) {
+  //     const nailedUpdated = captured.map((word, index) => {
+  //       const current = words[index];
+  //       if (current) {
+  //         return word === current;
+  //       } else {
+  //         return null;
+  //       }
+  //     });
+  //     setNailed(nailedUpdated);
+  //   }
+  //   if (captured.length === words.length) {
+  //     console.log("Game over");
+  //     console.log(`event.key: ${event.key}`);
+  //     if (event.key === " ") {
+  //       if (gameEndTime === null) {
+  //         const now = new Date().getTime();
+  //         setGameEndTime(now);
+  //       }
+  //     }
+  //   }
+  // };
+  const handleOnKeyUp = setHandleOnKeyUp(
+    captured,
+    words,
+    setNailed,
+    gameEndTime,
+    setGameEndTime
+  );
 
   useSetColors(nailed, setColors);
 
