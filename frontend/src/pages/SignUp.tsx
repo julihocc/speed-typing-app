@@ -30,8 +30,11 @@ function SignUp() {
     handleSubmit,
     formState: { errors },
     control,
+    getValues,
+    setError,
   } = useForm<SignUpInput>({
     resolver: zodResolver(signUpSchema),
+    mode: "all",
   });
 
   // const [avatar, setAvatar] = useState("");
@@ -89,7 +92,28 @@ function SignUp() {
               type="email"
               fullWidth
               margin="normal"
-              {...register("email")}
+              {...register("email", {
+                required: {
+                  value: true,
+                  message: "Email is required",
+                },
+                pattern: {
+                  value: /\S+@\S+\.\S+/,
+                  message: "Invalid email address",
+                },
+                validate: {
+                  isUnique: (value) => {
+                    console.log("Checking if email is unique", value);
+                    const user = getUserByEmail(value);
+                    if (user) {
+                      console.error("Email is already in use");
+                      return "Email is already in use";
+                    }
+                    console.log("Email is unique!", user);
+                    return true;
+                  },
+                },
+              })}
               error={!!errors.email}
               helperText={errors.email?.message}
             />
