@@ -11,7 +11,7 @@ export default function DisableBackspace() {
   return (
     <div>
       <Button onClick={handleClick} variant="contained" color="secondary">
-        Disable Backspace
+        {backspaceDisabled ? "Enable" : "Disable"} Backspace
       </Button>
     </div>
   );
