@@ -61,18 +61,21 @@ export default function Home() {
         {gameMode === "2" ? <GameOverAlertMode2 /> : null}
         {gameMode === "2" ? <GameMode2 /> : null}
       </Box>
-
-      <Grid container justifyContent="center" spacing={2}>
-        <Grid item xs={3}>
-          <RestartGame />
+      <Box
+        sx={{ display: "flex", alignItems: "center", gap: 2, minWidth: 500 }}
+      >
+        <Grid container justifyContent="center">
+          <Grid item xs={3}>
+            <RestartGame />
+          </Grid>
+          <Grid item xs={3}>
+            <ToggleMode />
+          </Grid>
+          <Grid item xs={3}>
+            {gameMode === "1" && <DisableBackspace />}
+          </Grid>
         </Grid>
-        <Grid item xs={3}>
-          <ToggleMode />
-        </Grid>
-        <Grid item xs={3}>
-          {gameMode === "1" && <DisableBackspace />}
-        </Grid>
-      </Grid>
+      </Box>
     </PageLayout>
   );
 }
