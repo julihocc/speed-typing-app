@@ -11,6 +11,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { DevTool } from "@hookform/devtools";
+import { useState } from "react";
+import PasswordError from "../components/PasswordError";
 
 const loginSchema = z.object({
   email: z
@@ -24,9 +26,7 @@ const loginSchema = z.object({
       },
       { message: "User not found" }
     ),
-  password: z
-    .string()
-    .min(6, "Password must be at least 6 characters")
+  password: z.string().min(6, "Password must be at least 6 characters"),
 });
 
 type LoginInput = z.infer<typeof loginSchema>;
@@ -43,23 +43,32 @@ export default function Login() {
   });
 
   const { getUserByEmail } = useIndexedStore();
-  const { setCurrentUserEmail, setCurrentUserIsAuthenticated } =
-    useSessionStore();
+
+  const {
+    setCurrentUserEmail,
+    setCurrentUserIsAuthenticated,
+    passwordError,
+    setPasswordError,
+  } = useSessionStore();
+
   const navigate = useNavigate();
 
   const onSubmit = (data: LoginInput) => {
     console.log(data);
     console.log(`Logging in with ${data.email} and ${data.password}`);
     const user = getUserByEmail(data.email);
-    console.log("Current user", user);
+
     if (!user) {
       console.error("User not found");
       return;
     }
+
     if (user.password !== encrypt(data.password)) {
-      console.error("Invalid password");
+      setPasswordError("Password is incorrect");
       return;
     }
+
+    setPasswordError(null);
     setCurrentUserEmail(user.email);
     setCurrentUserIsAuthenticated(user.password === encrypt(data.password));
 
@@ -101,6 +110,7 @@ export default function Login() {
             >
               Login
             </Button>
+            {passwordError && <PasswordError />}
           </form>
           <Box mt={2} textAlign="center">
             <Link to="/SignUp">
@@ -111,6 +121,7 @@ export default function Login() {
           </Box>
         </Box>
       </Container>
+
       <DevTool control={control} />
     </PageLayout>
   );

@@ -7,10 +7,8 @@ import light from "./themes/light.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <>
-      <ThemeProvider theme={light}>
+    <ThemeProvider theme={light}>
       <App />
-      </ThemeProvider>
-    </>
+    </ThemeProvider>
   </React.StrictMode>
 );

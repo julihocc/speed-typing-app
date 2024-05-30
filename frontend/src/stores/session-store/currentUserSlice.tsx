@@ -18,6 +18,7 @@ export const createCurrentUserSlice: StateCreator<
 > = (set) => ({
   currentUserEmail: null,
   currentUserIsAuthenticated: false,
+  passwordError: null,
   setCurrentUserEmail: (email) =>
     set((state) => {
       state.currentUserEmail = email;
@@ -32,6 +33,11 @@ export const createCurrentUserSlice: StateCreator<
     set((state) => {
       state.currentUserEmail = null;
       state.currentUserIsAuthenticated = false;
+      return state;
+    }),
+  setPasswordError: (passwordError) =>
+    set((state) => {
+      state.passwordError = passwordError;
       return state;
     }),
 });
