@@ -4,53 +4,53 @@ const light = createTheme({
   palette: {
     mode: "light",
     primary: {
-      main: "#4caf50", // Green
-      light: "#81c784",
-      dark: "#388e3c",
+      main: "#6441a5", 
+      light: "#9067cc", 
+      dark: "#4e3580", 
     },
     secondary: {
-      main: "#ff9800", // Orange
+      main: "#00ff7f", 
     },
     background: {
-      default: "#f2f2f2", // Light beige background
-      paper: "#ffffff",
+      default: "#18181b", 
+      paper: "#27272a", 
     },
     text: {
-      primary: "#212121",
-      secondary: "#616161",
+      primary: "#ffffff", 
+      secondary: "#a1a1aa", 
     },
   },
   typography: {
-    fontFamily: "'Roboto', sans-serif", // Ensure quotes around font name
+    fontFamily: "'Roboto', sans-serif", 
     h1: {
-      fontSize: "3rem", // Larger headline size
-      fontWeight: 700, // Bold weight for impact
+      fontSize: "3rem", 
+      fontWeight: 700, 
     },
     h2: {
-      fontSize: "2.5rem", // Adjusted headline size
+      fontSize: "2.5rem", 
     },
-    // ... other typography styles as needed
+    
   },
-  spacing: 8, // Keep your base spacing unit
+  spacing: 8, 
   breakpoints: {
     values: {
       xs: 0,
-      sm: 600, // Common breakpoint for small screens
-      md: 960, // Common breakpoint for medium screens
-      lg: 1280, // Common breakpoint for large screens
-      xl: 1920, // Common breakpoint for extra-large screens
+      sm: 600, 
+      md: 960, 
+      lg: 1280, 
+      xl: 1920, 
     },
   },
   shape: {
-    borderRadius: 8, // A slightly rounded corner for elements
+    borderRadius: 8, 
   },
   components: {
-    // Example component override (you can add more as needed)
+    
     MuiButton: {
       styleOverrides: {
         root: {
-          textTransform: "none", // Disable default uppercase
-          borderRadius: 8, // Match the general shape
+          textTransform: "none", 
+          borderRadius: 8, 
         },
       },
     },

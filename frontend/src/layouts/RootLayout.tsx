@@ -14,7 +14,7 @@ export default function RootLayout() {
   const { currentUserIsAuthenticated } = useSessionStore();
   return (
     <>
-      <Container>
+      <Container maxWidth={"md"}>
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static">
             <Toolbar>

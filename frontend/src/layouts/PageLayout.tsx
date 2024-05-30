@@ -23,7 +23,7 @@ type PageLayoutProps = {
 
 export default function PageLayout({ children, title }: PageLayoutProps) {
   return (
-    <Container>
+    <Container maxWidth={"md"}>
       <AppBar position="static" color="secondary">
         <Toolbar>
           <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}>
