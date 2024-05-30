@@ -29,6 +29,7 @@ interface TimerSlice {
   remainingTime: number | null;
   setRemainingTime: (remainingTime: number | null) => void;
   resetTimer: () => void;
+  setInitialTimerValue: (initialTimerValue: number) => void;
 }
 
 interface MatchRecord {

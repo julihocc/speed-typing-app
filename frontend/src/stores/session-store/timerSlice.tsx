@@ -29,4 +29,9 @@ export const createTimerSlice: StateCreator<
       state.remainingTime = null;
       return state;
     }),
+  setInitialTimerValue: (initialTimerValue) =>
+    set((state) => {
+      state.initialTimerValue = initialTimerValue;
+      return state;
+    }),
 });

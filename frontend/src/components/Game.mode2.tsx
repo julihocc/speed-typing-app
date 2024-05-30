@@ -5,6 +5,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import Timer from "./Timer";
+import SetInitialTime from "./SetInitialTime";
 
 import {
   useFocusInput,
@@ -133,6 +134,7 @@ export default function Game() {
   return (
     <Box display="flex" flexDirection="column" gap={4}>
       <Typography variant="h4">Mode 2.1</Typography>
+      <SetInitialTime />
       <Box sx={{ margin: 2 }}>
         <Paper variant="outlined">
           <Typography variant="h5" sx={{ margin: 2, padding: 2 }}>
