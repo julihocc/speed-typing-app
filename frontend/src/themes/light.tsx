@@ -4,53 +4,51 @@ const light = createTheme({
   palette: {
     mode: "light",
     primary: {
-      main: "#6441a5", 
-      light: "#9067cc", 
-      dark: "#4e3580", 
+      main: "#6441a5",
+      light: "#9067cc",
+      dark: "#4e3580",
     },
     secondary: {
-      main: "#00ff7f", 
+      main: "#00ff7f",
     },
     background: {
-      default: "#18181b", 
-      paper: "#27272a", 
+      default: "#18181b",
+      paper: "#dadce0",
     },
     text: {
-      primary: "#ffffff", 
-      secondary: "#a1a1aa", 
+      primary: "#131314",
+      secondary: "#a1a1aa",
     },
   },
   typography: {
-    fontFamily: "'Roboto', sans-serif", 
+    fontFamily: "'Roboto', sans-serif",
     h1: {
-      fontSize: "3rem", 
-      fontWeight: 700, 
+      fontSize: "3rem",
+      fontWeight: 700,
     },
     h2: {
-      fontSize: "2.5rem", 
+      fontSize: "2.5rem",
     },
-    
   },
-  spacing: 8, 
+  spacing: 8,
   breakpoints: {
     values: {
       xs: 0,
-      sm: 600, 
-      md: 960, 
-      lg: 1280, 
-      xl: 1920, 
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
     },
   },
   shape: {
-    borderRadius: 8, 
+    borderRadius: 8,
   },
   components: {
-    
     MuiButton: {
       styleOverrides: {
         root: {
-          textTransform: "none", 
-          borderRadius: 8, 
+          textTransform: "none",
+          borderRadius: 8,
         },
       },
     },

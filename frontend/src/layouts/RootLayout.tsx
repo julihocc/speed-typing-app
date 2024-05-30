@@ -31,7 +31,7 @@ export default function RootLayout() {
                     to="/"
                     style={{ textDecoration: "none", color: "inherit" }}
                   >
-                    Home
+                    Let's play! 🚀
                   </NavLink>
                 </Button>
 

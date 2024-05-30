@@ -1,0 +1,37 @@
+## Typing Speed and Accuracy Application To-Do List
+
+- **Core Functionality**
+    - [ ] Implement test modes:
+        - [ ] Timed text input (speed/accuracy)
+        - [ ] Words per minute (accuracy)
+    - [ ] Text input with real-time feedback:
+        - [ ] Highlight correct words
+        - [ ] Highlight errors
+    - [ ] Option to disable backspace during tests
+    - [ ] Automatic focus removal after test expiration
+    - [ ] Customizable test duration
+- **Animated Counter**
+    - [ ] Create animated counter for test time
+        - [ ] Per-digit animation for each change
+        - [ ] At least two animation options
+- **User Interface (MaterialUI)**
+    - [ ] Utilize MaterialUI components/theme
+    - [ ] Ensure all custom components adhere to MaterialUI specifications
+    - [ ] Display feedback:
+        - [ ] Accuracy
+        - [ ] Max speed
+        - [ ] Average speed
+- **Record Keeping**
+    - [ ] Track records (local storage - IndexedDB):
+        - [ ] Date
+        - [ ] Test time
+        - [ ] Statistics
+    - [ ] Display statistics:
+        - [ ] Graphs
+        - [ ] Table
+- **User Accounts (Local Storage - IndexedDB)**
+    - [ ] Create registration form:
+        - [ ] Name
+        - [ ] Last name
+        - [ ] Avatar (predefined selection)
+        - [ ] Password (store hash) 

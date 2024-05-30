@@ -1,6 +1,7 @@
 import { StateCreator } from "zustand";
 import { persist, devtools } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
+import { encrypt } from "../../utils/encrypt";
 
 persist;
 immer;
@@ -54,4 +55,12 @@ export const createUsersSlice: StateCreator<
       user.matchRecords = [];
       return state;
     }),
+  checkPassword: (email, password) => {
+    const user = get().users.find((user) => user.email === email);
+    if (!user) {
+      console.error("User not found");
+      return false;
+    }
+    return user.password === encrypt(password);
+  },
 });

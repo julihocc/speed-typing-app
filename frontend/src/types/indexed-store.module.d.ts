@@ -14,6 +14,7 @@ interface IUsers {
   getUserByEmail: (email: string | null) => IUser | undefined;
   pushMatchRecord: (email: string, matchRecord: MatchRecord) => void;
   resetMatchRecords: (email: string | null) => void;
+  checkPassword: (email: string, password: string) => boolean;
 }
 
 type IIndexedStore = IUsers;
