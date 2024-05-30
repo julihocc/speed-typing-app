@@ -6,7 +6,7 @@ import PageLayout from "../layouts/PageLayout";
 import useSessionStore from "../stores/session-store";
 import useIndexedStore from "../stores/indexed-store";
 import { useState, useEffect } from "react";
-import { Typography } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 import avatars from "../utils/avatars";
 
 export default function Dashboard() {
@@ -42,16 +42,25 @@ export default function Dashboard() {
 
   return (
     <PageLayout title="Dashboard">
-      {currentUser && (
-        <Typography>¡Bienvenido, {currentUser.firstName}!</Typography>
-      )}
-      {currentUser && avatar !== null && (
-        <img
-          src={avatar}
-          alt="avatar"
-          style={{ width: "100px", height: "100px" }}
-        />
-      )}
+      <Box display="flex" alignItems="center" justifyContent="center" p={2}>
+        <Box p={2}>
+          {currentUser && (
+            <Typography variant="h1">
+              Now playing: {currentUser.firstName}!
+            </Typography>
+          )}
+        </Box>
+        <Box p={2}>
+          {currentUser && avatar !== null && (
+            <img
+              src={avatar}
+              alt="avatar"
+              style={{ width: "100px", height: "100px", borderRadius: "50%" }}
+            />
+          )}
+        </Box>
+      </Box>
+
       <SpeedWatcher />
       <HistoricalMatchAccuracy />
       <ResetMatchRecords />
