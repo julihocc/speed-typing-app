@@ -1,6 +1,15 @@
 import PageLayout from "../layouts/PageLayout";
 import { NavLink } from "react-router-dom";
-import { TextField, Button, Typography, Container, Box } from "@mui/material";
+import {
+  TextField,
+  Button,
+  Typography,
+  Container,
+  Box,
+  ImageList,
+  ImageListItem,
+  MenuItem,
+} from "@mui/material";
 import useIndexedStore from "../stores/indexed-store";
 import { useNavigate } from "react-router-dom";
 import { encrypt } from "../utils/encrypt";
@@ -8,6 +17,31 @@ import { useForm, FieldErrors } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { DevTool } from "@hookform/devtools";
+
+import avatar1 from "../assets/avatars/avatar1.jpeg";
+import avatar2 from "../assets/avatars/avatar2.jpeg";
+import avatar3 from "../assets/avatars/avatar3.jpeg";
+
+const avatars = [
+  {
+    value: 1,
+    label: "Avatar 1",
+    image: avatar1,
+    path: "../assets/avatars/avatar1.jpeg",
+  },
+  {
+    value: 2,
+    label: "Avatar 2",
+    image: avatar2,
+    path: "../assets/avatars/avatar2.jpeg",
+  },
+  {
+    value: 3,
+    label: "Avatar 3",
+    image: avatar3,
+    path: "../assets/avatars/avatar3.jpeg",
+  },
+];
 
 const signUpSchema = z
   .object({
@@ -29,6 +63,10 @@ const signUpSchema = z
         },
         { message: "Email is already in use" }
       ),
+    avatar: z
+      .number()
+      .min(1, "Please select an avatar")
+      .max(3, "Invalid avatar"),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords do not match",
@@ -66,7 +104,7 @@ function SignUp() {
       lastName: data.lastName,
       email: data.email,
       password: encrypt(data.password), // Encrypt password
-      avatar: "",
+      avatar: data.avatar,
       matchRecords: [],
     };
 
@@ -102,7 +140,6 @@ function SignUp() {
               error={!!errors.lastName}
               helperText={errors.lastName?.message}
             />
-
             <TextField
               label="Email"
               type="email"
@@ -130,6 +167,28 @@ function SignUp() {
               error={!!errors.confirmPassword}
               helperText={errors.confirmPassword?.message}
             />
+            <ImageList cols={3} sx={{ width: 300, height: 100 }}>
+              {[avatar1, avatar2, avatar3].map((avatar, index) => (
+                <ImageListItem key={index}>
+                  <img src={avatar} alt={`Avatar ${index + 1}`} />
+                </ImageListItem>
+              ))}
+            </ImageList>
+            <TextField
+              label="Pick an avatar"
+              select
+              fullWidth
+              margin="normal"
+              {...register("avatar")}
+              error={!!errors.avatar}
+              helperText={errors.avatar?.message}
+            >
+              {avatars.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
             <Button
               type="submit"
               variant="contained"
@@ -149,6 +208,7 @@ function SignUp() {
           </Box>
         </Box>
       </Container>
+
       <DevTool control={control} />
     </PageLayout>
   );

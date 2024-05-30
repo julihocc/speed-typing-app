@@ -48,10 +48,12 @@ interface CurrentUserSlice {
   currentUserEmail: string | null;
   currentUserIsAuthenticated: boolean;
   passwordError: string | null;
+  pickedAvatar: string | null;
   setCurrentUserEmail: (email: string) => void;
   setCurrentUserIsAuthenticated: (isAuthenticated: boolean) => void;
   logout: () => void;
   setPasswordError: (passwordError: string | null) => void;
+  setPickedAvatar: (avatar: string) => void;
 }
 
 type SessionStore = GameSlice & TimerSlice & CurrentUserSlice;

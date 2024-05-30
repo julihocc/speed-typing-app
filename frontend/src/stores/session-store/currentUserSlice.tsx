@@ -19,6 +19,7 @@ export const createCurrentUserSlice: StateCreator<
   currentUserEmail: null,
   currentUserIsAuthenticated: false,
   passwordError: null,
+  pickedAvatar: null,
   setCurrentUserEmail: (email) =>
     set((state) => {
       state.currentUserEmail = email;
@@ -38,6 +39,11 @@ export const createCurrentUserSlice: StateCreator<
   setPasswordError: (passwordError) =>
     set((state) => {
       state.passwordError = passwordError;
+      return state;
+    }),
+  setPickedAvatar: (avatar) =>
+    set((state) => {
+      state.pickedAvatar = avatar;
       return state;
     }),
 });

@@ -11,7 +11,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { DevTool } from "@hookform/devtools";
-import { useState } from "react";
 import PasswordError from "../components/PasswordError";
 
 const loginSchema = z.object({
