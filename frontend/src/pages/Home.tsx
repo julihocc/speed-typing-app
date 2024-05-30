@@ -6,6 +6,7 @@ import GameOverAlertMode2 from "../components/Alert.mode2";
 import RestartGame from "../components/RestartGame";
 import PageLayout from "../layouts/PageLayout";
 import useSessionStore from "../stores/session-store";
+import ToggleMode from "../components/ToggleMode";
 import { useEffect } from "react";
 
 export default function Home() {
@@ -24,6 +25,7 @@ export default function Home() {
       {gameMode === "2" ? <GameOverAlertMode2 /> : null}
       {gameMode === "2" ? <GameMode2 /> : null}
       <RestartGame />
+      <ToggleMode />
     </PageLayout>
   );
 }
