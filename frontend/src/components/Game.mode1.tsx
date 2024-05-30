@@ -43,6 +43,7 @@ export default function Game() {
     setCaptured,
     randomIndex,
     setRandomIndex,
+    backspaceDisabled,
   } = useSessionStore();
 
   useFocusInput(inputRef);
@@ -59,7 +60,11 @@ export default function Game() {
 
   useSetColored(captured, colors, setColored);
 
-  const handleKeyDown = setHandleKeyDown(gameStartTime, setGameStartTime);
+  const handleKeyDown = setHandleKeyDown(
+    gameStartTime,
+    setGameStartTime,
+    backspaceDisabled
+  );
 
   const handleOnChange = setHandleOnChange(
     inputRef,

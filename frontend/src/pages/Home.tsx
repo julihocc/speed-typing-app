@@ -8,6 +8,7 @@ import PageLayout from "../layouts/PageLayout";
 import useSessionStore from "../stores/session-store";
 import ToggleMode from "../components/ToggleMode";
 import { useEffect, useState } from "react";
+import DisableBackspace from "../components/DisableBackspace";
 
 export default function Home() {
   const { gameMode } = useSessionStore();
@@ -32,6 +33,7 @@ export default function Home() {
       {gameMode === "2" ? <GameMode2 /> : null}
       <RestartGame />
       <ToggleMode />
+      <DisableBackspace />
     </PageLayout>
   );
 }

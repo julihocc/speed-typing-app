@@ -25,6 +25,7 @@ export const createGameSlice: StateCreator<
   textFieldValue: undefined,
   randomIndex: null,
   gameMode: "1",
+  backspaceDisabled: false,
   setTextFieldValue: (text) =>
     set((state) => {
       state.textFieldValue = text;
@@ -80,6 +81,11 @@ export const createGameSlice: StateCreator<
   setGameMode: (gameMode) =>
     set((state) => {
       state.gameMode = gameMode;
+      return state;
+    }),
+  setBackspaceDisabled: (backspaceDisabled) =>
+    set((state) => {
+      state.backspaceDisabled = backspaceDisabled;
       return state;
     }),
 });
