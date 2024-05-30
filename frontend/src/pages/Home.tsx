@@ -7,18 +7,24 @@ import RestartGame from "../components/RestartGame";
 import PageLayout from "../layouts/PageLayout";
 import useSessionStore from "../stores/session-store";
 import ToggleMode from "../components/ToggleMode";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
-  const { gameMode, setGameMode } = useSessionStore();
+  const { gameMode } = useSessionStore();
+  const [title, setTitle] = useState<string>("");
 
   useEffect(() => {
     // gameMode = 2
-    setGameMode("2");
-  }, [setGameMode]);
+    if (gameMode === "1") {
+      setTitle("Type the words in the correct order!");
+    }
+    if (gameMode === "2") {
+      setTitle("Type the words as fast as you can!");
+    }
+  }, [gameMode]);
 
   return (
-    <PageLayout title="Home">
+    <PageLayout title={title}>
       {/* <Game /> */}
       {gameMode === "1" ? <GameOverAlertMode1 /> : null}
       {gameMode === "1" ? <GameMode1 /> : null}

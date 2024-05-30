@@ -133,8 +133,9 @@ export default function Game() {
 
   return (
     <Box display="flex" flexDirection="column" gap={4}>
-      <Typography variant="h4">Mode 2.1</Typography>
-      <SetInitialTime />
+      <Box sx={{ margin: 2 }}>
+        <SetInitialTime />
+      </Box>
       <Box sx={{ margin: 2 }}>
         <Paper variant="outlined">
           <Typography variant="h5" sx={{ margin: 2, padding: 2 }}>
