@@ -58,12 +58,16 @@ export default function SpeedWatcher() {
 
       <Card>
         <CardContent>
-          Max Speed: {maxSpeed.toFixed(2)} words per second
+          <Typography>
+            Max Speed: {maxSpeed.toFixed(2)} chars per second
+          </Typography>
         </CardContent>
       </Card>
       <Card>
         <CardContent>
-          Min Speed: {minSpeed.toFixed(2)} words per second
+          <Typography>
+            Min Speed: {minSpeed.toFixed(2)} chars per second
+          </Typography>
         </CardContent>
       </Card>
 
