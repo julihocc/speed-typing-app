@@ -55,7 +55,7 @@ export default function Dashboard() {
             <img
               src={avatar}
               alt="avatar"
-              style={{ width: "100px", height: "100px", borderRadius: "50%" }}
+              style={{ width: "100px", height: "100px", borderRadius: "20%" }}
             />
           )}
         </Box>

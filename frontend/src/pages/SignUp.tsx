@@ -144,13 +144,29 @@ function SignUp() {
               error={!!errors.confirmPassword}
               helperText={errors.confirmPassword?.message}
             />
-            <ImageList cols={3} sx={{ width: 300, height: 100 }}>
-              {avatars.map((avatar, index) => (
-                <ImageListItem key={avatar.label}>
-                  <img src={avatar.image} alt={`Avatar ${index + 1}`} />
-                </ImageListItem>
-              ))}
-            </ImageList>
+            <Box
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              mt={2}
+            >
+              <ImageList cols={3} sx={{ width: 300, height: 100 }}>
+                {avatars.map((avatar, index) => (
+                  <ImageListItem key={avatar.label}>
+                    <img
+                      src={avatar.image}
+                      alt={`Avatar ${index + 1}`}
+                      style={{
+                        width: "80px",
+                        height: "80px",
+                        borderRadius: "20%",
+                      }}
+                    />
+                  </ImageListItem>
+                ))}
+              </ImageList>
+            </Box>
+
             <TextField
               label="Pick an avatar"
               select
