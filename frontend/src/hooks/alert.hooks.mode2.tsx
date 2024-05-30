@@ -2,13 +2,14 @@ import { useEffect } from "react";
 
 export function useSetOpenWhenGameEndTimeIsNotNull(
   gameEndTime: number | null,
+  remainingTime: number | null,
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
 ) {
   useEffect(() => {
-    if (gameEndTime !== null) {
+    if (gameEndTime !== null || remainingTime === 0) {
       setOpen(true);
     }
-  }, [gameEndTime, setOpen]);
+  }, [gameEndTime, setOpen, remainingTime]);
 }
 
 export function useSetMatchRecordWhenTimeIsOver(
@@ -17,6 +18,7 @@ export function useSetMatchRecordWhenTimeIsOver(
   words: string[],
   nailed: (boolean | null)[],
   initialTimerValue: number,
+  remainingTime: number| null,
   setMatchRecord: React.Dispatch<React.SetStateAction<MatchRecord>>
 ) {
   useEffect(() => {
@@ -30,7 +32,7 @@ export function useSetMatchRecordWhenTimeIsOver(
         totalWords,
         nailedWords,
         totalTime,
-        remainingTime: initialTimerValue,
+        remainingTime,
         initialTimerValue,
       });
     }
@@ -40,6 +42,7 @@ export function useSetMatchRecordWhenTimeIsOver(
     words,
     nailed,
     initialTimerValue,
+    remainingTime,
     setMatchRecord,
   ]);
 }

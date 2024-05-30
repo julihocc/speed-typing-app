@@ -1,6 +1,10 @@
+// modified
 export function setHandleKeyDown(
   gameStartTime: number | null,
-  setGameStartTime: (initTime: number | null) => void
+  setGameStartTime: (initTime: number | null) => void, 
+  remainingTime: number | null,
+  setRemainingTime: (remainingTime: number | null) => void,
+  initialTimerValue: number
 ) {
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === "Backspace") {
@@ -8,6 +12,10 @@ export function setHandleKeyDown(
     }
     if (gameStartTime === null) {
       setGameStartTime(new Date().getTime());
+    }
+    // this has been added
+    if (remainingTime === null) {
+      setRemainingTime(initialTimerValue);
     }
   };
   return handleKeyDown;

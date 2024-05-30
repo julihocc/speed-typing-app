@@ -39,11 +39,12 @@ export default function GameOverAlert() {
     resetTimer,
     currentUserEmail,
     currentUserIsAuthenticated,
+    remainingTime,
   } = useSessionStore();
 
   const { pushMatchRecord } = useIndexedStore();
 
-  useSetOpenWhenGameEndTimeIsNotNull(gameEndTime, setOpen);
+  useSetOpenWhenGameEndTimeIsNotNull(gameEndTime, remainingTime, setOpen);
 
   useSetMatchRecordWhenTimeIsOver(
     gameStartTime,
@@ -51,6 +52,7 @@ export default function GameOverAlert() {
     words,
     nailed,
     initialTimerValue,
+    remainingTime,
     setMatchRecord
   );
 

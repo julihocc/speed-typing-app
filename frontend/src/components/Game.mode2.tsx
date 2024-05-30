@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
+import Timer from "./Timer";
 
 import {
   useFocusInput,
@@ -41,6 +42,9 @@ export default function Game() {
     setCaptured,
     randomIndex,
     setRandomIndex,
+    remainingTime,
+    setRemainingTime,
+    initialTimerValue,
   } = useSessionStore();
 
   useFocusInput(inputRef);
@@ -103,7 +107,13 @@ export default function Game() {
 
   useSetColored(captured, colors, setColored);
 
-  const handleKeyDown = setHandleKeyDown(gameStartTime, setGameStartTime);
+  const handleKeyDown = setHandleKeyDown(
+    gameStartTime,
+    setGameStartTime,
+    remainingTime,
+    setRemainingTime,
+    initialTimerValue
+  );
 
   const handleOnChange = setHandleOnChange(
     inputRef,
@@ -141,6 +151,7 @@ export default function Game() {
       <Box display="flex">
         <Paper>{colored}</Paper>
       </Box>
+      <Timer />
     </Box>
   );
 }
