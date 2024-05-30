@@ -10,6 +10,7 @@ import ToggleMode from "../components/ToggleMode";
 import { useEffect, useState } from "react";
 import DisableBackspace from "../components/DisableBackspace";
 
+
 export default function Home() {
   const { gameMode } = useSessionStore();
   const [title, setTitle] = useState<string>("");

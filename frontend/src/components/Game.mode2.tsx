@@ -46,6 +46,7 @@ export default function Game() {
     remainingTime,
     setRemainingTime,
     initialTimerValue,
+    backspaceDisabled,
   } = useSessionStore();
 
   useFocusInput(inputRef);
@@ -113,7 +114,8 @@ export default function Game() {
     setGameStartTime,
     remainingTime,
     setRemainingTime,
-    initialTimerValue
+    initialTimerValue,
+    backspaceDisabled
   );
 
   const handleOnChange = setHandleOnChange(

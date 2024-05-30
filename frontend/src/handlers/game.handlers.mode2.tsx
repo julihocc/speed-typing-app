@@ -1,13 +1,14 @@
 // modified
 export function setHandleKeyDown(
   gameStartTime: number | null,
-  setGameStartTime: (initTime: number | null) => void, 
+  setGameStartTime: (initTime: number | null) => void,
   remainingTime: number | null,
   setRemainingTime: (remainingTime: number | null) => void,
-  initialTimerValue: number
+  initialTimerValue: number,
+  backspaceDisabled: boolean
 ) {
   const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (event.key === "Backspace") {
+    if (event.key === "Backspace" && backspaceDisabled) {
       event.preventDefault();
     }
     if (gameStartTime === null) {
