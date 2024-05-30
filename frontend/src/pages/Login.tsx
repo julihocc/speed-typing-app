@@ -1,5 +1,5 @@
 import PageLayout from "../layouts/PageLayout";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import { useState } from "react";
 // import useIndexedStore from "../../stores/indexed-store";
 import useIndexedStore from "../stores/indexed-store";
@@ -121,11 +121,14 @@ export default function Login() {
             </Button>
           </form>
           <Box mt={2} textAlign="center">
-            <NavLink to="/SignUp">Don't have an account? Sign Up</NavLink>
+            <Link to="/SignUp">
+              <Typography variant="body2">
+                Don't have an account? Sign up
+              </Typography>
+            </Link>
           </Box>
         </Box>
       </Container>
-
       <DevTool control={control} />
     </PageLayout>
   );

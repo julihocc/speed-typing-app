@@ -78,7 +78,6 @@ function SignUp() {
     console.log("Form errors", errors);
   };
 
-
   return (
     <PageLayout title="Sign up">
       <Container maxWidth="xs">
@@ -142,7 +141,11 @@ function SignUp() {
             </Button>
           </form>
           <Box mt={2} textAlign="center">
-            <NavLink to="/Login">Already have an account? Login</NavLink>
+            <NavLink to="/Login">
+              <Typography variant="body2">
+                Already have an account? Login
+              </Typography>
+            </NavLink>
           </Box>
         </Box>
       </Container>
