@@ -47,9 +47,14 @@ export default function Game() {
     setRemainingTime,
     initialTimerValue,
     backspaceDisabled,
+    setBackspaceDisabled,
   } = useSessionStore();
 
   useFocusInput(inputRef);
+
+  useEffect(() => {
+    setBackspaceDisabled(true);
+  }, [setBackspaceDisabled]);
 
   // useSetRandomIndex
   useEffect(() => {
@@ -151,7 +156,6 @@ export default function Game() {
         onKeyDown={handleKeyDown}
         onChange={handleOnChange}
         onKeyUp={handleOnKeyUp}
-        onPaste={(e) => e.preventDefault()}
       />
       <Box display="flex">
         <Paper>{colored}</Paper>
