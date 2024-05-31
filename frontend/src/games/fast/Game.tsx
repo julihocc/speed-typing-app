@@ -4,7 +4,6 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 // import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
-import Timer from "../../components/Timer";
 import SetInitialTime from "../../components/SetInitialTime";
 
 import { useFocusInput, useSetColors, useSetColored } from "./game.hooks";
