@@ -21,7 +21,7 @@ const light = createTheme({
     },
   },
   typography: {
-    fontFamily: "'Roboto', sans-serif",
+    fontFamily: "'Courier Prime', monospace",
     h1: {
       fontSize: "3rem",
       fontWeight: 700,

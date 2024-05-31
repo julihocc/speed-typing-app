@@ -7,3 +7,4 @@
 [ ] Separate statistics using routes
 [ ] Improve button styles at the bottom of the game
 [ ] Add a loading spinner when fetching data
+[ ] Try to utilize react spring for animations
