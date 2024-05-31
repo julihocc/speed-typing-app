@@ -44,11 +44,21 @@ export default function Home() {
         <Box p={4}>
           <ToggleMode />
         </Box>
-        <Box p={4}>
-          {gameMode === "1" && <DisableBackspace />}
-          {/* {gameMode === "2" && <Timer />} */}
-          {gameMode === "2" && <Timer2 />}
-        </Box>
+        {gameMode === "1" && (
+          <Box p={4}>
+            <DisableBackspace />
+          </Box>
+        )}
+        {gameMode === "2" && (
+          <Box p={4}>
+            <Timer />
+          </Box>
+        )}
+        {gameMode === "2" && (
+          <Box p={4}>
+            <Timer2 />
+          </Box>
+        )}
       </Box>
     </PageLayout>
   );
