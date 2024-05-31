@@ -1,8 +1,8 @@
 const nullMatchRecord: MatchRecord = {
   gameStartTime: null,
   gameEndTime: null,
-  totalWords: null,
-  nailedWords: null,
+  totalChars: null,
+  nailedChars: null,
   totalTime: null,
   remainingTime: null,
   initialTimerValue: null,

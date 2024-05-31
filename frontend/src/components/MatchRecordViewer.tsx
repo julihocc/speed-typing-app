@@ -49,14 +49,14 @@ export default function MatchRecordViewer() {
                 <TableCell component="th" scope="row">
                   {numberToDate(matchRecord.gameStartTime)}
                 </TableCell>
-                <TableCell align="right">{matchRecord.totalWords}</TableCell>
-                <TableCell align="right">{matchRecord.nailedWords}</TableCell>
+                <TableCell align="right">{matchRecord.totalChars}</TableCell>
+                <TableCell align="right">{matchRecord.nailedChars}</TableCell>
                 <TableCell align="right">
-                  {matchRecord.nailedWords === null ||
-                  matchRecord.totalWords === null
+                  {matchRecord.nailedChars === null ||
+                  matchRecord.totalChars === null
                     ? null
                     : `${Math.round(
-                        (matchRecord.nailedWords / matchRecord.totalWords) * 100
+                        (matchRecord.nailedChars / matchRecord.totalChars) * 100
                       )}%`}
                 </TableCell>
                 <TableCell align="right">

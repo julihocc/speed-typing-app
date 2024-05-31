@@ -26,10 +26,10 @@ export default function SpeedWatcher() {
       ? currentUser.matchRecords.map((record) => {
           if (record.gameStartTime === null) return 0;
           if (record.gameEndTime === null) return 0;
-          if (record.totalWords === null) return 0;
+          if (record.totalChars === null) return 0;
           const timeDiff = record.gameEndTime - record.gameStartTime;
           const timeInSeconds = timeDiff / 1000;
-          return record.totalWords / timeInSeconds;
+          return record.totalChars / timeInSeconds;
         })
       : null;
 

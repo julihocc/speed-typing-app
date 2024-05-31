@@ -25,15 +25,15 @@ export function setHandleKeyDown(
 export function setHandleOnChange(
   inputRef: React.RefObject<HTMLInputElement>,
   setTextFieldValue: (value: string | undefined) => void,
-  setCaptured: (captured: string[]) => void,
+  setCapturedChars: (captured: string[]) => void,
   chars: string[]
 ) {
   const handleOnChange = () => {
     const value = inputRef.current?.value;
     setTextFieldValue(value);
-    const _captured = value?.split("") || [];
-    if (_captured.length <= chars.length) {
-      setCaptured(_captured);
+    const _capturedChars = value?.split("") || [];
+    if (_capturedChars.length <= chars.length) {
+      setCapturedChars(_capturedChars);
     }
   };
 
@@ -41,25 +41,25 @@ export function setHandleOnChange(
 }
 
 export function setHandleOnKeyUp(
-  captured: string[],
+  capturedChars: string[],
   chars: string[],
-  setNailed: (nailed: (boolean | null)[]) => void,
+  setNailedChars: (nailed: (boolean | null)[]) => void,
   gameEndTime: number | null,
   setGameEndTime: (endTime: number | null) => void
 ) {
   const handleOnKeyUp = (event: React.KeyboardEvent) => {
-    if (captured.length <= chars.length) {
-      const nailedUpdated = captured.map((char, index) => {
-        const current = chars[index];
-        if (current) {
-          return char === current;
+    if (capturedChars.length <= chars.length) {
+      const nailedCharsUpdated = capturedChars.map((char, index) => {
+        const currentChar = chars[index];
+        if (currentChar) {
+          return char === currentChar;
         } else {
           return null;
         }
       });
-      setNailed(nailedUpdated);
+      setNailedChars(nailedCharsUpdated);
     }
-    if (captured.length > chars.length && chars.length>0) {
+    if (capturedChars.length > chars.length && chars.length>0) {
       console.log("Game over");
       console.log(`event.key: ${event.key}`);
       if (event.key === " ") {

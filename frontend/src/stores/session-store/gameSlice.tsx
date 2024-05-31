@@ -17,15 +17,18 @@ export const createGameSlice: StateCreator<
   GameSlice
 > = (set) => ({
   chars: [],
-  captured: [],
-  nailed: [],
-  colors: [],
+  capturedChars: [],
+  nailedChars: [],
+  charColors: [],
   gameStartTime: null,
   gameEndTime: null,
   textFieldValue: undefined,
   randomIndex: null,
   gameMode: "1",
   backspaceDisabled: false,
+  words: [],
+  nailedWords: [],
+  capturedWords: [],
   setTextFieldValue: (text) =>
     set(
       (state) => {
@@ -35,28 +38,28 @@ export const createGameSlice: StateCreator<
       false,
       "setTextFieldValue"
     ),
-  setCaptured: (captured) =>
+  setCapturedChars: (captured) =>
     set(
       (state) => {
-        state.captured = captured;
+        state.capturedChars = captured;
         return state;
       },
       false,
       "setCaptured"
     ),
-  setNailed: (nailed) =>
+  setNailedChars: (nailed) =>
     set(
       (state) => {
-        state.nailed = nailed;
+        state.nailedChars = nailed;
         return state;
       },
       false,
       "setNailed"
     ),
-  setColors: (colors) =>
+  setCharColors: (colors) =>
     set(
       (state) => {
-        state.colors = colors;
+        state.charColors = colors;
         return state;
       },
       false,
@@ -83,9 +86,9 @@ export const createGameSlice: StateCreator<
   resetGame: () =>
     set(
       (state) => {
-        state.captured = [];
-        state.nailed = [];
-        state.colors = [];
+        state.capturedChars = [];
+        state.nailedChars = [];
+        state.charColors = [];
         state.gameStartTime = null;
         state.gameEndTime = null;
         state.textFieldValue = undefined;
@@ -130,5 +133,32 @@ export const createGameSlice: StateCreator<
       },
       false,
       "setBackspaceDisabled"
+    ),
+  setWords: (words) =>
+    set(
+      (state) => {
+        state.words = words;
+        return state;
+      },
+      false,
+      "setWords"
+    ),
+  setNailedWords: (nailedWords) =>
+    set(
+      (state) => {
+        state.nailedWords = nailedWords;
+        return state;
+      },
+      false,
+      "setNailedWords"
+    ),
+  setCapturedWords: (capturedWords) =>
+    set(
+      (state) => {
+        state.capturedWords = capturedWords;
+        return state;
+      },
+      false,
+      "setCapturedWords"
     ),
 });

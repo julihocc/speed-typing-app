@@ -4,18 +4,21 @@ type GameMode = "1" | "2" | "3";
 
 interface GameSlice {
   chars: string[];
-  captured: string[];
-  nailed: (boolean | null)[];
-  colors: Color[];
+  capturedChars: string[];
+  nailedChars: (boolean | null)[];
+  charColors: Color[];
   gameStartTime: number | null;
   gameEndTime: number | null;
   textFieldValue: string | undefined;
   randomIndex: number | null;
   gameMode: GameMode;
   backspaceDisabled: boolean;
-  setCaptured: (captured: string[]) => void;
-  setNailed: (nailed: (boolean | null)[]) => void;
-  setColors: (colors: Color[]) => void;
+  words: string[];
+  nailedWords: (boolean | null)[];
+  capturedWords: string[];
+  setCapturedChars: (captured: string[]) => void;
+  setNailedChars: (nailed: (boolean | null)[]) => void;
+  setCharColors: (colors: Color[]) => void;
   setGameStartTime: (initTime: number | null) => void;
   setGameEndTime: (endTime: number | null) => void;
   resetGame: () => void;
@@ -24,6 +27,9 @@ interface GameSlice {
   setRandomIndex: (randomIndex: number | null) => void;
   setGameMode: (gameMode: GameMode) => void;
   setBackspaceDisabled: (backspaceDisabled: boolean) => void;
+  setWords: (words: string[]) => void;
+  setNailedWords: (nailedWords: (boolean | null)[]) => void;
+  setCapturedWords: (capturedWords: string[]) => void;
 }
 
 interface TimerSlice {
@@ -32,16 +38,6 @@ interface TimerSlice {
   setRemainingTime: (remainingTime: number | null) => void;
   resetTimer: () => void;
   setInitialTimerValue: (initialTimerValue: number) => void;
-}
-
-interface MatchRecord {
-  gameStartTime: number | null;
-  gameEndTime: number | null;
-  totalWords: number | null;
-  nailedWords: number | null;
-  totalTime: number | null;
-  initialTimerValue: number | null;
-  remainingTime: number | null;
 }
 
 interface CurrentUserSlice {

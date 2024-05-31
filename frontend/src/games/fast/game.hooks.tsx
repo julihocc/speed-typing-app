@@ -7,12 +7,12 @@ export const useFocusInput = (inputRef: React.RefObject<HTMLInputElement>) => {
   }, [inputRef]);
 };
 
-export function useSetColors(
-  nailed: (boolean | null)[],
-  setColors: (colors: Color[]) => void
+export function useSetCharColors(
+  nailedChars: (boolean | null)[],
+  setCharColors: (colors: Color[]) => void
 ) {
   useEffect(() => {
-    const colorsUpdated = nailed.map((ok) => {
+    const colorsUpdated = nailedChars.map((ok) => {
       if (ok === true) {
         return "green";
       }
@@ -22,19 +22,21 @@ export function useSetColors(
         return "black";
       }
     });
-    setColors(colorsUpdated);
-  }, [nailed, setColors]);
+    setCharColors(colorsUpdated);
+  }, [nailedChars, setCharColors]);
 }
 
 export function useSetColored(
-  captured: string[],
-  colors: Color[],
-  setColored: React.Dispatch<React.SetStateAction<JSX.Element[] | undefined>>
+  capturedChars: string[],
+  charColors: Color[],
+  setCharColored: React.Dispatch<
+    React.SetStateAction<JSX.Element[] | undefined>
+  >
 ) {
   useEffect(() => {
-    if (captured) {
-      const _colored = captured.map((word, index) => {
-        const color = colors[index];
+    if (capturedChars) {
+      const _colored = capturedChars.map((word, index) => {
+        const color = charColors[index];
         return (
           <Typography
             variant="h5"
@@ -46,7 +48,7 @@ export function useSetColored(
         );
       });
 
-      setColored(_colored);
+      setCharColored(_colored);
     }
-  }, [captured, colors, setColored]);
+  }, [capturedChars, charColors, setCharColored]);
 }

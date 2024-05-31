@@ -18,10 +18,10 @@ export default function HistoricalMatchAccuracy() {
   useEffect(() => {
     const accuracies = currentUser
       ? currentUser.matchRecords.map((record) => {
-          if (record.totalWords === 0) return 0;
-          if (record.totalWords === null) return 0;
-          if (record.nailedWords === null) return 0;
-          return (100 * record.nailedWords) / record.totalWords;
+          if (record.totalChars === 0) return 0;
+          if (record.totalChars === null) return 0;
+          if (record.nailedChars === null) return 0;
+          return (100 * record.nailedChars) / record.totalChars;
         })
       : null;
 

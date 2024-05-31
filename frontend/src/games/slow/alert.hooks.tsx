@@ -29,8 +29,8 @@ export function useSetMatchRecordWhenTimeIsOver(
       setMatchRecord({
         gameStartTime,
         gameEndTime,
-        totalWords,
-        nailedWords,
+        totalChars: totalWords,
+        nailedChars: nailedWords,
         totalTime,
         remainingTime: initialTimerValue,
         initialTimerValue,

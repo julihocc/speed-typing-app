@@ -35,12 +35,12 @@ export default function Game() {
     setGameEndTime,
     gameStartTime,
     setGameStartTime,
-    colors,
-    setColors,
-    nailed,
-    setNailed,
-    captured,
-    setCaptured,
+    charColors: colors,
+    setCharColors: setColors,
+    nailedChars: nailed,
+    setNailedChars: setNailed,
+    capturedChars: captured,
+    setCapturedChars: setCaptured,
     randomIndex,
     setRandomIndex,
     backspaceDisabled,
@@ -69,9 +69,6 @@ export default function Game() {
         const now = new Date().getTime();
         setGameEndTime(now);
       }
-
-      // const now = new Date().getTime();
-      // setGameEndTime(now);
     }
   }, [captured, chars, gameEndTime, setGameEndTime]);
 

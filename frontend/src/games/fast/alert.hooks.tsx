@@ -18,7 +18,7 @@ export function useSetMatchRecordWhenTimeIsOver(
   words: string[],
   nailed: (boolean | null)[],
   initialTimerValue: number,
-  remainingTime: number| null,
+  remainingTime: number | null,
   setMatchRecord: React.Dispatch<React.SetStateAction<MatchRecord>>
 ) {
   useEffect(() => {
@@ -29,8 +29,8 @@ export function useSetMatchRecordWhenTimeIsOver(
       setMatchRecord({
         gameStartTime,
         gameEndTime,
-        totalWords,
-        nailedWords,
+        totalChars: totalWords,
+        nailedChars: nailedWords,
         totalTime,
         remainingTime,
         initialTimerValue,

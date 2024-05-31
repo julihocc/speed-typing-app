@@ -6,7 +6,7 @@ import TextField from "@mui/material/TextField";
 import Paper from "@mui/material/Paper";
 import SetInitialTime from "../../components/SetInitialTime";
 
-import { useFocusInput, useSetColors, useSetColored } from "./game.hooks";
+import { useFocusInput, useSetCharColors, useSetColored } from "./game.hooks";
 
 import {
   setHandleKeyDown,
@@ -30,12 +30,12 @@ export default function Game() {
     setGameEndTime,
     gameStartTime,
     setGameStartTime,
-    colors,
-    setColors,
-    nailed,
-    setNailed,
-    captured,
-    setCaptured,
+    charColors: colors,
+    setCharColors: setColors,
+    nailedChars: nailed,
+    setNailedChars: setNailed,
+    capturedChars: captured,
+    setCapturedChars: setCaptured,
     randomIndex,
     setRandomIndex,
     remainingTime,
@@ -106,7 +106,7 @@ export default function Game() {
     }
   }, [textFieldValue, inputRef, captured]);
 
-  useSetColors(nailed, setColors);
+  useSetCharColors(nailed, setColors);
 
   useSetColored(captured, colors, setColored);
 
