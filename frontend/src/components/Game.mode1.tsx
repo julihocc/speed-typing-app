@@ -46,6 +46,8 @@ export default function Game() {
     backspaceDisabled,
   } = useSessionStore();
 
+  
+
   useFocusInput(inputRef);
 
   useSetRandomIndex(randomIndex, setRandomIndex);

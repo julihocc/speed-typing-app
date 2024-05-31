@@ -19,6 +19,7 @@ export default function Timer() {
   //   to: { opacity: 1 },
   //   config: { duration: 1000 },
   // });
+  
   const intensity = 0.2;
   const speed = 1;
 
