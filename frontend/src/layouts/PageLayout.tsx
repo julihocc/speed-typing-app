@@ -26,7 +26,10 @@ export default function PageLayout({ children, title }: PageLayoutProps) {
     <Container maxWidth={"md"}>
       <AppBar position="static" color="secondary" sx={{ mb: 4 }}>
         <Toolbar>
-          <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}>
+          <Box
+            sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}
+            p={2}
+          >
             <Typography variant="h4" gutterBottom>
               {title}
             </Typography>
