@@ -63,19 +63,32 @@ export default function Game() {
   useEffect(() => {
     if (captured.length === words.length) {
       console.log("Game over");
-      // console.log(`event.key: ${event.key}`);
-      // if (event.key === " ") {
-      //   if (gameEndTime === null) {
-      //     const now = new Date().getTime();
-      //     setGameEndTime(now);
-      //   }
-      // }
+
       if (gameEndTime === null) {
         const now = new Date().getTime();
         setGameEndTime(now);
       }
     }
   }, [captured, words, gameEndTime, setGameEndTime]);
+
+  // useEffect(() => {
+  //   if (gameEndTime !== null) {
+  //     resetGame();
+  //   }
+  // }, [gameEndTime, resetGame]);
+
+  // useEffect(() => {
+  //   if (gameEndTime !== null) {
+  //     setGameOver(true);
+  //   }
+  // }, [gameEndTime]);
+
+  // useEffect(() => {
+  //   if (gameOver) {
+  //     resetGame();
+  //     setGameOver(false);
+  //   }
+  // }, [gameOver, resetGame]);
 
   const handleKeyDown = setHandleKeyDown(
     gameStartTime,

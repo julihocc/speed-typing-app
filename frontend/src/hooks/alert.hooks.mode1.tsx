@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 
 export function useSetOpenWhenGameEndTimeIsNotNull(
+  gameStartTime: number | null,
   gameEndTime: number | null,
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
 ) {
   useEffect(() => {
-    if (gameEndTime !== null) {
+    if (gameStartTime !== null && gameEndTime !== null) {
       setOpen(true);
     }
   }, [gameEndTime, setOpen]);

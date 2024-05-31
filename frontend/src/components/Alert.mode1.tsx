@@ -43,7 +43,7 @@ export default function GameOverAlert() {
 
   const { pushMatchRecord } = useIndexedStore();
 
-  useSetOpenWhenGameEndTimeIsNotNull(gameEndTime, setOpen);
+  useSetOpenWhenGameEndTimeIsNotNull(gameStartTime, gameEndTime, setOpen);
 
   useSetMatchRecordWhenTimeIsOver(
     gameStartTime,
