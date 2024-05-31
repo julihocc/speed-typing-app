@@ -20,13 +20,16 @@ export function setHandleOnChange(
   setCaptured: (captured: string[]) => void,
   words: string[]
 ) {
+  words;
   const handleOnChange = () => {
     const value = inputRef.current?.value;
     setTextFieldValue(value);
-    const _captured = value?.trim().split("") || [];
-    if (_captured.length <= words.length) {
-      setCaptured(_captured);
-    }
+    // const _captured = value?.trim().split("") || [];
+    const _captured = value?.split("") || [];
+    // if (_captured.length <= words.length) {
+    //   setCaptured(_captured);
+    // }
+    setCaptured(_captured);
   };
 
   return handleOnChange;

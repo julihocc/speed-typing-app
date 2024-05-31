@@ -46,7 +46,8 @@ export function useSetChars(
   setChars: (text: string[]) => void
 ) {
   useEffect(() => {
-    setChars(textToBeCaptured.trim().split(""));
+    // setChars(textToBeCaptured.trim().split(""));
+    setChars(textToBeCaptured.split(""));
   }, [setChars, textToBeCaptured]);
 }
 
