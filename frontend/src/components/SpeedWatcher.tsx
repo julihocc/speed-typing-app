@@ -2,7 +2,13 @@ import useSessionStore from "../stores/session-store";
 import useIndexedStore from "../stores/indexed-store";
 import { useState, useEffect } from "react";
 import { BarChart } from "@mui/x-charts/BarChart";
-import { Container, Typography, Card, CardContent } from "@mui/material";
+import {
+  Container,
+  Typography,
+  Card,
+  CardContent,
+  CardHeader,
+} from "@mui/material";
 
 export default function SpeedWatcher() {
   const [speeds, setSpeeds] = useState<number[] | null>([]);
@@ -54,17 +60,12 @@ export default function SpeedWatcher() {
 
   return (
     <Container>
-      <Typography variant="h5">Speed Watcher</Typography>
-
       <Card>
         <CardContent>
+          <CardHeader title="Speed Watcher" />
           <Typography>
             Max Speed: {maxSpeed.toFixed(2)} chars per second
           </Typography>
-        </CardContent>
-      </Card>
-      <Card>
-        <CardContent>
           <Typography>
             Min Speed: {minSpeed.toFixed(2)} chars per second
           </Typography>
