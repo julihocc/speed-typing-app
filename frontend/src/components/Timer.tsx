@@ -53,37 +53,53 @@ export default function Timer() {
     from: { y: -20, opacity: 0 },
     to: { y: 0, opacity: 1 },
     config: { duration: 1000 },
-    reset: true,
+    // reset: true,
   });
 
   useEffect(() => {
-    if (prevSecUnitsRef.current !== secUnits) {
-      animationSecUnits.y.start();
-      animationSecUnits.opacity.start();
-    }
-    prevSecUnitsRef.current = secUnits;
-  }, [animationSecUnits, secUnits]);
-
-  useEffect(() => {
-    if (prevSecTensRef.current !== secTens) {
-      animationSecTens.y.start();
-      animationSecTens.opacity.start();
-    }
-  }, [animationSecTens, secTens]);
-
-  useEffect(() => {
-    console.log(`remainingTime: ${remainingTime}`);
     if (remainingTime !== null) {
-      setSecUnits(remainingTime % 10);
+      const newSecUnits = remainingTime % 10;
+      setSecUnits(newSecUnits);
+      if (prevSecUnitsRef.current !== newSecUnits) {
+        animationSecUnits.y.start();
+        animationSecUnits.opacity.start();
+      }
+      prevSecUnitsRef.current = newSecUnits;
     }
-  }, [remainingTime]);
+  }, [animationSecUnits, remainingTime]);
 
   useEffect(() => {
-    console.log(`remainingTime: ${remainingTime}`);
     if (remainingTime !== null) {
-      setSecTens(Math.floor(remainingTime / 10));
+      const newSecTens = Math.floor(remainingTime / 10);
+      setSecTens(newSecTens);
+      console.log(`newSecTens: ${newSecTens}`);
+      console.log(`prevSecTensRef.current: ${prevSecTensRef.current}`);
+      if (prevSecTensRef.current !== newSecTens) {
+        console.log("Starting animation");
+        animationSecTens.y.reset();
+        animationSecTens.opacity.reset();
+        // prevSecTensRef.current = newSecTens;
+      }
+      prevSecTensRef.current = newSecTens;
     }
-  }, [remainingTime]);
+  }, [animationSecTens, remainingTime]);
+
+  // useEffect(() => {
+  //   console.log(`remainingTime: ${remainingTime}`);
+  //   if (remainingTime !== null) {
+  //     setSecUnits(remainingTime % 10);
+  //   }
+  // }, [remainingTime]);
+
+  // useEffect(() => {
+
+  //   console.log(`remainingTime: ${remainingTime}`);
+  //   console.log(prevSecTensRef.current);
+  //   console.log(secTens);
+  //   if (remainingTime !== null) {
+  //     setSecTens(Math.floor(remainingTime / 10));
+  //   }
+  // }, [remainingTime, secTens]);
 
   return (
     <div>
