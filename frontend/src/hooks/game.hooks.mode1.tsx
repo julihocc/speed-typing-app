@@ -41,13 +41,13 @@ export function useSetRandomText(
   }, [randomIndex, setTextToBeCaptured]);
 }
 
-export function useSetWords(
+export function useSetChars(
   textToBeCaptured: string,
-  setWords: (text: string[]) => void
+  setChars: (text: string[]) => void
 ) {
   useEffect(() => {
-    setWords(textToBeCaptured.trim().split(""));
-  }, [setWords, textToBeCaptured]);
+    setChars(textToBeCaptured.trim().split(""));
+  }, [setChars, textToBeCaptured]);
 }
 
 export function useTextFieldValue(

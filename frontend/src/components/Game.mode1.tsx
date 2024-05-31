@@ -9,7 +9,7 @@ import {
   useFocusInput,
   useSetRandomIndex,
   useSetRandomText,
-  useSetWords,
+  useSetChars,
   useTextFieldValue,
   useSetColors,
   useSetColored,
@@ -52,7 +52,7 @@ export default function Game() {
 
   useSetRandomText(randomIndex, setTextToBeCaptured);
 
-  useSetWords(textToBeCaptured, setChars);
+  useSetChars(textToBeCaptured, setChars);
 
   useTextFieldValue(textFieldValue, inputRef);
 
@@ -69,6 +69,9 @@ export default function Game() {
         const now = new Date().getTime();
         setGameEndTime(now);
       }
+
+      // const now = new Date().getTime();
+      // setGameEndTime(now);
     }
   }, [captured, chars, gameEndTime, setGameEndTime]);
 
