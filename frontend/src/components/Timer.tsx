@@ -2,8 +2,10 @@ import { useState, useEffect } from "react";
 // import { Progress, Flex, Text, Box } from "@radix-ui/themes";
 import useSessionStore from "../stores/session-store";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import LinearProgress from "@mui/material/LinearProgress";
+// import Typography from "@mui/material/Typography";
+// import LinearProgress from "@mui/material/LinearProgress";
+import { LinearProgress } from "@mui/material";
+import { Gauge } from "@mui/x-charts/Gauge";
 
 export default function Timer() {
   // const [remainingTime, setRemainingTime] = useState<number>(60);
@@ -50,10 +52,26 @@ export default function Timer() {
           <LinearProgress variant="determinate" value={progressPercentage} />
         </Box>
         <Box>
-          <Typography variant="body1">
+          {/* <Typography variant="body1">
             Time remaining:{" "}
             {remainingTime === null ? initialTimerValue : remainingTime} s
-          </Typography>
+          </Typography> */}
+          <Gauge
+            width={100}
+            height={100}
+            value={
+              remainingTime === null
+                ? 100
+                : (100 * remainingTime) / initialTimerValue
+            }
+            startAngle={-90}
+            endAngle={90}
+            text={
+              remainingTime === null
+                ? initialTimerValue.toString()
+                : remainingTime.toString()
+            }
+          />
         </Box>
       </Box>
     </div>
