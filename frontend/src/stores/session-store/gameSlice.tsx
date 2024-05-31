@@ -30,32 +30,32 @@ export const createGameSlice: StateCreator<
     set((state) => {
       state.textFieldValue = text;
       return state;
-    }),
+    }, false, "setTextFieldValue"),
   setCaptured: (captured) =>
     set((state) => {
       state.captured = captured;
       return state;
-    }),
+    }, false, "setCaptured"),
   setNailed: (nailed) =>
     set((state) => {
       state.nailed = nailed;
       return state;
-    }),
+    }, false, "setNailed"),
   setColors: (colors) =>
     set((state) => {
       state.colors = colors;
       return state;
-    }),
+    }, false, "setColors"),
   setGameStartTime: (initTime) =>
     set((state) => {
       state.gameStartTime = initTime;
       return state;
-    }),
+    }, false, "setGameStartTime"),
   setGameEndTime: (endTime) =>
     set((state) => {
       state.gameEndTime = endTime;
       return state;
-    }),
+    }, false, "setGameEndTime"),
   resetGame: () =>
     set((state) => {
       // state.words = [];
@@ -67,25 +67,25 @@ export const createGameSlice: StateCreator<
       state.textFieldValue = undefined;
       state.randomIndex = null;
       return state;
-    }),
+    }, false, "resetGame"),
   setChars: (text) =>
     set((state) => {
       state.chars = text;
       return state;
-    }),
+    }, false, "setChars"),
   setRandomIndex: (randomIndex) =>
     set((state) => {
       state.randomIndex = randomIndex;
       return state;
-    }),
+    }, false, "setRandomIndex"),
   setGameMode: (gameMode) =>
     set((state) => {
       state.gameMode = gameMode;
       return state;
-    }),
+    }, false, "setGameMode"),
   setBackspaceDisabled: (backspaceDisabled) =>
     set((state) => {
       state.backspaceDisabled = backspaceDisabled;
       return state;
-    }),
+    }, false, "setBackspaceDisabled"),
 });

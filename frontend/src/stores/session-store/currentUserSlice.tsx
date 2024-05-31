@@ -21,29 +21,49 @@ export const createCurrentUserSlice: StateCreator<
   passwordError: null,
   pickedAvatar: null,
   setCurrentUserEmail: (email) =>
-    set((state) => {
-      state.currentUserEmail = email;
-      return state;
-    }),
+    set(
+      (state) => {
+        state.currentUserEmail = email;
+        return state;
+      },
+      false,
+      "setCurrentUserEmail"
+    ),
   setCurrentUserIsAuthenticated: (isAuthenticated) =>
-    set((state) => {
-      state.currentUserIsAuthenticated = isAuthenticated;
-      return state;
-    }),
+    set(
+      (state) => {
+        state.currentUserIsAuthenticated = isAuthenticated;
+        return state;
+      },
+      false,
+      "setCurrentUserIsAuthenticated"
+    ),
   logout: () =>
-    set((state) => {
-      state.currentUserEmail = null;
-      state.currentUserIsAuthenticated = false;
-      return state;
-    }),
+    set(
+      (state) => {
+        state.currentUserEmail = null;
+        state.currentUserIsAuthenticated = false;
+        return state;
+      },
+      false,
+      "logout"
+    ),
   setPasswordError: (passwordError) =>
-    set((state) => {
-      state.passwordError = passwordError;
-      return state;
-    }),
+    set(
+      (state) => {
+        state.passwordError = passwordError;
+        return state;
+      },
+      false,
+      "setPasswordError"
+    ),
   setPickedAvatar: (avatar) =>
-    set((state) => {
-      state.pickedAvatar = avatar;
-      return state;
-    }),
+    set(
+      (state) => {
+        state.pickedAvatar = avatar;
+        return state;
+      },
+      false,
+      "setPickedAvatar"
+    ),
 });

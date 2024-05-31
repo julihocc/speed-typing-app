@@ -19,19 +19,31 @@ export const createTimerSlice: StateCreator<
   initialTimerValue: 60,
   remainingTime: null,
   setRemainingTime: (remainingTime) =>
-    set((state) => {
-      state.remainingTime = remainingTime;
-      return state;
-    }),
+    set(
+      (state) => {
+        state.remainingTime = remainingTime;
+        return state;
+      },
+      false,
+      "setRemainingTime"
+    ),
   resetTimer: () =>
-    set((state) => {
-      state.initialTimerValue = 60;
-      state.remainingTime = null;
-      return state;
-    }),
+    set(
+      (state) => {
+        state.initialTimerValue = 60;
+        state.remainingTime = null;
+        return state;
+      },
+      false,
+      "resetTimer"
+    ),
   setInitialTimerValue: (initialTimerValue) =>
-    set((state) => {
-      state.initialTimerValue = initialTimerValue;
-      return state;
-    }),
+    set(
+      (state) => {
+        state.initialTimerValue = initialTimerValue;
+        return state;
+      },
+      false,
+      "setInitialTimerValue"
+    ),
 });

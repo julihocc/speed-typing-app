@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import useSessionStore from "../stores/session-store";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
+// import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 
 import {
@@ -62,7 +62,7 @@ export default function Game() {
   useSetColored(chars, colors, setColored);
 
   useEffect(() => {
-    if (captured.length === chars.length) {
+    if (captured.length >= chars.length) {
       console.log("Game over");
 
       if (gameEndTime === null) {
