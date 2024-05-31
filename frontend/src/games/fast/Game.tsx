@@ -141,11 +141,6 @@ export default function Game() {
         <SetInitialTime />
       </Box>
       <Box sx={{ margin: 2 }}>
-        {/* <Paper variant="outlined">
-          <Typography variant="h5" sx={{ margin: 2, padding: 2 }}>
-            {textToBeShown}
-          </Typography>
-        </Paper> */}
         // TODO Improve the design of the text to be shown
         <TextField
           disabled
@@ -170,7 +165,6 @@ export default function Game() {
       <Box display="flex">
         <Paper>{colored}</Paper>
       </Box>
-      <Timer />
     </Box>
   );
 }

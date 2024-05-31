@@ -10,6 +10,7 @@ import ToggleMode from "../components/ToggleMode";
 import { useEffect, useState } from "react";
 import DisableBackspace from "../components/DisableBackspace";
 import { Grid, Box } from "@mui/material";
+import Timer from "../components/Timer";
 
 export default function Home() {
   const { gameMode } = useSessionStore();
@@ -25,32 +26,6 @@ export default function Home() {
     }
   }, [gameMode]);
 
-  //   return (
-  //     <PageLayout title={title}>
-  //       {/* <Game /> */}
-  //       {gameMode === "1" ? <GameOverAlertMode1 /> : null}
-  //       {gameMode === "1" ? <GameMode1 /> : null}
-  //       {gameMode === "2" ? <GameOverAlertMode2 /> : null}
-  //       {gameMode === "2" ? <GameMode2 /> : null}
-  //       {/* <RestartGame /> */}
-  //       {/* <ToggleMode /> */}
-  //       {/* {gameMode === "1" && <DisableBackspace />} */}
-
-  //       <Grid container spacing={2}>
-  //         <Grid item xs={3}>
-  //           <RestartGame />
-  //         </Grid>
-  //         <Grid item xs={3}>
-  //           <ToggleMode />
-  //         </Grid>
-  //         <Grid item xs={3}>
-  //           {gameMode === "1" && <DisableBackspace />}
-  //         </Grid>
-  //       </Grid>
-  //     </PageLayout>
-  //   );
-  // }
-
   return (
     <PageLayout title={title}>
       <Box
@@ -61,18 +36,17 @@ export default function Home() {
         {gameMode === "2" ? <GameOverAlertMode2 /> : null}
         {gameMode === "2" ? <GameMode2 /> : null}
       </Box>
-      <Box
-        sx={{ display: "flex", alignItems: "center", gap: 2, minWidth: 500 }}
-      >
-        <Grid container justifyContent="center">
-          <Grid item xs={3}>
+      <Box display="flex" alignItems="center" justifyContent="center">
+        <Grid container alignItems="center" p={4}>
+          <Grid item xs={3} p={4}>
             <RestartGame />
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={3} p={4}>
             <ToggleMode />
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={3} p={4}>
             {gameMode === "1" && <DisableBackspace />}
+            {gameMode === "2" && <Timer />}
           </Grid>
         </Grid>
       </Box>

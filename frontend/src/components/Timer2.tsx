@@ -5,7 +5,7 @@ import { Typography } from "@mui/material";
 
 import { useSpring, animated } from "@react-spring/web";
 
-export default function Timer() {
+export default function Timer2() {
   const initialTimerValue = useSessionStore((state) => state.initialTimerValue);
   const remainingTime = useSessionStore((state) => state.remainingTime);
   const setRemainingTime = useSessionStore((state) => state.setRemainingTime);
