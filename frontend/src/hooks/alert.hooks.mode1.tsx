@@ -9,7 +9,7 @@ export function useSetOpenWhenGameEndTimeIsNotNull(
     if (gameStartTime !== null && gameEndTime !== null) {
       setOpen(true);
     }
-  }, [gameEndTime, setOpen]);
+  }, [gameEndTime, setOpen, gameStartTime]);
 }
 
 export function useSetMatchRecordWhenTimeIsOver(

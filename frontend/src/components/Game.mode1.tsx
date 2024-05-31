@@ -73,24 +73,6 @@ export default function Game() {
     }
   }, [captured, words, gameEndTime, setGameEndTime]);
 
-  // useEffect(() => {
-  //   if (gameEndTime !== null) {
-  //     resetGame();
-  //   }
-  // }, [gameEndTime, resetGame]);
-
-  // useEffect(() => {
-  //   if (gameEndTime !== null) {
-  //     setGameOver(true);
-  //   }
-  // }, [gameEndTime]);
-
-  // useEffect(() => {
-  //   if (gameOver) {
-  //     resetGame();
-  //     setGameOver(false);
-  //   }
-  // }, [gameOver, resetGame]);
 
   const handleKeyDown = setHandleKeyDown(
     gameStartTime,
