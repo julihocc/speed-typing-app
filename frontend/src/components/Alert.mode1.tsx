@@ -71,7 +71,7 @@ export default function GameOverAlert() {
       <DialogTitle>{"Game Over"}</DialogTitle>
       <DialogContent>
         <DialogContentText>
-          Your game has ended. Here are your results...
+          Your game has ended. 
         </DialogContentText>
       </DialogContent>
       <DialogActions>

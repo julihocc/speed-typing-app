@@ -93,7 +93,7 @@ export const createGameSlice: StateCreator<
         // randomIndex: null,
         // gameMode: "1",
         // backspaceDisabled: false,
-        state.chars = [];
+        // state.chars = [];
         state.captured = [];
         state.nailed = [];
         state.colors = [];
