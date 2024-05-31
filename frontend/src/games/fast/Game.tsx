@@ -146,6 +146,7 @@ export default function Game() {
             {textToBeShown}
           </Typography>
         </Paper> */}
+        // TODO Improve the design of the text to be shown
         <TextField
           disabled
           value={textToBeShown}
