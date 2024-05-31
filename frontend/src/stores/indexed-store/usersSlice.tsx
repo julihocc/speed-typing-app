@@ -39,6 +39,16 @@ export const createUsersSlice: StateCreator<
         console.error("User not found");
         return state;
       }
+
+      const thereAreNulls = Object.values(matchRecord).some(
+        (value) => value === null
+      );
+
+      if (thereAreNulls) {
+        console.error("Match record has null values");
+        return state;
+      }
+
       user.matchRecords.push(matchRecord);
       return state;
     }),
