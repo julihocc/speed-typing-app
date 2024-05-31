@@ -40,14 +40,16 @@ export default function Timer2() {
   const prevSecTensRef = useRef(secTens);
 
   const animationSecUnits = useSpring({
-    from: { y: -20, opacity: 0 },
-    to: { y: 0, opacity: 1 },
+    from: { rotateZ: 0, opacity: 0 },
+    to: { rotateZ: 360, opacity: 1 },
+
     config: { duration: 1000 },
   });
 
   const animationSecTens = useSpring({
-    from: { y: -20, opacity: 0 },
-    to: { y: 0, opacity: 1 },
+    from: { rotateZ: 0, opacity: 0 }, // Start from 0-degree rotation, hidden
+    to: { rotateZ: 360, opacity: 1 }, // Rotate a full 360 degrees, become visible
+
     config: { duration: 1000 },
   });
 
@@ -56,7 +58,7 @@ export default function Timer2() {
       const newSecUnits = remainingTime % 10;
       setSecUnits(newSecUnits);
       if (prevSecUnitsRef.current !== newSecUnits) {
-        animationSecUnits.y.reset();
+        animationSecUnits.rotateZ.reset();
         animationSecUnits.opacity.reset();
       }
       prevSecUnitsRef.current = newSecUnits;
@@ -69,7 +71,7 @@ export default function Timer2() {
       setSecTens(newSecTens);
 
       if (prevSecTensRef.current !== newSecTens) {
-        animationSecTens.y.reset();
+        animationSecTens.rotateZ.reset();
         animationSecTens.opacity.reset();
       }
       prevSecTensRef.current = newSecTens;
@@ -89,7 +91,13 @@ export default function Timer2() {
             p={2}
             sx={{
               border: 1,
+              borderRadius: "100%",
+              width: "2rem",
+              heigth: "2rem",
             }}
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
           >
             <AnimatedTypography variant="h5" style={animationSecTens}>
               {remainingTime === null
@@ -101,7 +109,13 @@ export default function Timer2() {
             p={2}
             sx={{
               border: 1,
+              borderRadius: "100%",
+              width: "2rem",
+              heigth: "2rem",
             }}
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
           >
             <AnimatedTypography variant="h5" style={animationSecUnits}>
               {remainingTime === null ? initialTimerValue % 10 : secUnits}

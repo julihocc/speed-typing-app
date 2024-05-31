@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import DisableBackspace from "../components/DisableBackspace";
 import { Box } from "@mui/material";
 import Timer from "../components/Timer";
+import Timer2 from "../components/Timer2";
 
 export default function Home() {
   const { gameMode } = useSessionStore();
@@ -45,7 +46,8 @@ export default function Home() {
         </Box>
         <Box p={4}>
           {gameMode === "1" && <DisableBackspace />}
-          {gameMode === "2" && <Timer />}
+          {/* {gameMode === "2" && <Timer />} */}
+          {gameMode === "2" && <Timer2 />}
         </Box>
       </Box>
     </PageLayout>
