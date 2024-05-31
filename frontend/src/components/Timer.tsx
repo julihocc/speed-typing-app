@@ -46,7 +46,7 @@ export default function Timer() {
     from: { y: -20, opacity: 0 },
     to: { y: 0, opacity: 1 },
     config: { duration: 1000 },
-    reset: true,
+    // reset: true,
   });
 
   const animationSecTens = useSpring({
@@ -61,8 +61,8 @@ export default function Timer() {
       const newSecUnits = remainingTime % 10;
       setSecUnits(newSecUnits);
       if (prevSecUnitsRef.current !== newSecUnits) {
-        animationSecUnits.y.start();
-        animationSecUnits.opacity.start();
+        animationSecUnits.y.reset();
+        animationSecUnits.opacity.reset();
       }
       prevSecUnitsRef.current = newSecUnits;
     }
