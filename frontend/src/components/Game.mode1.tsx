@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import useSessionStore from "../stores/session-store";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -60,6 +60,23 @@ export default function Game() {
 
   useSetColored(captured, colors, setColored);
 
+  useEffect(() => {
+    if (captured.length === words.length) {
+      console.log("Game over");
+      // console.log(`event.key: ${event.key}`);
+      // if (event.key === " ") {
+      //   if (gameEndTime === null) {
+      //     const now = new Date().getTime();
+      //     setGameEndTime(now);
+      //   }
+      // }
+      if (gameEndTime === null) {
+        const now = new Date().getTime();
+        setGameEndTime(now);
+      }
+    }
+  }, [captured, words, gameEndTime, setGameEndTime]);
+
   const handleKeyDown = setHandleKeyDown(
     gameStartTime,
     setGameStartTime,
@@ -73,13 +90,7 @@ export default function Game() {
     words
   );
 
-  const handleOnKeyUp = setHandleOnKeyUp(
-    captured,
-    words,
-    setNailed,
-    gameEndTime,
-    setGameEndTime
-  );
+  const handleOnKeyUp = setHandleOnKeyUp(captured, words, setNailed);
 
   return (
     <Box display="flex" flexDirection="column" gap={4}>

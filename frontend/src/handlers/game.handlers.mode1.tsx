@@ -35,11 +35,9 @@ export function setHandleOnChange(
 export function setHandleOnKeyUp(
   captured: string[],
   words: string[],
-  setNailed: (nailed: (boolean | null)[]) => void,
-  gameEndTime: number | null,
-  setGameEndTime: (endTime: number | null) => void
+  setNailed: (nailed: (boolean | null)[]) => void
 ) {
-  const handleOnKeyUp = (event: React.KeyboardEvent) => {
+  const handleOnKeyUp = () => {
     if (captured.length <= words.length) {
       const nailedUpdated = captured.map((word, index) => {
         const current = words[index];
@@ -50,16 +48,6 @@ export function setHandleOnKeyUp(
         }
       });
       setNailed(nailedUpdated);
-    }
-    if (captured.length === words.length) {
-      console.log("Game over");
-      console.log(`event.key: ${event.key}`);
-      if (event.key === " ") {
-        if (gameEndTime === null) {
-          const now = new Date().getTime();
-          setGameEndTime(now);
-        }
-      }
     }
   };
 
