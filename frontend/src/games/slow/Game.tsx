@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import useSessionStore from "../stores/session-store";
+import useSessionStore from "../../stores/session-store";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 // import Typography from "@mui/material/Typography";
@@ -13,13 +13,13 @@ import {
   useTextFieldValue,
   useSetColors,
   useSetColored,
-} from "../hooks/game.hooks.mode1";
+} from "./game.hooks";
 
 import {
   setHandleKeyDown,
   setHandleOnChange,
   setHandleOnKeyUp,
-} from "../handlers/game.handlers.mode1";
+} from "./game.handlers";
 
 export default function Game() {
   const inputRef = useRef<HTMLInputElement>(null);

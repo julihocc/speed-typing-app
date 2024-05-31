@@ -6,7 +6,7 @@ export const useFocusInput = (inputRef: React.RefObject<HTMLInputElement>) => {
   useEffect(() => {
     inputRef.current?.focus();
   }, [inputRef]);
-}; 
+};
 
 // Modified
 export function useSetRandomIndex(
@@ -18,7 +18,7 @@ export function useSetRandomIndex(
       setRandomIndex(Math.floor(Math.random() * 71));
     }
   }, [setRandomIndex, randomIndex]);
-} 
+}
 
 // Modified and splitted into two hooks
 export function useSetRandomText(
@@ -87,7 +87,7 @@ export function useSetColors(
         return "red";
       }
       if (ok === null) {
-        return undefined;
+        return "black";
       }
     });
 

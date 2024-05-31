@@ -1,8 +1,8 @@
 // import Game from "../components/Game";
-import GameMode1 from "../components/Game.mode1";
-import GameOverAlertMode1 from "../components/Alert.mode1";
-import GameMode2 from "../components/Game.mode2";
-import GameOverAlertMode2 from "../components/Alert.mode2";
+import GameMode1 from "../games/slow/Game";
+import GameOverAlertMode1 from "../games/slow/Alert";
+import GameMode2 from "../games/fast/Game";
+import GameOverAlertMode2 from "../games/fast/Alert";
 import RestartGame from "../components/RestartGame";
 import PageLayout from "../layouts/PageLayout";
 import useSessionStore from "../stores/session-store";

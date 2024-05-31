@@ -1,23 +1,19 @@
 import { useRef, useState, useEffect } from "react";
-import useSessionStore from "../stores/session-store";
+import useSessionStore from "../../stores/session-store";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
-import Timer from "./Timer";
-import SetInitialTime from "./SetInitialTime";
+import Timer from "../../components/Timer";
+import SetInitialTime from "../../components/SetInitialTime";
 
-import {
-  useFocusInput,
-  useSetColors,
-  useSetColored,
-} from "../hooks/game.hooks.mode2";
+import { useFocusInput, useSetColors, useSetColored } from "./game.hooks";
 
 import {
   setHandleKeyDown,
   setHandleOnChange,
   setHandleOnKeyUp,
-} from "../handlers/game.handlers.mode2";
+} from "./game.handlers";
 
 export default function Game() {
   const inputRef = useRef<HTMLInputElement>(null);

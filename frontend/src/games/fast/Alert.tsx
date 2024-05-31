@@ -6,14 +6,14 @@ import {
   DialogActions,
   Button,
 } from "@mui/material";
-import useSessionStore from "../stores/session-store";
+import useSessionStore from "../../stores/session-store";
 import { useState } from "react";
-import useIndexedStore from "../stores/indexed-store";
+import useIndexedStore from "../../stores/indexed-store";
 import {
   useSetOpenWhenGameEndTimeIsNotNull,
   useSetMatchRecordWhenTimeIsOver,
-} from "../hooks/alert.hooks.mode1";
-import { setHandleClose } from "../games/slow/alert.handlers.mode1";
+} from "./alert.hooks";
+import { setHandleClose } from "./alert.handlers";
 
 export const nullMatchRecord: MatchRecord = {
   gameStartTime: null,
@@ -30,7 +30,6 @@ export default function GameOverAlert() {
   const [matchRecord, setMatchRecord] = useState<MatchRecord>(nullMatchRecord);
 
   const {
-    chars,
     gameStartTime,
     gameEndTime,
     chars: words,
@@ -40,16 +39,12 @@ export default function GameOverAlert() {
     resetTimer,
     currentUserEmail,
     currentUserIsAuthenticated,
+    remainingTime,
   } = useSessionStore();
 
   const { pushMatchRecord } = useIndexedStore();
 
-  useSetOpenWhenGameEndTimeIsNotNull(
-    chars,
-    gameStartTime,
-    gameEndTime,
-    setOpen
-  );
+  useSetOpenWhenGameEndTimeIsNotNull(gameEndTime, remainingTime, setOpen);
 
   useSetMatchRecordWhenTimeIsOver(
     gameStartTime,
@@ -57,6 +52,7 @@ export default function GameOverAlert() {
     words,
     nailed,
     initialTimerValue,
+    remainingTime,
     setMatchRecord
   );
 
@@ -76,7 +72,9 @@ export default function GameOverAlert() {
     <Dialog open={open} onClose={handleClose}>
       <DialogTitle>{"Game Over"}</DialogTitle>
       <DialogContent>
-        <DialogContentText>Your game has ended.</DialogContentText>
+        <DialogContentText>
+          Your game has ended. Here are your results...
+        </DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>Close</Button>
