@@ -13,7 +13,7 @@ import {
   useSetOpenWhenGameEndTimeIsNotNull,
   useSetMatchRecordWhenTimeIsOver,
 } from "../hooks/alert.hooks.mode2";
-import { setHandleClose } from "../handlers/alert.handlers.mode2";
+import { setHandleClose } from "../games/fast/alert.handlers.mode2";
 
 export const nullMatchRecord: MatchRecord = {
   gameStartTime: null,
