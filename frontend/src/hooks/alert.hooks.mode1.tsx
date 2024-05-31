@@ -1,15 +1,16 @@
 import { useEffect } from "react";
 
 export function useSetOpenWhenGameEndTimeIsNotNull(
+  chars: string[],
   gameStartTime: number | null,
   gameEndTime: number | null,
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
 ) {
   useEffect(() => {
-    if (gameStartTime !== null && gameEndTime !== null) {
+    if (chars.length > 0 && gameStartTime !== null && gameEndTime !== null) {
       setOpen(true);
     }
-  }, [gameEndTime, setOpen, gameStartTime]);
+  }, [chars, gameEndTime, setOpen, gameStartTime]);
 }
 
 export function useSetMatchRecordWhenTimeIsOver(

@@ -83,17 +83,6 @@ export const createGameSlice: StateCreator<
   resetGame: () =>
     set(
       (state) => {
-        // chars: [],
-        // captured: [],
-        // nailed: [],
-        // colors: [],
-        // gameStartTime: null,
-        // gameEndTime: null,
-        // textFieldValue: undefined,
-        // randomIndex: null,
-        // gameMode: "1",
-        // backspaceDisabled: false,
-        // state.chars = [];
         state.captured = [];
         state.nailed = [];
         state.colors = [];

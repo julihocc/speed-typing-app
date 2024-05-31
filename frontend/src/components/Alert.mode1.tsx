@@ -30,6 +30,7 @@ export default function GameOverAlert() {
   const [matchRecord, setMatchRecord] = useState<MatchRecord>(nullMatchRecord);
 
   const {
+    chars,
     gameStartTime,
     gameEndTime,
     chars: words,
@@ -43,7 +44,12 @@ export default function GameOverAlert() {
 
   const { pushMatchRecord } = useIndexedStore();
 
-  useSetOpenWhenGameEndTimeIsNotNull(gameStartTime, gameEndTime, setOpen);
+  useSetOpenWhenGameEndTimeIsNotNull(
+    chars,
+    gameStartTime,
+    gameEndTime,
+    setOpen
+  );
 
   useSetMatchRecordWhenTimeIsOver(
     gameStartTime,
@@ -70,9 +76,7 @@ export default function GameOverAlert() {
     <Dialog open={open} onClose={handleClose}>
       <DialogTitle>{"Game Over"}</DialogTitle>
       <DialogContent>
-        <DialogContentText>
-          Your game has ended. 
-        </DialogContentText>
+        <DialogContentText>Your game has ended.</DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>Close</Button>
