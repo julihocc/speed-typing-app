@@ -85,8 +85,7 @@ export function useSetColors(
       }
       if (ok === false) {
         return "red";
-      }
-      if (ok === null) {
+      } else {
         return "black";
       }
     });
