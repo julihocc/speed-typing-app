@@ -29,8 +29,8 @@ export default function Game() {
   const {
     textFieldValue,
     setTextFieldValue,
-    chars: words,
-    setChars: setWords,
+    chars,
+    setChars,
     gameEndTime,
     setGameEndTime,
     gameStartTime,
@@ -46,24 +46,23 @@ export default function Game() {
     backspaceDisabled,
   } = useSessionStore();
 
-  
-
   useFocusInput(inputRef);
 
   useSetRandomIndex(randomIndex, setRandomIndex);
 
   useSetRandomText(randomIndex, setTextToBeCaptured);
 
-  useSetWords(textToBeCaptured, setWords);
+  useSetWords(textToBeCaptured, setChars);
 
   useTextFieldValue(textFieldValue, inputRef);
 
   useSetColors(nailed, setColors);
 
-  useSetColored(captured, colors, setColored);
+  // useSetColored(captured, colors, setColored);
+  useSetColored(chars, colors, setColored);
 
   useEffect(() => {
-    if (captured.length === words.length) {
+    if (captured.length === chars.length) {
       console.log("Game over");
 
       if (gameEndTime === null) {
@@ -71,8 +70,7 @@ export default function Game() {
         setGameEndTime(now);
       }
     }
-  }, [captured, words, gameEndTime, setGameEndTime]);
-
+  }, [captured, chars, gameEndTime, setGameEndTime]);
 
   const handleKeyDown = setHandleKeyDown(
     gameStartTime,
@@ -84,21 +82,23 @@ export default function Game() {
     inputRef,
     setTextFieldValue,
     setCaptured,
-    words
+    chars
   );
 
-  const handleOnKeyUp = setHandleOnKeyUp(captured, words, setNailed);
+  const handleOnKeyUp = setHandleOnKeyUp(captured, chars, setNailed);
 
   return (
     <Box display="flex" flexDirection="column" gap={4}>
-      <Box sx={{ margin: 2 }}>
+      {/* <Box sx={{ margin: 2 }}>
         <Paper variant="outlined">
           <Typography variant="h5" sx={{ margin: 2, padding: 2 }}>
             {textToBeCaptured}
           </Typography>
         </Paper>
+      </Box> */}
+      <Box display="flex">
+        <Paper>{colored}</Paper>
       </Box>
-
       <TextField
         inputRef={inputRef}
         onKeyDown={handleKeyDown}
@@ -106,9 +106,6 @@ export default function Game() {
         onKeyUp={handleOnKeyUp}
         onPaste={(e) => e.preventDefault()}
       />
-      <Box display="flex">
-        <Paper>{colored}</Paper>
-      </Box>
     </Box>
   );
 }

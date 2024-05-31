@@ -79,9 +79,8 @@ export function useSetColors(
       }
       if (ok === false) {
         return "red";
-      }
-      if (ok === null) {
-        return undefined;
+      } else {
+        return "black";
       }
     });
 

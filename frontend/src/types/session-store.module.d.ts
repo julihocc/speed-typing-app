@@ -1,4 +1,4 @@
-type Color = "green" | "red" | undefined;
+type Color = "green" | "red" | "black";
 
 type GameMode = "1" | "2" | "3";
 
