@@ -9,7 +9,7 @@ import useSessionStore from "../stores/session-store";
 import ToggleMode from "../components/ToggleMode";
 import { useEffect, useState } from "react";
 import DisableBackspace from "../components/DisableBackspace";
-import { Grid, Box } from "@mui/material";
+import { Box } from "@mui/material";
 import Timer from "../components/Timer";
 
 export default function Home() {
