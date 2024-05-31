@@ -141,7 +141,7 @@ export default function Game() {
         <SetInitialTime />
       </Box>
       <Box sx={{ margin: 2 }}>
-        // TODO Improve the design of the text to be shown
+        {/* TODO Improve the design of the text to be shown */}
         <TextField
           disabled
           value={textToBeShown}
