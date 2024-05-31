@@ -31,7 +31,7 @@ export function setHandleOnChange(
   const handleOnChange = () => {
     const value = inputRef.current?.value;
     setTextFieldValue(value);
-    const _captured = value?.trim().split("") || [];
+    const _captured = value?.split("") || [];
     if (_captured.length <= chars.length) {
       setCaptured(_captured);
     }
@@ -42,24 +42,24 @@ export function setHandleOnChange(
 
 export function setHandleOnKeyUp(
   captured: string[],
-  words: string[],
+  chars: string[],
   setNailed: (nailed: (boolean | null)[]) => void,
   gameEndTime: number | null,
   setGameEndTime: (endTime: number | null) => void
 ) {
   const handleOnKeyUp = (event: React.KeyboardEvent) => {
-    if (captured.length <= words.length) {
-      const nailedUpdated = captured.map((word, index) => {
-        const current = words[index];
+    if (captured.length <= chars.length) {
+      const nailedUpdated = captured.map((char, index) => {
+        const current = chars[index];
         if (current) {
-          return word === current;
+          return char === current;
         } else {
           return null;
         }
       });
       setNailed(nailedUpdated);
     }
-    if (captured.length === words.length) {
+    if (captured.length > chars.length && chars.length>0) {
       console.log("Game over");
       console.log(`event.key: ${event.key}`);
       if (event.key === " ") {

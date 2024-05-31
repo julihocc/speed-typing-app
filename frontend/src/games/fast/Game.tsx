@@ -87,9 +87,10 @@ export default function Game() {
   useEffect(() => {
     if (textToBeCaptured.length > 0) {
       const startIndex = captured.length;
-      setTextToBeShown(textToBeCaptured.substring(startIndex, startIndex + 20));
+      // setTextToBeShown(textToBeCaptured.substring(startIndex, startIndex + 20));
+      setTextToBeShown(textToBeCaptured.substring(startIndex));
     }
-  }, [textToBeCaptured, setTextToBeShown, captured.length]);
+  }, [textToBeCaptured, setTextToBeShown, captured]);
 
   // useSetChars
   useEffect(() => {
@@ -140,11 +141,23 @@ export default function Game() {
         <SetInitialTime />
       </Box>
       <Box sx={{ margin: 2 }}>
-        <Paper variant="outlined">
+        {/* <Paper variant="outlined">
           <Typography variant="h5" sx={{ margin: 2, padding: 2 }}>
             {textToBeShown}
           </Typography>
-        </Paper>
+        </Paper> */}
+        <TextField
+          disabled
+          value={textToBeShown}
+          InputProps={{
+            readOnly: true,
+            disableUnderline: true,
+            inputProps: { sx: { color: "black" } },
+          }}
+          sx={{
+            width: "100%",
+          }}
+        />
       </Box>
 
       <TextField
