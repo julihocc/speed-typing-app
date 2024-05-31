@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import useSessionStore from "../stores/session-store";
 import Box from "@mui/material/Box";
 import { LinearProgress, Typography } from "@mui/material";
@@ -11,32 +11,6 @@ export default function Timer() {
   const remainingTime = useSessionStore((state) => state.remainingTime);
   const setRemainingTime = useSessionStore((state) => state.setRemainingTime);
   const gameEndTime = useSessionStore((state) => state.gameEndTime);
-
-  const [progressPercentage, setProgressPercentage] = useState<number>(100);
-
-  // const props = useSpring({
-  //   from: { opacity: 0 },
-  //   to: { opacity: 1 },
-  //   config: { duration: 1000 },
-  // });
-  
-  const intensity = 0.2;
-  const speed = 1;
-
-  // const props = useSpring({
-  //   from: { scale: 1 },
-  //   to: { scale: 1 + intensity },
-  //   config: { duration: 1000 / speed },
-  //   loop: true,
-  //   yoyo: true, // Reverse the animation on each loop
-  // });
-
-  const props = useSpring({
-    from: { scale: 1 },
-    to: [{ scale: 1 + intensity }, { scale: 1 }], // Two steps: scale up, then back to 1
-    config: { duration: 1000 / speed },
-    loop: true,
-  });
 
   const AnimatedTypography = animated(Typography);
 
@@ -61,40 +35,67 @@ export default function Timer() {
     return () => clearInterval(timer);
   }, [remainingTime, setRemainingTime, gameEndTime]);
 
+  // Animation configuration
+
+  const [secUnits, setSecUnits] = useState<number | null>(null);
+  const [secTens, setSecTens] = useState<number | null>(null);
+  const prevSecUnitsRef = useRef(secUnits);
+  const prevSecTensRef = useRef(secTens);
+
+  const animationSecUnits = useSpring({
+    from: { y: -20, opacity: 0 },
+    to: { y: 0, opacity: 1 },
+    config: { duration: 1000 },
+    reset: true,
+  });
+
+  const animationSecTens = useSpring({
+    from: { y: -20, opacity: 0 },
+    to: { y: 0, opacity: 1 },
+    config: { duration: 1000 },
+    reset: true,
+  });
+
   useEffect(() => {
+    if (prevSecUnitsRef.current !== secUnits) {
+      animationSecUnits.y.start();
+      animationSecUnits.opacity.start();
+    }
+    prevSecUnitsRef.current = secUnits;
+  }, [animationSecUnits, secUnits]);
+
+  useEffect(() => {
+    if (prevSecTensRef.current !== secTens) {
+      animationSecTens.y.start();
+      animationSecTens.opacity.start();
+    }
+  }, [animationSecTens, secTens]);
+
+  useEffect(() => {
+    console.log(`remainingTime: ${remainingTime}`);
     if (remainingTime !== null) {
-      setProgressPercentage((remainingTime / 60) * 100);
-    } else {
-      setProgressPercentage(100);
+      setSecUnits(remainingTime % 10);
+    }
+  }, [remainingTime]);
+
+  useEffect(() => {
+    console.log(`remainingTime: ${remainingTime}`);
+    if (remainingTime !== null) {
+      setSecTens(Math.floor(remainingTime / 10));
     }
   }, [remainingTime]);
 
   return (
     <div>
       <Box display="flex" alignItems="center" gap={4} margin={2}>
-        <Box minWidth="16rem">
-          <LinearProgress variant="determinate" value={progressPercentage} />
-        </Box>
-        <Box>
-          <Gauge
-            width={100}
-            height={100}
-            value={
-              remainingTime === null
-                ? 100
-                : (100 * remainingTime) / initialTimerValue
-            }
-            startAngle={-90}
-            endAngle={90}
-            text={
-              remainingTime === null
-                ? initialTimerValue.toString()
-                : remainingTime.toString()
-            }
-          />
-        </Box>
-        <AnimatedTypography variant="h2" style={props}>
-          {remainingTime === null ? initialTimerValue : remainingTime} sec
+        {" "}
+        <AnimatedTypography variant="h2" style={animationSecTens}>
+          {remainingTime === null
+            ? Math.floor(initialTimerValue / 10)
+            : secTens}
+        </AnimatedTypography>
+        <AnimatedTypography variant="h2" style={animationSecUnits}>
+          {remainingTime === null ? initialTimerValue % 10 : secUnits}
         </AnimatedTypography>
       </Box>
     </div>
