@@ -62,7 +62,7 @@ export default function Game() {
   useSetColored(chars, colors, setColored);
 
   useEffect(() => {
-    if (captured.length > chars.length) {
+    if (captured.length > chars.length && chars.length > 0) {
       console.log("Game over");
 
       if (gameEndTime === null) {
