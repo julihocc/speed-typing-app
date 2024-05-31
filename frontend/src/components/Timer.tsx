@@ -79,8 +79,6 @@ export default function Timer() {
   return (
     <div>
       <Box display="flex" alignItems="center" margin={2}>
-        {" "}
-        <Typography>Remaining time:</Typography>
         <AnimatedTypography style={animationSecTens}>
           {remainingTime === null
             ? Math.floor(initialTimerValue / 10)
@@ -89,7 +87,6 @@ export default function Timer() {
         <AnimatedTypography style={animationSecUnits}>
           {remainingTime === null ? initialTimerValue % 10 : secUnits}
         </AnimatedTypography>
-        <Typography>seconds.</Typography>
       </Box>
     </div>
   );
