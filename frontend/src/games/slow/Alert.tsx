@@ -14,16 +14,7 @@ import {
   useSetMatchRecordWhenTimeIsOver,
 } from "./alert.hooks";
 import { setHandleClose } from "./alert.handlers";
-
-export const nullMatchRecord: MatchRecord = {
-  gameStartTime: null,
-  gameEndTime: null,
-  totalChars: null,
-  nailedChars: null,
-  totalTime: null,
-  remainingTime: null,
-  initialTimerValue: null,
-};
+import nullMatchRecord from "../../utils/nullMatchRecord";
 
 export default function GameOverAlert() {
   const [open, setOpen] = useState(false);
@@ -33,13 +24,13 @@ export default function GameOverAlert() {
     chars,
     gameStartTime,
     gameEndTime,
-    chars: words,
-    nailedChars: nailed,
     initialTimerValue,
     resetGame,
     resetTimer,
     currentUserEmail,
     currentUserIsAuthenticated,
+    words,
+    nailedWords
   } = useSessionStore();
 
   const { pushMatchRecord } = useIndexedStore();
@@ -55,7 +46,7 @@ export default function GameOverAlert() {
     gameStartTime,
     gameEndTime,
     words,
-    nailed,
+    nailedWords,
     initialTimerValue,
     setMatchRecord
   );

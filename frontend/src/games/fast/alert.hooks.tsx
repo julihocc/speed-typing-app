@@ -25,7 +25,7 @@ export function useSetOpenWhenGameEndTimeIsNotNull(
 
       setOpen(true);
     }
-  }, [gameEndTime, setOpen, remainingTime]);
+  }, [gameEndTime, setOpen, remainingTime, setGameEndTime]);
 }
 
 export function useSetMatchRecordWhenTimeIsOver(
