@@ -7,7 +7,9 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Paper,
+  Card,
+  CardContent,
+  CardHeader,
 } from "@mui/material";
 
 function numberToDate(number: number | null) {
@@ -31,42 +33,53 @@ export default function MatchRecordViewer() {
   const currentUser = getUserByEmail(currentUserEmail);
 
   return (
-    <TableContainer component={Paper}>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>Game Start Time</TableCell>
-            <TableCell align="right">Total Words</TableCell>
-            <TableCell align="right">Nailed Words</TableCell>
-            <TableCell align="right">Accuracy</TableCell>
-            <TableCell align="right">Total Time (s)</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {currentUser &&
-            currentUser.matchRecords.map((matchRecord, index) => (
-              <TableRow key={index}>
-                <TableCell component="th" scope="row">
-                  {numberToDate(matchRecord.gameStartTime)}
-                </TableCell>
-                <TableCell align="right">{matchRecord.totalChars}</TableCell>
-                <TableCell align="right">{matchRecord.nailedChars}</TableCell>
-                <TableCell align="right">
-                  {matchRecord.nailedChars === null ||
-                  matchRecord.totalChars === null
-                    ? null
-                    : `${Math.round(
-                        (matchRecord.nailedChars / matchRecord.totalChars) * 100
-                      )}%`}
-                </TableCell>
-                <TableCell align="right">
-                  {matchRecord.totalTime &&
-                    Math.floor(matchRecord.totalTime / 1000)}
-                </TableCell>
+    <Card>
+      <CardContent>
+        <CardHeader title="Match Records"></CardHeader>
+        <TableContainer>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Game Start Time</TableCell>
+                <TableCell align="right">Total Words</TableCell>
+                <TableCell align="right">Nailed Words</TableCell>
+                <TableCell align="right">Accuracy</TableCell>
+                <TableCell align="right">Total Time (s)</TableCell>
               </TableRow>
-            ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+            </TableHead>
+            <TableBody>
+              {currentUser &&
+                currentUser.matchRecords.map((matchRecord, index) => (
+                  <TableRow key={index}>
+                    <TableCell component="th" scope="row">
+                      {numberToDate(matchRecord.gameStartTime)}
+                    </TableCell>
+                    <TableCell align="right">
+                      {matchRecord.totalWords}
+                    </TableCell>
+                    <TableCell align="right">
+                      {matchRecord.totalNailedWords}
+                    </TableCell>
+                    <TableCell align="right">
+                      {matchRecord.totalNailedWords === null ||
+                      matchRecord.totalWords === null
+                        ? null
+                        : `${Math.round(
+                            (matchRecord.totalNailedWords /
+                              matchRecord.totalWords) *
+                              100
+                          )}%`}
+                    </TableCell>
+                    <TableCell align="right">
+                      {matchRecord.totalTime &&
+                        Math.floor(matchRecord.totalTime / 1000)}
+                    </TableCell>
+                  </TableRow>
+                ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </CardContent>
+    </Card>
   );
 }
