@@ -44,9 +44,6 @@ export default function Game() {
     randomIndex,
     setRandomIndex,
     backspaceDisabled,
-    words,
-    nailedWords,
-    capturedWords,
   } = useSessionStore();
 
   useFocusInput(inputRef);
