@@ -2,13 +2,7 @@ import useSessionStore from "../stores/session-store";
 import useIndexedStore from "../stores/indexed-store";
 import { useState, useEffect } from "react";
 import { LineChart } from "@mui/x-charts/LineChart";
-import {
-  Container,
-  Typography,
-  Card,
-  CardContent,
-  CardHeader,
-} from "@mui/material";
+import { Container, Card, CardContent, CardHeader } from "@mui/material";
 
 export default function HistoricalMatchAccuracy() {
   const { currentUserEmail } = useSessionStore();
