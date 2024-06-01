@@ -96,10 +96,12 @@ export default function Game() {
     }
   }, [textToBeCaptured, setTextToBeShown, capturedChars]);
 
+  // useSetChars
   useEffect(() => {
     setChars(textToBeCaptured.split(""));
   }, [setChars, textToBeCaptured]);
 
+  // useSetWords
   useEffect(() => {
     setWords(textToBeCaptured.trim().split(" "));
   }, [setWords, textToBeCaptured]);
@@ -117,6 +119,17 @@ export default function Game() {
   useSetCharColors(nailedChars, setCharColors);
   useSetColored(capturedChars, charColors, setColored);
 
+  useEffect(() => {
+    if (capturedChars.length > chars.length && chars.length > 0) {
+      console.log("Game over");
+
+      if (gameEndTime === null) {
+        const now = new Date().getTime();
+        setGameEndTime(now);
+      }
+    }
+  }, [capturedChars, chars, gameEndTime, setGameEndTime]);
+
   const handleKeyDown = setHandleKeyDown(
     gameStartTime,
     setGameStartTime,
@@ -130,8 +143,6 @@ export default function Game() {
     inputRef,
     setTextFieldValue,
     setCapturedChars,
-    chars,
-    words,
     setCapturedWords
   );
 
@@ -139,8 +150,6 @@ export default function Game() {
     capturedChars,
     chars,
     setNailedChars,
-    gameEndTime,
-    setGameEndTime,
     words,
     capturedWords,
     setNailedWords

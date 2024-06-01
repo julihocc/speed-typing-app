@@ -17,40 +17,52 @@ export function setHandleKeyDown(
 export function setHandleOnChange(
   inputRef: React.RefObject<HTMLInputElement>,
   setTextFieldValue: (value: string | undefined) => void,
-  setCaptured: (captured: string[]) => void,
-  words: string[]
+  setCapturedChars: (captured: string[]) => void,
+  setCapturedWords: (captured: string[]) => void
 ) {
-  words;
   const handleOnChange = () => {
     const value = inputRef.current?.value;
     setTextFieldValue(value);
     // const _captured = value?.trim().split("") || [];
-    const _captured = value?.split("") || [];
-    // if (_captured.length <= words.length) {
-    //   setCaptured(_captured);
-    // }
-    setCaptured(_captured);
+    const _capturedChars = value?.split("") || [];
+    setCapturedChars(_capturedChars);
+    const _capturedWords = value?.trim().split(" ") || [];
+    setCapturedWords(_capturedWords);
   };
 
   return handleOnChange;
 }
 
 export function setHandleOnKeyUp(
-  captured: string[],
+  capturedChars: string[],
+  chars: string[],
+  setNailedChars: (nailed: (boolean | null)[]) => void,
   words: string[],
-  setNailed: (nailed: (boolean | null)[]) => void
+  capturedWords: string[],
+  setNailedWords: (nailed: (boolean | null)[]) => void
 ) {
   const handleOnKeyUp = () => {
-    if (captured.length <= words.length) {
-      const nailedUpdated = captured.map((word, index) => {
-        const current = words[index];
+    if (capturedChars.length <= chars.length) {
+      const nailedUpdated = capturedChars.map((word, index) => {
+        const current = chars[index];
         if (current) {
           return word === current;
         } else {
           return null;
         }
       });
-      setNailed(nailedUpdated);
+      setNailedChars(nailedUpdated);
+    }
+    if (capturedWords.length <= words.length) {
+      const nailedWordsUpdated = capturedWords.map((word, index) => {
+        const currentWord = words[index];
+        if (currentWord) {
+          return word === currentWord;
+        } else {
+          return null;
+        }
+      });
+      setNailedWords(nailedWordsUpdated);
     }
   };
 

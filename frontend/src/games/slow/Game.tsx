@@ -13,6 +13,7 @@ import {
   useTextFieldValue,
   useSetColors,
   useSetColored,
+  useSetWords,
 } from "./game.hooks";
 
 import {
@@ -38,12 +39,17 @@ export default function Game() {
     charColors,
     setCharColors,
     nailedChars,
-    setNailedChars: setNailed,
+    setNailedChars,
     capturedChars,
     setCapturedChars,
     randomIndex,
     setRandomIndex,
     backspaceDisabled,
+    setWords,
+    setNailedWords,
+    setCapturedWords,
+    words,
+    capturedWords,
   } = useSessionStore();
 
   useFocusInput(inputRef);
@@ -53,6 +59,8 @@ export default function Game() {
   useSetRandomText(randomIndex, setTextToBeCaptured);
 
   useSetChars(textToBeCaptured, setChars);
+
+  useSetWords(textToBeCaptured, setWords);
 
   useTextFieldValue(textFieldValue, inputRef);
 
@@ -82,10 +90,17 @@ export default function Game() {
     inputRef,
     setTextFieldValue,
     setCapturedChars,
-    chars
+    setCapturedWords
   );
 
-  const handleOnKeyUp = setHandleOnKeyUp(capturedChars, chars, setNailed);
+  const handleOnKeyUp = setHandleOnKeyUp(
+    capturedChars,
+    chars,
+    setNailedChars,
+    words,
+    capturedWords,
+    setNailedWords
+  );
 
   return (
     <Box display="flex" flexDirection="column" gap={4}>

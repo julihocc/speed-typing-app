@@ -51,6 +51,15 @@ export function useSetChars(
   }, [setChars, textToBeCaptured]);
 }
 
+export function useSetWords(
+  textToBeCaptured: string,
+  setWords: (words: string[]) => void
+) {
+  useEffect(() => {
+    setWords(textToBeCaptured.trim().split(" "));
+  }, [setWords, textToBeCaptured]);
+} 
+
 export function useTextFieldValue(
   textFieldValue: string | undefined,
   inputRef: React.RefObject<HTMLInputElement>
