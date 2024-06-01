@@ -30,12 +30,12 @@ export default function Game() {
     setGameEndTime,
     gameStartTime,
     setGameStartTime,
-    charColors: colors,
-    setCharColors: setColors,
-    nailedChars: nailed,
-    setNailedChars: setNailed,
-    capturedChars: captured,
-    setCapturedChars: setCaptured,
+    charColors,
+    setCharColors,
+    nailedChars,
+    setNailedChars,
+    capturedChars,
+    setCapturedChars,
     randomIndex,
     setRandomIndex,
     remainingTime,
@@ -43,6 +43,10 @@ export default function Game() {
     initialTimerValue,
     backspaceDisabled,
     setBackspaceDisabled,
+    words,
+    capturedWords,
+    setCapturedWords,
+    setNailedWords,
   } = useSessionStore();
 
   useFocusInput(inputRef);
@@ -85,11 +89,11 @@ export default function Game() {
 
   useEffect(() => {
     if (textToBeCaptured.length > 0) {
-      const startIndex = captured.length;
+      const startIndex = capturedChars.length;
       // setTextToBeShown(textToBeCaptured.substring(startIndex, startIndex + 20));
       setTextToBeShown(textToBeCaptured.substring(startIndex));
     }
-  }, [textToBeCaptured, setTextToBeShown, captured]);
+  }, [textToBeCaptured, setTextToBeShown, capturedChars]);
 
   // useSetChars
   useEffect(() => {
@@ -104,11 +108,11 @@ export default function Game() {
         inputRef.current.value = textFieldValue;
       }
     }
-  }, [textFieldValue, inputRef, captured]);
+  }, [textFieldValue, inputRef, capturedChars]);
 
-  useSetCharColors(nailed, setColors);
+  useSetCharColors(nailedChars, setCharColors);
 
-  useSetColored(captured, colors, setColored);
+  useSetColored(capturedChars, charColors, setColored);
 
   const handleKeyDown = setHandleKeyDown(
     gameStartTime,
@@ -122,16 +126,21 @@ export default function Game() {
   const handleOnChange = setHandleOnChange(
     inputRef,
     setTextFieldValue,
-    setCaptured,
-    chars
+    setCapturedChars,
+    chars,
+    words,
+    setCapturedWords
   );
 
   const handleOnKeyUp = setHandleOnKeyUp(
-    captured,
+    capturedChars,
     chars,
-    setNailed,
+    setNailedChars,
     gameEndTime,
-    setGameEndTime
+    setGameEndTime,
+    words,
+    capturedWords,
+    setNailedWords
   );
 
   return (
