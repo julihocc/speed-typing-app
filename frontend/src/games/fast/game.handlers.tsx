@@ -12,10 +12,12 @@ export function setHandleKeyDown(
       event.preventDefault();
     }
     if (gameStartTime === null) {
+      console.log("Setting game start time");
       setGameStartTime(new Date().getTime());
     }
     // this has been added
     if (remainingTime === null) {
+      console.log("Setting remaining time");
       setRemainingTime(initialTimerValue);
     }
   };

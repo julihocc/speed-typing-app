@@ -61,9 +61,9 @@ export default function Dashboard() {
         </Box>
       </Box>
 
+      <ResetMatchRecords />
       <SpeedWatcher />
       <HistoricalMatchAccuracy />
-      <ResetMatchRecords />
       <MatchRecordViewer />
     </PageLayout>
   );

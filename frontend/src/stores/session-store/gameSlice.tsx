@@ -93,6 +93,8 @@ export const createGameSlice: StateCreator<
         state.gameEndTime = null;
         state.textFieldValue = undefined;
         state.randomIndex = null;
+        state.capturedWords = [];
+        state.nailedWords = [];
         return state;
       },
       false,

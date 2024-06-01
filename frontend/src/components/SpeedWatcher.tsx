@@ -26,10 +26,10 @@ export default function SpeedWatcher() {
       ? currentUser.matchRecords.map((record) => {
           if (record.gameStartTime === null) return 0;
           if (record.gameEndTime === null) return 0;
-          if (record.totalChars === null) return 0;
+          if (record.totalWords === null) return 0;
           const timeDiff = record.gameEndTime - record.gameStartTime;
           const timeInSeconds = timeDiff / 1000;
-          return record.totalChars / timeInSeconds;
+          return record.totalWords / timeInSeconds;
         })
       : null;
 
@@ -64,25 +64,25 @@ export default function SpeedWatcher() {
         <CardContent>
           <CardHeader title="Speed Watcher" />
           <Typography>
-            Max Speed: {maxSpeed.toFixed(2)} chars per second
+            Max Speed: {maxSpeed.toFixed(2)} words per second
           </Typography>
           <Typography>
-            Min Speed: {minSpeed.toFixed(2)} chars per second
+            Min Speed: {minSpeed.toFixed(2)} words per second
           </Typography>
         </CardContent>
-      </Card>
 
-      <BarChart
-        width={800}
-        height={400}
-        series={[
-          {
-            data: speeds || [],
-            label: "Speed (words per second)",
-          },
-        ]}
-        xAxis={[{ scaleType: "band", data: dates || [] }]}
-      />
+        <BarChart
+          width={800}
+          height={400}
+          series={[
+            {
+              data: speeds || [],
+              label: "Speed (words per second)",
+            },
+          ]}
+          xAxis={[{ scaleType: "band", data: dates || [] }]}
+        />
+      </Card>
     </Container>
   );
 }

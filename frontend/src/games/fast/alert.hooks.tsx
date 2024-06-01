@@ -3,10 +3,26 @@ import { useEffect } from "react";
 export function useSetOpenWhenGameEndTimeIsNotNull(
   gameEndTime: number | null,
   remainingTime: number | null,
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>,
+  setGameEndTime: (endTime: number | null) => void
 ) {
   useEffect(() => {
     if (gameEndTime !== null || remainingTime === 0) {
+      if (remainingTime === 0) {
+        console.log("remainingTime is 0");
+        if (gameEndTime === null) {
+          console.log("gameEndTime is null");
+          const now = new Date().getTime();
+          console.log("Setting gameEndTime to now: ", now);
+          // gameEndTime = now;
+          setGameEndTime(now);
+        }
+      }
+
+      if (gameEndTime !== null) {
+        console.log("gameEndTime is not null");
+      }
+
       setOpen(true);
     }
   }, [gameEndTime, setOpen, remainingTime]);
@@ -16,7 +32,7 @@ export function useSetMatchRecordWhenTimeIsOver(
   gameStartTime: number | null,
   gameEndTime: number | null,
   words: string[],
-  nailed: (boolean | null)[],
+  nailedWords: (boolean | null)[],
   initialTimerValue: number,
   remainingTime: number | null,
   setMatchRecord: React.Dispatch<React.SetStateAction<MatchRecord>>
@@ -24,23 +40,30 @@ export function useSetMatchRecordWhenTimeIsOver(
   useEffect(() => {
     if (gameStartTime !== null && gameEndTime !== null) {
       const totalWords = words.length;
-      const nailedWords = nailed.filter((nailed) => nailed === true).length;
+      const totalNailedWords = nailedWords.filter(
+        (nailed) => nailed === true
+      ).length;
       const totalTime = gameEndTime - gameStartTime;
-      setMatchRecord({
+
+      const matchRecord: MatchRecord = {
         gameStartTime,
         gameEndTime,
-        totalChars: totalWords,
-        nailedChars: nailedWords,
         totalTime,
         remainingTime,
         initialTimerValue,
-      });
+        totalWords,
+        totalNailedWords,
+      };
+
+      console.log("Match record to be pushed: ", JSON.stringify(matchRecord));
+
+      setMatchRecord(matchRecord);
     }
   }, [
     gameStartTime,
     gameEndTime,
     words,
-    nailed,
+    nailedWords,
     initialTimerValue,
     remainingTime,
     setMatchRecord,
