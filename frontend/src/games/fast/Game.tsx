@@ -45,6 +45,7 @@ export default function Game() {
     setBackspaceDisabled,
     words,
     capturedWords,
+    setWords,
     setCapturedWords,
     setNailedWords,
   } = useSessionStore();
@@ -95,10 +96,13 @@ export default function Game() {
     }
   }, [textToBeCaptured, setTextToBeShown, capturedChars]);
 
-  // useSetChars
   useEffect(() => {
-    setChars(textToBeCaptured.trim().split(""));
+    setChars(textToBeCaptured.split(""));
   }, [setChars, textToBeCaptured]);
+
+  useEffect(() => {
+    setWords(textToBeCaptured.trim().split(" "));
+  }, [setWords, textToBeCaptured]);
 
   useEffect(() => {
     if (inputRef.current) {
@@ -108,10 +112,9 @@ export default function Game() {
         inputRef.current.value = textFieldValue;
       }
     }
-  }, [textFieldValue, inputRef, capturedChars]);
+  }, [textFieldValue, inputRef]);
 
   useSetCharColors(nailedChars, setCharColors);
-
   useSetColored(capturedChars, charColors, setColored);
 
   const handleKeyDown = setHandleKeyDown(
