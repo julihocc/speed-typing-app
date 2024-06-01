@@ -35,15 +35,18 @@ export default function Game() {
     setGameEndTime,
     gameStartTime,
     setGameStartTime,
-    charColors: colors,
-    setCharColors: setColors,
-    nailedChars: nailed,
+    charColors,
+    setCharColors,
+    nailedChars,
     setNailedChars: setNailed,
-    capturedChars: captured,
-    setCapturedChars: setCaptured,
+    capturedChars,
+    setCapturedChars,
     randomIndex,
     setRandomIndex,
     backspaceDisabled,
+    words,
+    nailedWords,
+    capturedWords,
   } = useSessionStore();
 
   useFocusInput(inputRef);
@@ -56,13 +59,13 @@ export default function Game() {
 
   useTextFieldValue(textFieldValue, inputRef);
 
-  useSetColors(nailed, setColors);
+  useSetColors(nailedChars, setCharColors);
 
   // useSetColored(captured, colors, setColored);
-  useSetColored(chars, colors, setColored);
+  useSetColored(chars, charColors, setColored);
 
   useEffect(() => {
-    if (captured.length > chars.length && chars.length > 0) {
+    if (capturedChars.length > chars.length && chars.length > 0) {
       console.log("Game over");
 
       if (gameEndTime === null) {
@@ -70,7 +73,7 @@ export default function Game() {
         setGameEndTime(now);
       }
     }
-  }, [captured, chars, gameEndTime, setGameEndTime]);
+  }, [capturedChars, chars, gameEndTime, setGameEndTime]);
 
   const handleKeyDown = setHandleKeyDown(
     gameStartTime,
@@ -81,11 +84,11 @@ export default function Game() {
   const handleOnChange = setHandleOnChange(
     inputRef,
     setTextFieldValue,
-    setCaptured,
+    setCapturedChars,
     chars
   );
 
-  const handleOnKeyUp = setHandleOnKeyUp(captured, chars, setNailed);
+  const handleOnKeyUp = setHandleOnKeyUp(capturedChars, chars, setNailed);
 
   return (
     <Box display="flex" flexDirection="column" gap={4}>
