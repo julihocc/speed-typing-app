@@ -41,8 +41,9 @@ export default function SetInitialTime() {
         type="number"
         value={initialTimerValue}
         onChange={handleInputChange}
-        sx={{ width: "20rem" }}
-        label="Initial Time (seconds)"
+        sx={{ width: "10rem" }}
+        label="Initial Time (s)"
+        variant="filled"
       />
       {error && ( // Show error message only when there's an error
         <FormHelperText error>{getFriendlyErrorMessage(error)}</FormHelperText>

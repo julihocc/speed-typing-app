@@ -5,6 +5,8 @@ import TextField from "@mui/material/TextField";
 // import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import SetInitialTime from "../../components/SetInitialTime";
+import Timer from "../../components/Timer";
+import Timer2 from "../../components/Timer2";
 
 import { useFocusInput, useSetCharColors, useSetColored } from "./game.hooks";
 
@@ -117,6 +119,7 @@ export default function Game() {
   }, [textFieldValue, inputRef]);
 
   useSetCharColors(nailedChars, setCharColors);
+
   useSetColored(capturedChars, charColors, setColored);
 
   useEffect(() => {
@@ -156,32 +159,33 @@ export default function Game() {
   );
 
   return (
-    <Box display="flex" flexDirection="column" gap={4}>
-      <Box sx={{ margin: 2 }}>
+    <Box display="flex" flexDirection="column" gap={4} alignItems="center">
+      <Box sx={{ margin: 2 }} display="flex" gap={2} alignItems="center">
         <SetInitialTime />
+        <Timer />
+        <Timer2 />
       </Box>
-      <Box sx={{ margin: 2 }}>
-        {/* TODO Improve the design of the text to be shown */}
+      <Box sx={{ width: "50rem", margin: 2 }}>
         <TextField
           disabled
           value={textToBeShown}
           InputProps={{
-            readOnly: true,
-            disableUnderline: true,
+            // readOnly: true,
             inputProps: { sx: { color: "black" } },
           }}
-          sx={{
-            width: "100%",
-          }}
+          fullWidth
+        />
+      </Box>
+      <Box sx={{ width: "50rem", margin: 2 }}>
+        <TextField
+          inputRef={inputRef}
+          onKeyDown={handleKeyDown}
+          onChange={handleOnChange}
+          onKeyUp={handleOnKeyUp}
+          fullWidth
         />
       </Box>
 
-      <TextField
-        inputRef={inputRef}
-        onKeyDown={handleKeyDown}
-        onChange={handleOnChange}
-        onKeyUp={handleOnKeyUp}
-      />
       <Box display="flex">
         <Paper>{colored}</Paper>
       </Box>
