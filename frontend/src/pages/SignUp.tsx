@@ -1,4 +1,4 @@
-import PageLayout from "../layouts/PageLayout";
+import PageTemplate from "../templates/PageTemplate";
 import { NavLink } from "react-router-dom";
 import {
   TextField,
@@ -94,7 +94,7 @@ function SignUp() {
   };
 
   return (
-    <PageLayout title="Sign up">
+    <PageTemplate title="Sign up">
       <Container maxWidth="xs">
         <Box mt={8} p={3} boxShadow={3}>
           <Typography variant="h5" align="center" gutterBottom>
@@ -203,7 +203,7 @@ function SignUp() {
       </Container>
 
       <DevTool control={control} />
-    </PageLayout>
+    </PageTemplate>
   );
 }
 

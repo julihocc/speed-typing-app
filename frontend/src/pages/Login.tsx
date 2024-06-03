@@ -1,4 +1,4 @@
-import PageLayout from "../layouts/PageLayout";
+import PageTemplate from "../templates/PageTemplate";
 import { Link } from "react-router-dom";
 
 import useIndexedStore from "../stores/indexed-store";
@@ -75,7 +75,7 @@ export default function Login() {
   };
 
   return (
-    <PageLayout title="Login">
+    <PageTemplate title="Login">
       <Container maxWidth="xs">
         <Box mt={8} p={3} boxShadow={3}>
           <Typography variant="h5" align="center" gutterBottom>
@@ -122,6 +122,6 @@ export default function Login() {
       </Container>
 
       <DevTool control={control} />
-    </PageLayout>
+    </PageTemplate>
   );
 }

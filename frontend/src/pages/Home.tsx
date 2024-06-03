@@ -4,7 +4,7 @@ import GameOverAlertMode1 from "../games/slow/Alert";
 import GameMode2 from "../games/fast/Game";
 import GameOverAlertMode2 from "../games/fast/Alert";
 import RestartGame from "../components/RestartGame";
-import PageLayout from "../layouts/PageLayout";
+import PageTemplate from "../templates/PageTemplate";
 import useSessionStore from "../stores/session-store";
 import ToggleMode from "../components/ToggleMode";
 import { useEffect, useState } from "react";
@@ -26,7 +26,7 @@ export default function Home() {
   }, [gameMode]);
 
   return (
-    <PageLayout title={title}>
+    <PageTemplate title={title}>
       <Box
         sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
       >
@@ -58,6 +58,6 @@ export default function Home() {
           </Box>
         )} */}
       </Box>
-    </PageLayout>
+    </PageTemplate>
   );
 }

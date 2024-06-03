@@ -1,17 +1,18 @@
 import ResetMatchRecords from "../components/ResetMatchRecords";
-import PageLayout from "../layouts/PageLayout";
+import PageTemplate from "../templates/PageTemplate";
 
 import { Box, Button } from "@mui/material";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
 import CurrentUser from "../components/CurrentUser";
 
 import { useState } from "react";
 
 export default function Dashboard() {
+  const location = useLocation();
   const [lastClicked, setLastClicked] = useState<string | null>(null);
 
   return (
-    <PageLayout title="Dashboard">
+    <PageTemplate title="Dashboard">
       <Box p={2} display="flex" alignItems="center" justifyContent="center">
         <Box m={2}>
           <ResetMatchRecords />
@@ -65,8 +66,9 @@ export default function Dashboard() {
           </Button>
         </Box>
       </Box>
-      <CurrentUser />
-      <Outlet />
-    </PageLayout>
+      {/* <CurrentUser />
+      <Outlet /> */}
+      {location.pathname === "/Dashboard" ? <CurrentUser /> : <Outlet />}
+    </PageTemplate>
   );
 }
