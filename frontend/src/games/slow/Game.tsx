@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 // import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
+import { gameSelector } from "./game.selector";
 
 import {
   useFocusInput,
@@ -50,7 +51,7 @@ export default function Game() {
     setCapturedWords,
     words,
     capturedWords,
-  } = useSessionStore();
+  } = useSessionStore(gameSelector);
 
   useFocusInput(inputRef);
 

@@ -15,6 +15,7 @@ import {
 } from "./alert.hooks";
 import { setHandleClose } from "./alert.handlers";
 import nullMatchRecord from "../../utils/nullMatchRecord";
+import { alertSelector } from "./alert.selector";
 
 export default function GameOverAlert() {
   const [open, setOpen] = useState(false);
@@ -30,8 +31,8 @@ export default function GameOverAlert() {
     currentUserEmail,
     currentUserIsAuthenticated,
     words,
-    nailedWords
-  } = useSessionStore();
+    nailedWords,
+  } = useSessionStore(alertSelector);
 
   const { pushMatchRecord } = useIndexedStore();
 
