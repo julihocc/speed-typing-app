@@ -1,8 +1,14 @@
-import useBoundStore from "../stores/bound-store";
+import useSessionStore from "../stores/session-store";
 import useIndexedStore from "../stores/indexed-store";
 import { useState, useEffect } from "react";
 import { BarChart } from "@mui/x-charts/BarChart";
-import { Container, Typography, Card, CardContent } from "@mui/material";
+import {
+  Container,
+  Typography,
+  Card,
+  CardContent,
+  CardHeader,
+} from "@mui/material";
 
 export default function SpeedWatcher() {
   const [speeds, setSpeeds] = useState<number[] | null>([]);
@@ -10,7 +16,7 @@ export default function SpeedWatcher() {
   const [maxSpeed, setMaxSpeed] = useState<number>(0);
   const [minSpeed, setMinSpeed] = useState<number>(0);
   // const { currentUser } = useBoundStore();
-  const { currentUserEmail } = useBoundStore();
+  const { currentUserEmail } = useSessionStore();
   const { getUserByEmail } = useIndexedStore();
 
   const currentUser = getUserByEmail(currentUserEmail);
@@ -54,30 +60,29 @@ export default function SpeedWatcher() {
 
   return (
     <Container>
-      <Typography variant="h5">Speed Watcher</Typography>
-
       <Card>
         <CardContent>
-          Max Speed: {maxSpeed.toFixed(2)} words per second
+          <CardHeader title="Speed Watcher" />
+          <Typography>
+            Max Speed: {maxSpeed.toFixed(2)} words per second
+          </Typography>
+          <Typography>
+            Min Speed: {minSpeed.toFixed(2)} words per second
+          </Typography>
         </CardContent>
-      </Card>
-      <Card>
-        <CardContent>
-          Min Speed: {minSpeed.toFixed(2)} words per second
-        </CardContent>
-      </Card>
 
-      <BarChart
-        width={800}
-        height={400}
-        series={[
-          {
-            data: speeds || [],
-            label: "Speed (words per second)",
-          },
-        ]}
-        xAxis={[{ scaleType: "band", data: dates || [] }]}
-      />
+        <BarChart
+          width={800}
+          height={400}
+          series={[
+            {
+              data: speeds || [],
+              label: "Speed (words per second)",
+            },
+          ]}
+          xAxis={[{ scaleType: "band", data: dates || [] }]}
+        />
+      </Card>
     </Container>
   );
 }

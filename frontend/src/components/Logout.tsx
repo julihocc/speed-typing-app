@@ -1,11 +1,11 @@
 import { Button } from "@mui/material";
-import useBoundStore from "../stores/bound-store";
+import useSessionStore from "../stores/session-store";
 
 const Logout = () => {
   const {
     logout,
     // currentUserEmail
-  } = useBoundStore();
+  } = useSessionStore();
   // const { resetMatchRecords } = useIndexedStore();
   return (
     <Button

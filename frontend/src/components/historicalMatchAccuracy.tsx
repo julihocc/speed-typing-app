@@ -1,11 +1,11 @@
-import useBoundStore from "../stores/bound-store";
+import useSessionStore from "../stores/session-store";
 import useIndexedStore from "../stores/indexed-store";
 import { useState, useEffect } from "react";
 import { LineChart } from "@mui/x-charts/LineChart";
-import { Container, Typography } from "@mui/material";
+import { Container, Card, CardContent, CardHeader } from "@mui/material";
 
 export default function HistoricalMatchAccuracy() {
-  const { currentUserEmail } = useBoundStore();
+  const { currentUserEmail } = useSessionStore();
   const { getUserByEmail } = useIndexedStore();
 
   const currentUser = getUserByEmail(currentUserEmail);
@@ -20,8 +20,8 @@ export default function HistoricalMatchAccuracy() {
       ? currentUser.matchRecords.map((record) => {
           if (record.totalWords === 0) return 0;
           if (record.totalWords === null) return 0;
-          if (record.nailedWords === null) return 0;
-          return (100 * record.nailedWords) / record.totalWords;
+          if (record.totalNailedWords === null) return 0;
+          return (100 * record.totalNailedWords) / record.totalWords;
         })
       : null;
 
@@ -46,19 +46,23 @@ export default function HistoricalMatchAccuracy() {
 
   return (
     <Container>
-      <Typography variant="h5">Historical Match Accuracy</Typography>
-      <LineChart
-        width={800}
-        height={400}
-        series={[
-          {
-            data: historicalAccuracy || [],
-            type: "line",
-            label: "Accuracy (%)",
-          },
-        ]}
-        xAxis={[{ scaleType: "point", data: dates || [] }]}
-      />
+      <Card>
+        <CardContent>
+          <CardHeader title="Historical Match Accuracy"></CardHeader>
+          <LineChart
+            width={800}
+            height={400}
+            series={[
+              {
+                data: historicalAccuracy || [],
+                type: "line",
+                label: "Accuracy (%)",
+              },
+            ]}
+            xAxis={[{ scaleType: "point", data: dates || [] }]}
+          />
+        </CardContent>
+      </Card>
     </Container>
   );
 }

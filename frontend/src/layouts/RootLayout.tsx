@@ -8,19 +8,22 @@ import ButtonGroup from "@mui/material/ButtonGroup";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Logout from "../components/Logout";
-import useBoundStore from "../stores/bound-store";
+import useSessionStore from "../stores/session-store";
 
 export default function RootLayout() {
-  const { currentUserIsAuthenticated } = useBoundStore();
+  const { currentUserIsAuthenticated } = useSessionStore();
   return (
     <>
-      <Container>
+      <Container maxWidth={"md"}>
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static">
             <Toolbar>
-              <Typography variant="h3" component="div" sx={{ flexGrow: 1 }}>
-                Speed Typing App
-              </Typography>
+              <Box p={2}>
+                <Typography variant="h3" component="div" sx={{ flexGrow: 1 }}>
+                  Speed Typing App
+                </Typography>
+              </Box>
+
               <ButtonGroup
                 color="secondary"
                 variant="contained"
@@ -31,7 +34,7 @@ export default function RootLayout() {
                     to="/"
                     style={{ textDecoration: "none", color: "inherit" }}
                   >
-                    Home
+                    Let's play! 🚀
                   </NavLink>
                 </Button>
 

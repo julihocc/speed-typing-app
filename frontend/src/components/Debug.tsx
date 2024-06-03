@@ -1,7 +1,7 @@
-import useBoundStore from "../stores/bound-store";
+import useSessionStore from "../stores/session-store";
 
 const Debug = () => {
-  const captured = useBoundStore((state) => state.captured);
+  const captured = useSessionStore((state) => state.capturedChars);
   // console.log(`captured: ${captured}`);
   // const setCaptured = useBoundStore((state) => state.setCaptured);
 

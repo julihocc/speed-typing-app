@@ -1,8 +1,8 @@
 import { Navigate, Outlet } from "react-router-dom";
-import useBoundStore from "../stores/bound-store";
+import useSessionStore from "../stores/session-store";
 
 const PrivateLayout = () => {
-  const { currentUserEmail } = useBoundStore();
+  const { currentUserEmail } = useSessionStore();
 
   if (!currentUserEmail) {
     return <Navigate to="/login" />;

@@ -1,39 +1,75 @@
 import PageLayout from "../layouts/PageLayout";
-import { NavLink } from "react-router-dom";
-import { useState } from "react";
-// import useIndexedStore from "../../stores/indexed-store";
+import { Link } from "react-router-dom";
+
 import useIndexedStore from "../stores/indexed-store";
-import useBoundStore from "../stores/bound-store";
+import useSessionStore from "../stores/session-store";
 import { encrypt } from "../utils/encrypt";
 import { useNavigate } from "react-router-dom";
-
 import { TextField, Button, Typography, Container, Box } from "@mui/material";
 
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { DevTool } from "@hookform/devtools";
+import PasswordError from "../components/PasswordError";
+
+const loginSchema = z.object({
+  email: z
+    .string()
+    .email("Invalid email address")
+    .refine(
+      (email) => {
+        console.log("Checking if email is unique", email);
+        const user = useIndexedStore.getState().getUserByEmail(email);
+        return user;
+      },
+      { message: "User not found" }
+    ),
+  password: z.string().min(6, "Password must be at least 6 characters"),
+});
+
+type LoginInput = z.infer<typeof loginSchema>;
+
 export default function Login() {
-  const [capturedEmail, setCapturedEmail] = useState("");
-  const [capturedPassword, setCapturedPassword] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    control,
+  } = useForm<LoginInput>({
+    resolver: zodResolver(loginSchema),
+    mode: "onTouched",
+  });
+
   const { getUserByEmail } = useIndexedStore();
-  const { setCurrentUserEmail, setCurrentUserIsAuthenticated } =
-    useBoundStore();
+
+  const {
+    setCurrentUserEmail,
+    setCurrentUserIsAuthenticated,
+    passwordError,
+    setPasswordError,
+  } = useSessionStore();
+
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log(`Logging in with ${capturedEmail} and ${capturedEmail}`);
-    const user = getUserByEmail(capturedEmail);
-    console.log("Current user", user);
+  const onSubmit = (data: LoginInput) => {
+    console.log(data);
+    console.log(`Logging in with ${data.email} and ${data.password}`);
+    const user = getUserByEmail(data.email);
+
     if (!user) {
       console.error("User not found");
       return;
     }
-    if (user.password !== encrypt(capturedPassword)) {
-      console.error("Invalid password");
+
+    if (user.password !== encrypt(data.password)) {
+      setPasswordError("Password is incorrect");
       return;
     }
+
+    setPasswordError(null);
     setCurrentUserEmail(user.email);
-    setCurrentUserIsAuthenticated(user.password === encrypt(capturedPassword));
-    setCapturedEmail("");
-    setCapturedPassword("");
+    setCurrentUserIsAuthenticated(user.password === encrypt(data.password));
 
     return navigate("/Dashboard");
   };
@@ -45,22 +81,24 @@ export default function Login() {
           <Typography variant="h5" align="center" gutterBottom>
             Login
           </Typography>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <TextField
               label="Email"
               type="email"
               fullWidth
               margin="normal"
-              value={capturedEmail}
-              onChange={(e) => setCapturedEmail(e.target.value)}
+              {...register("email")}
+              error={!!errors.email}
+              helperText={errors.email?.message}
             />
             <TextField
               label="Password"
               type="password"
               fullWidth
               margin="normal"
-              value={capturedPassword}
-              onChange={(e) => setCapturedPassword(e.target.value)}
+              {...register("password")}
+              error={!!errors.password}
+              helperText={errors.password?.message}
             />
             <Button
               type="submit"
@@ -68,16 +106,22 @@ export default function Login() {
               color="primary"
               fullWidth
               sx={{ mt: 2 }}
-              onClick={handleSubmit}
             >
               Login
             </Button>
+            {passwordError && <PasswordError />}
           </form>
           <Box mt={2} textAlign="center">
-            <NavLink to="/SignUp">Don't have an account? Sign Up</NavLink>
+            <Link to="/SignUp">
+              <Typography variant="body2">
+                Don't have an account? Sign up
+              </Typography>
+            </Link>
           </Box>
         </Box>
       </Container>
+
+      <DevTool control={control} />
     </PageLayout>
   );
 }

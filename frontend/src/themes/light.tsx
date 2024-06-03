@@ -1,20 +1,58 @@
 import { createTheme } from "@mui/material/styles";
 
-// TODO improve theme
-
 const light = createTheme({
   palette: {
+    mode: "light",
     primary: {
-      main: "#2196f3", // Your primary color
+      main: "#6441a5",
+      light: "#9067cc",
+      dark: "#4e3580",
     },
-    // ... other colors
+    secondary: {
+      main: "#00ff7f",
+    },
+    background: {
+      default: "#18181b",
+      paper: "#dadce0",
+    },
+    text: {
+      primary: "#131314",
+      secondary: "#a1a1aa",
+    },
   },
   typography: {
-    fontFamily: "Roboto, sans-serif", // Your chosen font family
-    // ... other typography settings
+    fontFamily: "'Courier Prime', monospace",
+    h1: {
+      fontSize: "3rem",
+      fontWeight: 700,
+    },
+    h2: {
+      fontSize: "2.5rem",
+    },
   },
-  spacing: 8, // Your base spacing unit
-  // ... other theme options (breakpoints, zIndex, etc.)
+  spacing: 8,
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
+  shape: {
+    borderRadius: 8,
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: "none",
+          borderRadius: 8,
+        },
+      },
+    },
+  },
 });
 
 export default light;

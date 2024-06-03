@@ -1,5 +1,9 @@
 import { create } from "zustand";
-import { devtools, persist, createJSONStorage } from "zustand/middleware";
+import {
+  devtools,
+  persist,
+  // createJSONStorage
+} from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 import { createUsersSlice } from "./usersSlice";
 
@@ -14,7 +18,7 @@ const useIndexedStore = create<IIndexedStore>()(
       {
         name: "indexed-storage",
         // storage: createJSONStorage(() => storage),
-        storage: createJSONStorage(() => sessionStorage),
+        // storage: createJSONStorage(() => sessionStorage),
       }
     ),
     { name: "indexed-devtools" }
