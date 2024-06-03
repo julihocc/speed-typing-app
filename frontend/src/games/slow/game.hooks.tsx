@@ -13,7 +13,7 @@ export function useSetRandomIndex(
 ) {
   useEffect(() => {
     if (randomIndex === null) {
-      setRandomIndex(Math.floor(Math.random() * 71));
+      setRandomIndex(Math.floor(Math.random() * 5));
     }
   }, [setRandomIndex, randomIndex]);
 }
@@ -23,7 +23,6 @@ export function useSetRandomText(
   setTextToBeCaptured: React.Dispatch<React.SetStateAction<string>>
 ) {
   useEffect(() => {
-    // const random = Math.floor(Math.random() * 71);
     if (randomIndex === null) {
       return;
     }
@@ -36,7 +35,7 @@ export function useSetRandomText(
           return;
         }
         const obj = JSON.parse(data);
-        setTextToBeCaptured(obj.quote);
+        setTextToBeCaptured(obj.text);
       });
   }, [randomIndex, setTextToBeCaptured]);
 }
@@ -58,7 +57,7 @@ export function useSetWords(
   useEffect(() => {
     setWords(textToBeCaptured.trim().split(" "));
   }, [setWords, textToBeCaptured]);
-} 
+}
 
 export function useTextFieldValue(
   textFieldValue: string | undefined,
