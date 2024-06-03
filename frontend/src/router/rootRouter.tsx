@@ -9,6 +9,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Dashboard from "../pages/DashboardLayout.tsx";
 import SignUp from "../pages/SignUp.tsx";
+import NotFound from "../pages/NotFound.tsx";
 
 // Components
 import MatchRecordViewer from "../components/MatchRecordViewer";
@@ -35,6 +36,7 @@ const router = createBrowserRouter(
           <Route path="matchrecordviewer" element={<MatchRecordViewer />} />
         </Route>
       </Route>
+      <Route path="*" element={<NotFound />} />
     </Route>
   )
 );
