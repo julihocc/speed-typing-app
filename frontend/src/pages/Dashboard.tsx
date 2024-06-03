@@ -1,13 +1,11 @@
-import MatchRecordViewer from "../components/MatchRecordViewer";
 import ResetMatchRecords from "../components/ResetMatchRecords";
-import HistoricalMatchAccuracy from "../components/HistoricalMatchAccuracy";
-import SpeedWatcher from "../components/SpeedWatcher";
 import PageLayout from "../layouts/PageLayout";
 import useSessionStore from "../stores/session-store";
 import useIndexedStore from "../stores/indexed-store";
 import { useState, useEffect } from "react";
-import { Typography, Box } from "@mui/material";
+import { Typography, Box, Button } from "@mui/material";
 import avatars from "../utils/avatars";
+import { NavLink, Outlet } from "react-router-dom";
 
 export default function Dashboard() {
   const { currentUserEmail } = useSessionStore();
@@ -61,10 +59,42 @@ export default function Dashboard() {
         </Box>
       </Box>
 
-      <ResetMatchRecords />
-      <SpeedWatcher />
-      <HistoricalMatchAccuracy />
-      <MatchRecordViewer />
+      <Box p={2} display="flex" alignItems="center" justifyContent="center">
+        <Box m={2}>
+          <ResetMatchRecords />
+        </Box>
+        <Box m={2}>
+          <Button variant="outlined" color="primary">
+            <NavLink
+              to="speedwatcher"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              Speed Watcher
+            </NavLink>
+          </Button>
+        </Box>
+        <Box m={2}>
+          <Button variant="outlined" color="primary">
+            <NavLink
+              to="historicalmatchaccuracy"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              Historical Match Accuracy
+            </NavLink>
+          </Button>
+        </Box>
+        <Box m={2}>
+          <Button variant="outlined" color="primary">
+            <NavLink
+              to="matchrecordviewer"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              Match Record Viewer
+            </NavLink>
+          </Button>
+        </Box>
+      </Box>
+      <Outlet />
     </PageLayout>
   );
 }
