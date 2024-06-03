@@ -5,11 +5,15 @@ import useSessionStore from "../stores/session-store";
 import useIndexedStore from "../stores/indexed-store";
 
 export default function CurrentUser() {
-  const { currentUserEmail } = useSessionStore();
-  const { getUserByEmail } = useIndexedStore();
-  const [currentUser, setCurrentUser] = useState<IUser | undefined>(undefined);
+  // const { currentUserEmail } = useSessionStore();
 
+  const { currentUserEmail } = useSessionStore((state) => ({
+    currentUserEmail: state.currentUserEmail,
+  }));
+
+  const { getUserByEmail } = useIndexedStore();
   const [avatar, setAvatar] = useState<string | null>(null);
+  const [currentUser, setCurrentUser] = useState<IUser | undefined>(undefined);
 
   useEffect(() => {
     if (currentUser) {
