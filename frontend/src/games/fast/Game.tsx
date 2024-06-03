@@ -1,12 +1,13 @@
 import { useRef, useState, useEffect } from "react";
 import useSessionStore from "../../stores/session-store";
-import Box from "@mui/material/Box";
+// import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 // import Typography from "@mui/material/Typography";
-import Paper from "@mui/material/Paper";
+// import Paper from "@mui/material/Paper";
 import SetInitialTime from "../../components/SetInitialTime";
 import Timer from "../../components/Timer";
 import Timer2 from "../../components/Timer2";
+import { Box, Paper, Switch, FormControlLabel } from "@mui/material";
 
 import { useFocusInput, useSetCharColors, useSetColored } from "./game.hooks";
 
@@ -22,6 +23,7 @@ export default function Game() {
   const [textToBeCaptured, setTextToBeCaptured] = useState<string>("");
   const [listOfWords, setListOfWords] = useState<string[]>([]);
   const [textToBeShown, setTextToBeShown] = useState<string>("");
+  const [timerMode, setTimerMode] = useState<"1" | "2">("1");
 
   const {
     textFieldValue,
@@ -162,9 +164,15 @@ export default function Game() {
     <Box display="flex" flexDirection="column" gap={4} alignItems="center">
       <Box sx={{ margin: 2 }} display="flex" gap={2} alignItems="center">
         <SetInitialTime />
-        <Timer />
-        <Timer2 />
+
+        {
+          {
+            "1": <Timer />,
+            "2": <Timer2 />,
+          }[timerMode]
+        }
       </Box>
+
       <Box sx={{ width: "50rem", margin: 2 }}>
         <TextField
           disabled
@@ -188,6 +196,19 @@ export default function Game() {
 
       <Box display="flex">
         <Paper>{colored}</Paper>
+      </Box>
+      <Box>
+        <FormControlLabel
+          control={
+            <Switch
+              checked={timerMode === "1"}
+              onChange={(e) => {
+                setTimerMode(e.target.checked ? "1" : "2");
+              }}
+            />
+          }
+          label="Select your timer mode"
+        />
       </Box>
     </Box>
   );
