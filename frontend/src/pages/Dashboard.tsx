@@ -5,7 +5,11 @@ import { Box, Button } from "@mui/material";
 import { NavLink, Outlet } from "react-router-dom";
 import CurrentUser from "../components/CurrentUser";
 
+import { useState } from "react";
+
 export default function Dashboard() {
+  const [lastClicked, setLastClicked] = useState<string | null>(null);
+
   return (
     <PageLayout title="Dashboard">
       <Box p={2} display="flex" alignItems="center" justifyContent="center">
@@ -13,7 +17,11 @@ export default function Dashboard() {
           <ResetMatchRecords />
         </Box>
         <Box m={2}>
-          <Button variant="outlined" color="primary">
+          <Button
+            variant={lastClicked === "speedwatcher" ? "contained" : "outlined"}
+            color="primary"
+            onClick={() => setLastClicked("speedwatcher")}
+          >
             <NavLink
               to="speedwatcher"
               style={{ textDecoration: "none", color: "inherit" }}
@@ -23,18 +31,29 @@ export default function Dashboard() {
           </Button>
         </Box>
         <Box m={2}>
-          <Button variant="outlined" color="primary">
-            <NavLink
-              to="historicalmatchaccuracy"
-              style={{ textDecoration: "none", color: "inherit" }}
+          <NavLink
+            to="historicalmatchaccuracy"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <Button
+              variant={
+                lastClicked === "historicalmatchaccuracy"
+                  ? "contained"
+                  : "outlined"
+              }
+              color="primary"
+              onClick={() => setLastClicked("historicalmatchaccuracy")}
             >
-              Historical Match Accuracy
-            </NavLink>
-          </Button>
+              Historical Match Accuracy{" "}
+            </Button>
+          </NavLink>
         </Box>
         <Box m={2}>
           <Button
-            variant="outlined"
+            variant={
+              lastClicked === "matchrecordviewer" ? "contained" : "outlined"
+            }
+            onClick={() => setLastClicked("matchrecordviewer")}
             color="primary"
           >
             <NavLink
