@@ -4,7 +4,14 @@ import TextField from "@mui/material/TextField";
 import SetInitialTime from "../../components/SetInitialTime";
 import Timer from "../../components/Timer";
 import Timer2 from "../../components/Timer2";
-import { Box, Paper, Switch, FormControlLabel } from "@mui/material";
+import {
+  Box,
+  Paper,
+  Switch,
+  FormControlLabel,
+  CircularProgress,
+} from "@mui/material";
+import useSWR from "swr";
 
 import { useFocusInput, useSetCharColors, useSetColored } from "./game.hooks";
 import { gameSelector } from "./game.selector";
@@ -65,11 +72,7 @@ export default function Game() {
     }
   }, [setRandomIndex, randomIndex]);
 
-  useEffect(() => {
-    if (randomIndex === null) {
-      return;
-    }
-    const url = "http://localhost:3001/" + randomIndex;
+  const fetcher = (url: string) =>
     fetch(url)
       .then((response) => response.text())
       .then((data) => {
@@ -82,7 +85,16 @@ export default function Game() {
         console.log(`randomWords: ${randomWords}`);
         setListOfWords(randomWords);
       });
-  }, [randomIndex, setListOfWords]);
+
+  // useEffect(() => {
+  //   if (randomIndex === null) {
+  //     return;
+  //   }
+  //   const url = "http://localhost:3001/" + randomIndex;
+
+  // }, [randomIndex, setListOfWords]);
+
+  const { isLoading } = useSWR(`http://localhost:3001/${randomIndex}`, fetcher);
 
   useEffect(() => {
     if (listOfWords.length > 0) {
@@ -171,7 +183,7 @@ export default function Game() {
         }
       </Box>
 
-      <Box sx={{ width: "50rem", margin: 2 }}>
+      {/* <Box sx={{ width: "50rem", margin: 2 }}>
         <TextField
           disabled
           value={textToBeShown}
@@ -181,7 +193,32 @@ export default function Game() {
           }}
           fullWidth
         />
-      </Box>
+      </Box> */}
+
+      {isLoading ? (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <CircularProgress />
+        </Box>
+      ) : (
+        <Box sx={{ width: "50rem", margin: 2 }}>
+          <TextField
+            disabled
+            value={textToBeShown}
+            InputProps={{
+              // readOnly: true,
+              inputProps: { sx: { color: "black" } },
+            }}
+            fullWidth
+          />
+        </Box>
+      )}
+
       <Box sx={{ width: "50rem", margin: 2 }}>
         <TextField
           inputRef={inputRef}
