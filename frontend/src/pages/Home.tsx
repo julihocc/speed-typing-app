@@ -10,8 +10,6 @@ import ToggleMode from "../components/ToggleMode";
 import { useEffect, useState } from "react";
 import DisableBackspace from "../components/DisableBackspace";
 import { Box } from "@mui/material";
-import Timer from "../components/Timer";
-import Timer2 from "../components/Timer2";
 
 export default function Home() {
   const { gameMode } = useSessionStore();
@@ -49,7 +47,7 @@ export default function Home() {
             <DisableBackspace />
           </Box>
         )}
-        {gameMode === "2" && (
+        {/* {gameMode === "2" && (
           <Box p={4}>
             <Timer />
           </Box>
@@ -58,7 +56,7 @@ export default function Home() {
           <Box p={4}>
             <Timer2 />
           </Box>
-        )}
+        )} */}
       </Box>
     </PageLayout>
   );
