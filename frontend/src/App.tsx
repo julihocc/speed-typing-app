@@ -10,10 +10,10 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import SignUp from "./pages/SignUp.tsx";
-import PrivateLayout from "./layouts/PrivateLayout";
+import PrivateLayout from "./router/PrivateLayout.tsx";
 
 // layouts
-import RootLayouts from "./layouts/RootLayout";
+import RootLayouts from "./router/RootLayout.tsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
