@@ -9,9 +9,12 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Dashboard from "../pages/Dashboard";
 import SignUp from "../pages/SignUp.tsx";
+
+// Components
 import MatchRecordViewer from "../components/MatchRecordViewer";
 import HistoricalMatchAccuracy from "../components/HistoricalMatchAccuracy";
 import SpeedWatcher from "../components/SpeedWatcher";
+import CurrentUser from "../components/CurrentUser";
 
 // layouts
 import RootLayouts from "../layouts/RootLayout.tsx";
