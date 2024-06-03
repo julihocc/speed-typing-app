@@ -35,18 +35,20 @@ export function useSetColored(
 ) {
   useEffect(() => {
     if (capturedChars) {
-      const _colored = capturedChars.map((word, index) => {
-        const color = charColors[index];
-        return (
-          <Typography
-            variant="h5"
-            key={`colored-${index}`}
-            sx={{ display: "inline", color: color, margin: 1 }}
-          >
-            {word}
-          </Typography>
-        );
-      });
+      const _colored = capturedChars
+        .slice(capturedChars.length > 30 ? capturedChars.length - 30 : 0)
+        .map((char, index) => {
+          const color = charColors[index];
+          return (
+            <Typography
+              variant="h6"
+              key={`colored-${index}`}
+              sx={{ display: "inline", color: color, margin: 1 }}
+            >
+              {char}
+            </Typography>
+          );
+        });
 
       setCharColored(_colored);
     }
