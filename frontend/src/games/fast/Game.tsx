@@ -1,15 +1,13 @@
 import { useRef, useState, useEffect } from "react";
 import useSessionStore from "../../stores/session-store";
-// import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-// import Typography from "@mui/material/Typography";
-// import Paper from "@mui/material/Paper";
 import SetInitialTime from "../../components/SetInitialTime";
 import Timer from "../../components/Timer";
 import Timer2 from "../../components/Timer2";
 import { Box, Paper, Switch, FormControlLabel } from "@mui/material";
 
 import { useFocusInput, useSetCharColors, useSetColored } from "./game.hooks";
+import { gameSelector } from "./game.selector";
 
 import {
   setHandleKeyDown,
@@ -52,7 +50,7 @@ export default function Game() {
     setWords,
     setCapturedWords,
     setNailedWords,
-  } = useSessionStore();
+  } = useSessionStore(gameSelector);
 
   useFocusInput(inputRef);
 
