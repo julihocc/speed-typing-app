@@ -165,7 +165,7 @@ export default function Game() {
         <Timer />
         <Timer2 />
       </Box>
-      <Box sx={{ margin: 2 }}>
+      <Box sx={{ margin: 2 }} sx={{ width: "50em" }}>
         <TextField
           disabled
           value={textToBeShown}
@@ -176,7 +176,7 @@ export default function Game() {
           fullWidth
         />
       </Box>
-      <Box>
+      <Box sx={{ margin: 2 }} sx={{ width: "50em" }}>
         <TextField
           inputRef={inputRef}
           onKeyDown={handleKeyDown}
