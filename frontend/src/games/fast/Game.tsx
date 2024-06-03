@@ -193,7 +193,6 @@ export default function Game() {
           fullWidth
         />
       </Box>
-
       <Box display="flex">
         <Paper>{colored}</Paper>
       </Box>
