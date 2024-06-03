@@ -159,7 +159,7 @@ export default function Game() {
   );
 
   return (
-    <Box display="flex" flexDirection="column" gap={4}>
+    <Box display="flex" flexDirection="column" gap={4} alignItems="center">
       <Box sx={{ margin: 2 }} display="flex" gap={2} alignItems="center">
         <SetInitialTime />
         <Timer />
@@ -176,13 +176,16 @@ export default function Game() {
           fullWidth
         />
       </Box>
+      <Box>
+        <TextField
+          inputRef={inputRef}
+          onKeyDown={handleKeyDown}
+          onChange={handleOnChange}
+          onKeyUp={handleOnKeyUp}
+          fullWidth
+        />
+      </Box>
 
-      <TextField
-        inputRef={inputRef}
-        onKeyDown={handleKeyDown}
-        onChange={handleOnChange}
-        onKeyUp={handleOnKeyUp}
-      />
       <Box display="flex">
         <Paper>{colored}</Paper>
       </Box>

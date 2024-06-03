@@ -6,21 +6,6 @@ type PageLayoutProps = {
   title: string;
 };
 
-// export default function PageLayout({ children, title }: PageLayoutProps) {
-//   return (
-//     <Container>
-//       <AppBar position="static" color="secondary">
-//         <Toolbar>
-//           <Typography variant="h4" gutterBottom>
-//             {title}
-//           </Typography>
-//         </Toolbar>
-//       </AppBar>
-//       {children}
-//     </Container>
-//   );
-// }
-
 export default function PageLayout({ children, title }: PageLayoutProps) {
   return (
     <Container maxWidth={"md"}>
