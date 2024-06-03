@@ -170,13 +170,10 @@ export default function Game() {
           disabled
           value={textToBeShown}
           InputProps={{
-            readOnly: true,
-            disableUnderline: true,
+            // readOnly: true,
             inputProps: { sx: { color: "black" } },
           }}
-          sx={{
-            width: "100%",
-          }}
+          fullWidth
         />
       </Box>
 
