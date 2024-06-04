@@ -12,7 +12,7 @@ For review
 - callback for stores
 
 FEEDBACK 
-- CHECK DISPATCH APPROACH FOR STORES
+- CHECK DISPATCH APPROACH FOR STORES ⌚
 - CHECK ANIMATIONS FOR TIMER ✅
 - highlight reset match records button when selected ✅
 - fix error message when logging ✅
