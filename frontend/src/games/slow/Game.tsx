@@ -112,16 +112,9 @@ export default function Game() {
   );
 
   return (
-    <Box display="flex" flexDirection="column" gap={4}>
-      {/* <Suspense fallback={<div>Loading...</div>}>
-        <Box display="flex">
-          <Paper>{colored}</Paper>
-        </Box>
-      </Suspense> */}
+    <Box className="flex flex-col space-y-4 items-center">
       {isLoading ? (
-        <Box
-          className="justify-normal items-center flex"
-        >
+        <Box className="justify-normal items-center flex">
           <CircularProgress />
         </Box>
       ) : (

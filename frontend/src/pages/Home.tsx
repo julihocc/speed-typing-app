@@ -47,16 +47,7 @@ export default function Home() {
             <DisableBackspace />
           </Box>
         )}
-        {/* {gameMode === "2" && (
-          <Box p={4}>
-            <Timer />
-          </Box>
-        )}
-        {gameMode === "2" && (
-          <Box p={4}>
-            <Timer2 />
-          </Box>
-        )} */}
+  
       </Box>
     </PageTemplate>
   );
