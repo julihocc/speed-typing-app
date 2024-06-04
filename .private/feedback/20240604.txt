@@ -1,7 +1,7 @@
 2024/06/04
 
 Fixed
-- mode 2 overflow 
+- mode 2 overflow  
 - timer mode toggle button
 - different routes for each graph 
 
@@ -13,5 +13,6 @@ For review
 
 FEEDBACK 
 - CHECK DISPATCH APPROACH FOR STORES
-- CHECK ANIMATIONS FOR TIMER
-- highlight reset match records button when selected
+- CHECK ANIMATIONS FOR TIMER ✅
+- highlight reset match records button when selected ✅
+- fix error message when logging ✅
