@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import Typography from "@mui/material/Typography";
+import useSWR from "swr";
 
 export const useFocusInput = (inputRef: React.RefObject<HTMLInputElement>) => {
   useEffect(() => {
@@ -18,15 +19,54 @@ export function useSetRandomIndex(
   }, [setRandomIndex, randomIndex]);
 }
 
+// export function useSetRandomText(
+//   randomIndex: number | null,
+//   setTextToBeCaptured: React.Dispatch<React.SetStateAction<string>>
+// ) {
+//   useEffect(() => {
+//     if (randomIndex === null) {
+//       return;
+//     }
+//     const url = "http://localhost:3000/" + randomIndex;
+//     fetch(url)
+//       .then((response) => response.text())
+//       .then((data) => {
+//         if (data === "Not Found") {
+//           console.error("Not Found");
+//           return;
+//         }
+//         const obj = JSON.parse(data);
+//         setTextToBeCaptured(obj.text);
+//       });
+//   }, [randomIndex, setTextToBeCaptured]);
+// }
+
+// async function fetchText(randomIndex: number | null) {
+//   if (randomIndex === null) {
+//     throw new Error("No index provided");
+//   }
+//   const url = `http://localhost:3000/${randomIndex}`;
+//   const response = await fetch(url);
+//   const data = await response.text();
+//   if (data === "Not Found") {
+//     throw new Error("Not Found");
+//   }
+//   const obj = JSON.parse(data);
+//   return obj.text;
+// }
+
+// export function useSetRandomText(randomIndex: number | null) {
+//   return useQuery(["randomText", randomIndex], () => fetchText(randomIndex), {
+//     enabled: randomIndex !== null,
+//     retry: false,
+//   });
+// }
+
 export function useSetRandomText(
   randomIndex: number | null,
   setTextToBeCaptured: React.Dispatch<React.SetStateAction<string>>
 ) {
-  useEffect(() => {
-    if (randomIndex === null) {
-      return;
-    }
-    const url = "http://localhost:3000/" + randomIndex;
+  const fetcher = (url: string) =>
     fetch(url)
       .then((response) => response.text())
       .then((data) => {
@@ -37,7 +77,35 @@ export function useSetRandomText(
         const obj = JSON.parse(data);
         setTextToBeCaptured(obj.text);
       });
-  }, [randomIndex, setTextToBeCaptured]);
+
+  const output = useSWR(`http://localhost:3000/${randomIndex}`, fetcher);
+  // const output = useSWR(`http://localhost:3000/${randomIndex}`, fetcher, {
+  //   suspense: true,
+  // });
+  console.log(`output: ${JSON.stringify(output, null, 2)}`);
+
+  return output;
+  // const { data, error } = output;
+
+  // let textToBeCaptured = "";
+  // if (data && data !== "Not Found") {
+  //   const obj = JSON.parse(data);
+  //   textToBeCaptured = obj.text;
+  // } else {
+  //   console.error("Not Found:( ", error);
+  // }
+
+  // return {
+  //   text: textToBeCaptured,
+  //   isLoading: !error && !data,
+  //   isError: error || data === "Not Found",
+  // };
+
+  // useEffect(() => {
+  //   if (textToBeCaptured) {
+  //     setTextToBeCaptured(textToBeCaptured);
+  //   }
+  // }, [textToBeCaptured, setTextToBeCaptured]);
 }
 
 export function useSetChars(

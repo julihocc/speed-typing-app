@@ -1,9 +1,10 @@
 import { useRef, useState, useEffect } from "react";
 import useSessionStore from "../../stores/session-store";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-// import Typography from "@mui/material/Typography";
-import Paper from "@mui/material/Paper";
+// import Box from "@mui/material/Box";
+// import TextField from "@mui/material/TextField";
+// import Paper from "@mui/material/Paper";
+import { Box, TextField, Paper, CircularProgress } from "@mui/material";
+import { gameSelector } from "./game.selector";
 
 import {
   useFocusInput,
@@ -50,13 +51,21 @@ export default function Game() {
     setCapturedWords,
     words,
     capturedWords,
-  } = useSessionStore();
+  } = useSessionStore(gameSelector);
 
   useFocusInput(inputRef);
 
   useSetRandomIndex(randomIndex, setRandomIndex);
 
-  useSetRandomText(randomIndex, setTextToBeCaptured);
+  // useSetRandomText(randomIndex, setTextToBeCaptured);
+  // const { data: text } = useSetRandomText(randomIndex);
+  const { isLoading } = useSetRandomText(randomIndex, setTextToBeCaptured);
+
+  // useEffect(() => {
+  //   if (text) {
+  //     setTextToBeCaptured(text);
+  //   }
+  // }, [text]);
 
   useSetChars(textToBeCaptured, setChars);
 
@@ -104,9 +113,27 @@ export default function Game() {
 
   return (
     <Box display="flex" flexDirection="column" gap={4}>
-      <Box display="flex">
-        <Paper>{colored}</Paper>
-      </Box>
+      {/* <Suspense fallback={<div>Loading...</div>}>
+        <Box display="flex">
+          <Paper>{colored}</Paper>
+        </Box>
+      </Suspense> */}
+      {isLoading ? (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <CircularProgress />
+        </Box>
+      ) : (
+        <Box display="flex">
+          <Paper>{colored}</Paper>
+        </Box>
+      )}
+
       <TextField
         inputRef={inputRef}
         onKeyDown={handleKeyDown}

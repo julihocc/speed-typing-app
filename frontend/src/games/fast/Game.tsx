@@ -1,14 +1,20 @@
 import { useRef, useState, useEffect } from "react";
 import useSessionStore from "../../stores/session-store";
-import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-// import Typography from "@mui/material/Typography";
-import Paper from "@mui/material/Paper";
 import SetInitialTime from "../../components/SetInitialTime";
 import Timer from "../../components/Timer";
 import Timer2 from "../../components/Timer2";
+import {
+  Box,
+  Paper,
+  Switch,
+  FormControlLabel,
+  CircularProgress,
+} from "@mui/material";
+import useSWR from "swr";
 
 import { useFocusInput, useSetCharColors, useSetColored } from "./game.hooks";
+import { gameSelector } from "./game.selector";
 
 import {
   setHandleKeyDown,
@@ -22,6 +28,7 @@ export default function Game() {
   const [textToBeCaptured, setTextToBeCaptured] = useState<string>("");
   const [listOfWords, setListOfWords] = useState<string[]>([]);
   const [textToBeShown, setTextToBeShown] = useState<string>("");
+  const [timerMode, setTimerMode] = useState<"1" | "2">("1");
 
   const {
     textFieldValue,
@@ -50,7 +57,7 @@ export default function Game() {
     setWords,
     setCapturedWords,
     setNailedWords,
-  } = useSessionStore();
+  } = useSessionStore(gameSelector);
 
   useFocusInput(inputRef);
 
@@ -65,11 +72,7 @@ export default function Game() {
     }
   }, [setRandomIndex, randomIndex]);
 
-  useEffect(() => {
-    if (randomIndex === null) {
-      return;
-    }
-    const url = "http://localhost:3001/" + randomIndex;
+  const fetcher = (url: string) =>
     fetch(url)
       .then((response) => response.text())
       .then((data) => {
@@ -82,7 +85,8 @@ export default function Game() {
         console.log(`randomWords: ${randomWords}`);
         setListOfWords(randomWords);
       });
-  }, [randomIndex, setListOfWords]);
+
+  const { isLoading } = useSWR(`http://localhost:3001/${randomIndex}`, fetcher);
 
   useEffect(() => {
     if (listOfWords.length > 0) {
@@ -161,11 +165,20 @@ export default function Game() {
   return (
     <Box display="flex" flexDirection="column" gap={4} alignItems="center">
       <Box sx={{ margin: 2 }} display="flex" gap={2} alignItems="center">
-        <SetInitialTime />
-        <Timer />
-        <Timer2 />
+        <Box>
+          <SetInitialTime />
+        </Box>
+        <Box>
+          {
+            {
+              "1": <Timer />,
+              "2": <Timer2 />,
+            }[timerMode]
+          }
+        </Box>
       </Box>
-      <Box sx={{ width: "50rem", margin: 2 }}>
+
+      {/* <Box sx={{ width: "50rem", margin: 2 }}>
         <TextField
           disabled
           value={textToBeShown}
@@ -175,7 +188,32 @@ export default function Game() {
           }}
           fullWidth
         />
-      </Box>
+      </Box> */}
+
+      {isLoading ? (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <CircularProgress />
+        </Box>
+      ) : (
+        <Box sx={{ width: "50rem", margin: 2 }}>
+          <TextField
+            disabled
+            value={textToBeShown}
+            InputProps={{
+              // readOnly: true,
+              inputProps: { sx: { color: "black" } },
+            }}
+            fullWidth
+          />
+        </Box>
+      )}
+
       <Box sx={{ width: "50rem", margin: 2 }}>
         <TextField
           inputRef={inputRef}
@@ -185,9 +223,21 @@ export default function Game() {
           fullWidth
         />
       </Box>
-
       <Box display="flex">
         <Paper>{colored}</Paper>
+      </Box>
+      <Box>
+        <FormControlLabel
+          control={
+            <Switch
+              checked={timerMode === "1"}
+              onChange={(e) => {
+                setTimerMode(e.target.checked ? "1" : "2");
+              }}
+            />
+          }
+          label="Select your timer mode"
+        />
       </Box>
     </Box>
   );

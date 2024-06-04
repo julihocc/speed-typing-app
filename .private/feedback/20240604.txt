@@ -1,0 +1,18 @@
+2024/06/04
+
+Fixed
+- mode 2 overflow  
+- timer mode toggle button
+- different routes for each graph 
+
+Added
+- loading spinner for text 
+
+For review
+- callback for stores
+
+FEEDBACK 
+- CHECK DISPATCH APPROACH FOR STORES
+- CHECK ANIMATIONS FOR TIMER ✅
+- highlight reset match records button when selected ✅
+- fix error message when logging ✅

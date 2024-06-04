@@ -1,4 +1,4 @@
-import PageLayout from "../layouts/PageLayout";
+import PageTemplate from "../templates/PageTemplate";
 import { Link } from "react-router-dom";
 
 import useIndexedStore from "../stores/indexed-store";
@@ -57,13 +57,18 @@ export default function Login() {
     console.log(`Logging in with ${data.email} and ${data.password}`);
     const user = getUserByEmail(data.email);
 
-    if (!user) {
-      console.error("User not found");
-      return;
-    }
+    // if (!user) {
+    //   console.error("User not found");
+    //   return;
+    // }
 
-    if (user.password !== encrypt(data.password)) {
-      setPasswordError("Password is incorrect");
+    // if (user.password !== encrypt(data.password)) {
+    //   setPasswordError("Password is incorrect");
+    //   return;
+    // }
+
+    if (!user || user.password !== encrypt(data.password)) {
+      setPasswordError("User or password are incorrect");
       return;
     }
 
@@ -75,7 +80,7 @@ export default function Login() {
   };
 
   return (
-    <PageLayout title="Login">
+    <PageTemplate title="Login">
       <Container maxWidth="xs">
         <Box mt={8} p={3} boxShadow={3}>
           <Typography variant="h5" align="center" gutterBottom>
@@ -122,6 +127,6 @@ export default function Login() {
       </Container>
 
       <DevTool control={control} />
-    </PageLayout>
+    </PageTemplate>
   );
 }

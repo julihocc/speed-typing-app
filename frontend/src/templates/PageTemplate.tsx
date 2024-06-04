@@ -6,7 +6,7 @@ type PageLayoutProps = {
   title: string;
 };
 
-export default function PageLayout({ children, title }: PageLayoutProps) {
+export default function PageTemplate({ children, title }: PageLayoutProps) {
   return (
     <Container maxWidth={"md"}>
       <AppBar position="static" color="secondary" sx={{ mb: 4 }}>
@@ -21,7 +21,6 @@ export default function PageLayout({ children, title }: PageLayoutProps) {
           </Box>
         </Toolbar>
       </AppBar>
-
       <Box
         sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
       >

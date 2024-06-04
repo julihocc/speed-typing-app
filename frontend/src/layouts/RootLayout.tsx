@@ -29,33 +29,28 @@ export default function RootLayout() {
                 variant="contained"
                 disableElevation
               >
-                <Button>
-                  <NavLink
-                    to="/"
-                    style={{ textDecoration: "none", color: "inherit" }}
-                  >
-                    Let's play! 🚀
-                  </NavLink>
-                </Button>
+                <NavLink
+                  to="/"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  <Button>Let's play! 🚀 </Button>
+                </NavLink>
 
-                <Button>
-                  <NavLink
-                    to="/Dashboard"
-                    style={{ textDecoration: "none", color: "inherit" }}
-                  >
-                    Dashboard
-                  </NavLink>
-                </Button>
+                <NavLink
+                  to="/Dashboard"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  <Button>Dashboard </Button>
+                </NavLink>
 
                 {!currentUserIsAuthenticated ? (
-                  <Button>
-                    <NavLink
-                      to="/Login"
-                      style={{ textDecoration: "none", color: "inherit" }}
-                    >
-                      Login
-                    </NavLink>
-                  </Button>
+                  <NavLink
+                    to="/Login"
+                    style={{ textDecoration: "none", color: "inherit" }}
+                  >
+                    {" "}
+                    <Button>Login</Button>
+                  </NavLink>
                 ) : (
                   <Logout />
                 )}
