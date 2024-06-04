@@ -5,6 +5,8 @@ import { Typography } from "@mui/material";
 
 import { useSpring, animated } from "@react-spring/web";
 
+const ANIMATION_TIME = 500;
+
 export default function Timer2() {
   const initialTimerValue = useSessionStore((state) => state.initialTimerValue);
   const remainingTime = useSessionStore((state) => state.remainingTime);
@@ -43,14 +45,14 @@ export default function Timer2() {
     from: { rotateZ: 0, opacity: 0 },
     to: { rotateZ: 360, opacity: 1 },
 
-    config: { duration: 1000 },
+    config: { duration: ANIMATION_TIME },
   });
 
   const animationSecTens = useSpring({
     from: { rotateZ: 0, opacity: 0 }, // Start from 0-degree rotation, hidden
     to: { rotateZ: 360, opacity: 1 }, // Rotate a full 360 degrees, become visible
 
-    config: { duration: 1000 },
+    config: { duration: ANIMATION_TIME },
   });
 
   useEffect(() => {

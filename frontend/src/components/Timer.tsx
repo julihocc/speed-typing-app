@@ -5,6 +5,8 @@ import { Typography } from "@mui/material";
 
 import { useSpring, animated } from "@react-spring/web";
 
+const ANIMATION_TIME = 500;
+
 export default function Timer() {
   const initialTimerValue = useSessionStore((state) => state.initialTimerValue);
   const remainingTime = useSessionStore((state) => state.remainingTime);
@@ -42,13 +44,13 @@ export default function Timer() {
   const animationSecUnits = useSpring({
     from: { y: -20, opacity: 0 },
     to: { y: 0, opacity: 1 },
-    config: { duration: 1000 },
+    config: { duration: ANIMATION_TIME },
   });
 
   const animationSecTens = useSpring({
     from: { y: -20, opacity: 0 },
     to: { y: 0, opacity: 1 },
-    config: { duration: 1000 },
+    config: { duration: ANIMATION_TIME },
   });
 
   useEffect(() => {

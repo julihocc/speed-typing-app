@@ -57,13 +57,18 @@ export default function Login() {
     console.log(`Logging in with ${data.email} and ${data.password}`);
     const user = getUserByEmail(data.email);
 
-    if (!user) {
-      console.error("User not found");
-      return;
-    }
+    // if (!user) {
+    //   console.error("User not found");
+    //   return;
+    // }
 
-    if (user.password !== encrypt(data.password)) {
-      setPasswordError("Password is incorrect");
+    // if (user.password !== encrypt(data.password)) {
+    //   setPasswordError("Password is incorrect");
+    //   return;
+    // }
+
+    if (!user || user.password !== encrypt(data.password)) {
+      setPasswordError("User or password are incorrect");
       return;
     }
 

@@ -36,7 +36,7 @@ export function useSetColored(
   useEffect(() => {
     if (capturedChars) {
       const _colored = capturedChars
-        .slice(capturedChars.length > 30 ? capturedChars.length - 30 : 0)
+        .slice(capturedChars.length > 20 ? capturedChars.length - 20 : 0)
         .map((char, index) => {
           const color = charColors[index];
           return (

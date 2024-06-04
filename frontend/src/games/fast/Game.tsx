@@ -86,14 +86,6 @@ export default function Game() {
         setListOfWords(randomWords);
       });
 
-  // useEffect(() => {
-  //   if (randomIndex === null) {
-  //     return;
-  //   }
-  //   const url = "http://localhost:3001/" + randomIndex;
-
-  // }, [randomIndex, setListOfWords]);
-
   const { isLoading } = useSWR(`http://localhost:3001/${randomIndex}`, fetcher);
 
   useEffect(() => {
