@@ -3,7 +3,17 @@ import { Button } from "@mui/material";
 import useIndexedStore from "../stores/indexed-store";
 import { useNavigate } from "react-router-dom";
 
-export default function ResetMatchRecords() {
+type TResetMatchRecordsProps = {
+  variant: "outlined" | "contained";
+  onClick: () => void;
+}
+
+export default function ResetMatchRecords(
+  {
+    variant,
+    onClick,
+  }: TResetMatchRecordsProps
+) {
   // const resetMatchRecords = useBoundStore((state) => state.resetMatchRecords);
   const { currentUserEmail } = useSessionStore();
   const { resetMatchRecords, getUserByEmail } = useIndexedStore();
@@ -13,6 +23,7 @@ export default function ResetMatchRecords() {
   const navigate = useNavigate();
 
   const handleOnClick = () => {
+    onClick();
     console.log("Resetting match records");
     if (!currentUser) {
       console.error("No user found");
@@ -24,7 +35,7 @@ export default function ResetMatchRecords() {
   };
 
   return (
-    <Button variant="outlined" onClick={handleOnClick}>
+    <Button variant={variant} onClick={handleOnClick}>
       Reset Match Records
     </Button>
   );

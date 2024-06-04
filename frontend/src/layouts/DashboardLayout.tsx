@@ -15,7 +15,12 @@ export default function Dashboard() {
     <PageTemplate title="Dashboard">
       <Box p={2} display="flex" alignItems="center" justifyContent="center">
         <Box m={2}>
-          <ResetMatchRecords />
+          <ResetMatchRecords
+            variant={
+              lastClicked === "resetmatchrecords" ? "contained" : "outlined"
+            }
+            onClick={() => setLastClicked("resetmatchrecords")}
+          />
         </Box>
         <Box m={2}>
           <Button

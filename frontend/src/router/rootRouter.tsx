@@ -7,7 +7,7 @@ import {
 // pages
 import Home from "../pages/Home";
 import Login from "../pages/Login";
-import Dashboard from "../pages/DashboardLayout.tsx";
+import Dashboard from "../layouts/DashboardLayout.tsx";
 import SignUp from "../pages/SignUp.tsx";
 import NotFound from "../pages/NotFound.tsx";
 
