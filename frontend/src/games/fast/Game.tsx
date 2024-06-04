@@ -178,18 +178,6 @@ export default function Game() {
         </Box>
       </Box>
 
-      {/* <Box sx={{ width: "50rem", margin: 2 }}>
-        <TextField
-          disabled
-          value={textToBeShown}
-          InputProps={{
-            // readOnly: true,
-            inputProps: { sx: { color: "black" } },
-          }}
-          fullWidth
-        />
-      </Box> */}
-
       {isLoading ? (
         <Box
           sx={{
@@ -201,7 +189,8 @@ export default function Game() {
           <CircularProgress />
         </Box>
       ) : (
-        <Box sx={{ width: "50rem", margin: 2 }}>
+        // <Box sx={{ width: "50rem", margin: 2 }}>
+        <Box className="w-[50rem] m-2">
           <TextField
             disabled
             value={textToBeShown}
