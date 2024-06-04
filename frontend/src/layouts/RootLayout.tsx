@@ -15,11 +15,11 @@ export default function RootLayout() {
   return (
     <>
       <Container maxWidth={"md"}>
-        <Box sx={{ flexGrow: 1 }}>
+        <Box className="flex-grow">
           <AppBar position="static">
             <Toolbar>
               <Box p={2}>
-                <Typography variant="h3" component="div" sx={{ flexGrow: 1 }}>
+                <Typography variant="h3" component="div" className="flex-grow">
                   Speed Typing App
                 </Typography>
               </Box>

@@ -110,7 +110,7 @@ export default function Login() {
               variant="contained"
               color="primary"
               fullWidth
-              sx={{ mt: 2 }}
+              className="mt-2"
             >
               Login
             </Button>

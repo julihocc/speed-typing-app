@@ -88,10 +88,7 @@ export default function Timer() {
       >
         <Box display="flex" alignItems="center" margin={2}>
           <Box
-            p={2}
-            sx={{
-              border: 1,
-            }}
+            className="p-2 border-2 border-black w-[2rem] h-[4rem] flex justify-center items-center m-1"
           >
             <AnimatedTypography variant="h5" style={animationSecTens}>
               {remainingTime === null
@@ -99,12 +96,7 @@ export default function Timer() {
                 : secTens}
             </AnimatedTypography>
           </Box>
-          <Box
-            p={2}
-            sx={{
-              border: 1,
-            }}
-          >
+          <Box className="p-2 border-2 border-black w-[2rem] h-[4rem] flex justify-center items-center">
             <AnimatedTypography variant="h5" style={animationSecUnits}>
               {remainingTime === null ? initialTimerValue % 10 : secUnits}
             </AnimatedTypography>

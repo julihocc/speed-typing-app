@@ -28,7 +28,7 @@ export default function Home() {
   return (
     <PageTemplate title={title}>
       <Box
-        sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+        className="flex flex-col items-center"
       >
         {gameMode === "1" ? <GameOverAlertMode1 /> : null}
         {gameMode === "1" ? <GameMode1 /> : null}

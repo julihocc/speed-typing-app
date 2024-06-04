@@ -9,23 +9,16 @@ type PageLayoutProps = {
 export default function PageTemplate({ children, title }: PageLayoutProps) {
   return (
     <Container maxWidth={"md"}>
-      <AppBar position="static" color="secondary" sx={{ mb: 4 }}>
+      <AppBar position="static" color="secondary" className="mb-4">
         <Toolbar>
-          <Box
-            sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}
-            p={2}
-          >
+          <Box className="flex-grow flex justify-center p-2">
             <Typography variant="h4" gutterBottom>
               {title}
             </Typography>
           </Box>
         </Toolbar>
       </AppBar>
-      <Box
-        sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-      >
-        {children}
-      </Box>
+      <Box className="flex flex-col items-center">{children}</Box>
     </Container>
   );
 }

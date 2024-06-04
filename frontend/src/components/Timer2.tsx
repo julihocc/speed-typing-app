@@ -89,36 +89,14 @@ export default function Timer2() {
         justifyContent="center"
       >
         <Box display="flex" alignItems="center" margin={2}>
-          <Box
-            p={2}
-            sx={{
-              border: 1,
-              borderRadius: "100%",
-              width: "2rem",
-              heigth: "2rem",
-            }}
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
+          <Box className="p-2 border-2 border-black rounded-full w-16 h-16 flex items-center justify-center  m-1">
             <AnimatedTypography variant="h5" style={animationSecTens}>
               {remainingTime === null
                 ? Math.floor(initialTimerValue / 10)
                 : secTens}
             </AnimatedTypography>
           </Box>
-          <Box
-            p={2}
-            sx={{
-              border: 1,
-              borderRadius: "100%",
-              width: "2rem",
-              heigth: "2rem",
-            }}
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
+          <Box className="p-2 border-2 border-black rounded-full w-16 h-16 flex items-center justify-center">
             <AnimatedTypography variant="h5" style={animationSecUnits}>
               {remainingTime === null ? initialTimerValue % 10 : secUnits}
             </AnimatedTypography>

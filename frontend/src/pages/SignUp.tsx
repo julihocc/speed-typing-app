@@ -150,7 +150,7 @@ function SignUp() {
               alignItems="center"
               mt={2}
             >
-              <ImageList cols={3} sx={{ width: 300, height: 100 }}>
+              <ImageList cols={3}>
                 {avatars.map((avatar, index) => (
                   <ImageListItem key={avatar.label}>
                     <img
@@ -187,7 +187,7 @@ function SignUp() {
               variant="contained"
               color="primary"
               fullWidth
-              sx={{ mt: 2 }}
+              className="mt-2"
             >
               Sign Up
             </Button>

@@ -164,7 +164,7 @@ export default function Game() {
 
   return (
     <Box display="flex" flexDirection="column" gap={4} alignItems="center">
-      <Box sx={{ margin: 2 }} display="flex" gap={2} alignItems="center">
+      <Box className="m-2" display="flex" gap={2} alignItems="center">
         <Box>
           <SetInitialTime />
         </Box>
@@ -179,18 +179,11 @@ export default function Game() {
       </Box>
 
       {isLoading ? (
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+        <Box className="flex justify-center items-center">
           <CircularProgress />
         </Box>
       ) : (
-        // <Box sx={{ width: "50rem", margin: 2 }}>
-        <Box className="w-[50rem] m-2">
+        <Box className="w-custom m-2">
           <TextField
             disabled
             value={textToBeShown}
@@ -203,7 +196,12 @@ export default function Game() {
         </Box>
       )}
 
-      <Box sx={{ width: "50rem", margin: 2 }}>
+      <Box
+        className="w-custom m-2"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
         <TextField
           inputRef={inputRef}
           onKeyDown={handleKeyDown}

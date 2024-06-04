@@ -43,7 +43,7 @@ export function useSetColored(
             <Typography
               variant="h6"
               key={`colored-${index}`}
-              sx={{ display: "inline", color: color, margin: 1 }}
+              className={`inline text-${color} bg-${color} bg-opacity-50 p-1`}
             >
               {char}
             </Typography>

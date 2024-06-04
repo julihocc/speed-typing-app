@@ -120,11 +120,7 @@ export default function Game() {
       </Suspense> */}
       {isLoading ? (
         <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
+          className="justify-normal items-center flex"
         >
           <CircularProgress />
         </Box>
