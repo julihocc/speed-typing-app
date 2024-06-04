@@ -173,14 +173,17 @@ export default function Game() {
   return (
     <Box display="flex" flexDirection="column" gap={4} alignItems="center">
       <Box sx={{ margin: 2 }} display="flex" gap={2} alignItems="center">
-        <SetInitialTime />
-
-        {
+        <Box>
+          <SetInitialTime />
+        </Box>
+        <Box>
           {
-            "1": <Timer />,
-            "2": <Timer2 />,
-          }[timerMode]
-        }
+            {
+              "1": <Timer />,
+              "2": <Timer2 />,
+            }[timerMode]
+          }
+        </Box>
       </Box>
 
       {/* <Box sx={{ width: "50rem", margin: 2 }}>
