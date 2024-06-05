@@ -178,7 +178,7 @@ export function useSetColored(
           <Typography
             variant="h5"
             key={`colored-${index}`}
-            className={`inline text-${color} bg-${color} bg-opacity-50 p-1`}
+            className={`inline text-${color}-500 bg-${color}-500 bg-opacity-10 p-1`}
           >
             {word}
           </Typography>

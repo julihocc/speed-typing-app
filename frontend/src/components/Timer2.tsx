@@ -89,7 +89,7 @@ export default function Timer2() {
         justifyContent="center"
       >
         <Box display="flex" alignItems="center" margin={2}>
-          <Box className="p-2 border-2 border-black rounded-full w-16 h-16 flex items-center justify-center  m-1">
+          <Box className="p-2 w-16 h-16 flex items-center justify-center m-1 border-2 border-black">
             <AnimatedTypography variant="h5" style={animationSecTens}>
               {remainingTime === null
                 ? Math.floor(initialTimerValue / 10)
