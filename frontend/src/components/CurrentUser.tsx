@@ -43,7 +43,7 @@ export default function CurrentUser() {
     <Box display="flex" alignItems="center" justifyContent="center" p={2}>
       <Box p={2}>
         {currentUser && (
-          <Typography variant="h1">
+          <Typography variant="h4">
             Now playing: {currentUser.firstName}!
           </Typography>
         )}
