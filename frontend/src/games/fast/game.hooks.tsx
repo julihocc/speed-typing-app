@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import Typography from "@mui/material/Typography";
+import { Typography, Box } from "@mui/material";
 
 export const useFocusInput = (inputRef: React.RefObject<HTMLInputElement>) => {
   useEffect(() => {
@@ -36,20 +36,24 @@ export function useSetColored(
   useEffect(() => {
     if (capturedChars) {
       const _colored = capturedChars
-        .slice(capturedChars.length > 20 ? capturedChars.length - 20 : 0)
+        // .slice(capturedChars.length > 20 ? capturedChars.length - 20 : 0)
         .map((char, index) => {
           const color = charColors[index];
           return (
-            <Typography
-              variant="h6"
+            <Box
+              className="flex flex-col justify-center align-middle "
               key={`colored-${index}`}
-              className={`inline text-${color}-500 bg-${color}-500  bg-opacity-10  p-1`}
             >
-              {char}
-            </Typography>
+              <Typography
+                variant="h6"
+                className={`inline text-${color}-500 bg-${color}-500  bg-opacity-10 px-2`}
+              >
+                {char}
+              </Typography>
+            </Box>
           );
-        });
-
+        })
+        .slice(-10);
       setCharColored(_colored);
     }
   }, [capturedChars, charColors, setCharColored]);
