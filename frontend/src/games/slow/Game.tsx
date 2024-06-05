@@ -3,7 +3,7 @@ import useSessionStore from "../../stores/session-store";
 // import Box from "@mui/material/Box";
 // import TextField from "@mui/material/TextField";
 // import Paper from "@mui/material/Paper";
-import { Box, TextField, Paper, CircularProgress } from "@mui/material";
+import { Box, TextField, CircularProgress } from "@mui/material";
 import { gameSelector } from "./game.selector";
 
 import {
@@ -112,14 +112,16 @@ export default function Game() {
   );
 
   return (
-    <Box className="flex flex-col space-y-4 items-center w-custom">
+    <Box className="flex flex-col space-y-4 items-center w-full">
       {isLoading ? (
         <Box className="justify-normal items-center flex">
           <CircularProgress />
         </Box>
       ) : (
-        <Box display="flex">
-          <Paper>{colored}</Paper>
+        <Box display="flex flex-grow">
+          <div className="text-2xl border-2 border-gray-500 p-8 rounded-md">
+            {colored}
+          </div>
         </Box>
       )}
 
@@ -129,7 +131,7 @@ export default function Game() {
         onChange={handleOnChange}
         onKeyUp={handleOnKeyUp}
         onPaste={(e) => e.preventDefault()}
-        className="w-custom"
+        className="w-full"
       />
     </Box>
   );

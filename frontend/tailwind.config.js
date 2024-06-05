@@ -17,7 +17,7 @@ export default {
   theme: {
     extend: {
       width: {
-        custom: "calc(100% - 2rem)",
+        custom: "calc(100% - 8rem)",
         // custom: 400,
       },
 
