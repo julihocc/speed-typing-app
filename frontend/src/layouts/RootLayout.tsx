@@ -13,13 +13,17 @@ import useSessionStore from "../stores/session-store";
 export default function RootLayout() {
   const { currentUserIsAuthenticated } = useSessionStore();
   return (
-    <>
-      <Container maxWidth={"md"}>
+    <div className="font-body">
+      <Container maxWidth={"md"} className="font-body">
         <Box className="flex-grow">
           <AppBar position="static">
             <Toolbar>
               <Box p={2}>
-                <Typography variant="h3" component="div" className="flex-grow">
+                <Typography
+                  variant="h3"
+                  component="div"
+                  className="flex-grow text-pink-500 font-body"
+                >
                   Speed Typing App
                 </Typography>
               </Box>
@@ -60,6 +64,6 @@ export default function RootLayout() {
         </Box>
       </Container>
       <Outlet />
-    </>
+    </div>
   );
 }
