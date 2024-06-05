@@ -112,7 +112,7 @@ export default function Game() {
   );
 
   return (
-    <Box className="flex flex-col space-y-4 items-center">
+    <Box className="flex flex-col space-y-4 items-center w-custom">
       {isLoading ? (
         <Box className="justify-normal items-center flex">
           <CircularProgress />
@@ -129,6 +129,7 @@ export default function Game() {
         onChange={handleOnChange}
         onKeyUp={handleOnKeyUp}
         onPaste={(e) => e.preventDefault()}
+        className="w-custom"
       />
     </Box>
   );

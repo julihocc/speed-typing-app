@@ -164,7 +164,7 @@ export default function Game() {
 
   return (
     // <Box display="flex" flexDirection="column" gap={4} alignItems="center">
-    <Box className="flex flex-col space-y-4 items-center">
+    <Box className="flex flex-col space-y-4 items-center w-custom">
       <Box className="m-2" display="flex" gap={2} alignItems="center">
         <Box>
           <SetInitialTime />
