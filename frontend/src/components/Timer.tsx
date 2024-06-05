@@ -86,24 +86,28 @@ export default function Timer() {
         alignItems="center"
         justifyContent="center"
       >
-        <Box display="flex" alignItems="center" margin={2}>
-          <Box
-            className="p-2 border-2 border-black w-[2rem] h-[4rem] flex justify-center items-center m-1"
-          >
-            <AnimatedTypography variant="h5" style={animationSecTens}>
+        <Box display="flex" alignItems="center">
+          <Box className="p-2 border-2 border-pink-300 w-12 h-auto flex justify-center items-center m-1 rounded-md">
+            <AnimatedTypography
+              style={animationSecTens}
+              className="text-pink-500 p-1 text-xl"
+            >
               {remainingTime === null
                 ? Math.floor(initialTimerValue / 10)
                 : secTens}
             </AnimatedTypography>
           </Box>
-          <Box className="p-2 border-2 border-black w-[2rem] h-[4rem] flex justify-center items-center">
-            <AnimatedTypography variant="h5" style={animationSecUnits}>
+          <Box className="p-2 border-2 border-pink-300 w-12 h-auto flex justify-center items-center m-1 rounded-md">
+            <AnimatedTypography
+              style={animationSecUnits}
+              className="text-pink-500 p-1 text-xl"
+            >
               {remainingTime === null ? initialTimerValue % 10 : secUnits}
             </AnimatedTypography>
           </Box>
         </Box>
         <Box>
-          <Typography>seconds</Typography>
+          <Typography className="text-pink-500">seconds</Typography>
         </Box>
       </Box>
     </div>
