@@ -6,6 +6,7 @@ export default {
     extend: {
       width: {
         custom: "calc(100% - 2rem)",
+        // custom: 400,
       },
       colors: {
         primary: "#FF6363",

@@ -38,14 +38,14 @@ export default function RootLayout() {
                   to="/"
                   // style={{ textDecoration: "none", color: "inherit" }}
                 >
-                  <Button className="h-20">Let's play! 🚀 </Button>
+                  <Button className="h-16">Let's play! 🚀 </Button>
                 </NavLink>
 
                 <NavLink
                   to="/Dashboard"
                   // style={{ textDecoration: "none", color: "inherit" }}
                 >
-                  <Button className="h-20">Dashboard </Button>
+                  <Button className="h-16">Dashboard </Button>
                 </NavLink>
 
                 {!currentUserIsAuthenticated ? (
@@ -54,7 +54,7 @@ export default function RootLayout() {
                     // style={{ textDecoration: "none", color: "inherit" }}
                   >
                     {" "}
-                    <Button className="h-20">Login</Button>
+                    <Button className="h-16">Login</Button>
                   </NavLink>
                 ) : (
                   <Logout />
