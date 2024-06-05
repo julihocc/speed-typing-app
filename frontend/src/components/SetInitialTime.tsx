@@ -41,7 +41,7 @@ export default function SetInitialTime() {
         type="number"
         value={initialTimerValue}
         onChange={handleInputChange}
-        sx={{ width: "10rem" }}
+        className="w-40"
         label="Initial Time (s)"
       />
       {error && ( // Show error message only when there's an error

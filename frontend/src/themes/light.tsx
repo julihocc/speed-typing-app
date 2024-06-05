@@ -13,7 +13,7 @@ const light = createTheme({
     },
     background: {
       default: "#18181b",
-      paper: "#f87666",
+      paper: "#fe8d59",
     },
     text: {
       primary: "#131314",
@@ -22,37 +22,30 @@ const light = createTheme({
   },
   typography: {
     fontFamily: "'Courier Prime', monospace",
-    h1: {
-      fontSize: "3rem",
-      fontWeight: 700,
-    },
-    h2: {
-      fontSize: "2.5rem",
-    },
   },
-  spacing: 8,
-  breakpoints: {
-    values: {
-      xs: 0,
-      sm: 600,
-      md: 960,
-      lg: 1280,
-      xl: 1920,
-    },
-  },
-  shape: {
-    borderRadius: 8,
-  },
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          textTransform: "none",
-          borderRadius: 8,
-        },
-      },
-    },
-  },
+  // spacing: 8,
+  // breakpoints: {
+  //   values: {
+  //     xs: 0,
+  //     sm: 600,
+  //     md: 960,
+  //     lg: 1280,
+  //     xl: 1920,
+  //   },
+  // },
+  // shape: {
+  //   borderRadius: 8,
+  // },
+  // components: {
+  //   MuiButton: {
+  //     styleOverrides: {
+  //       root: {
+  //         textTransform: "none",
+  //         borderRadius: 8,
+  //       },
+  //     },
+  //   },
+  // },
 });
 
 export default light;

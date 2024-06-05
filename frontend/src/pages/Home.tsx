@@ -4,7 +4,7 @@ import GameOverAlertMode1 from "../games/slow/Alert";
 import GameMode2 from "../games/fast/Game";
 import GameOverAlertMode2 from "../games/fast/Alert";
 import RestartGame from "../components/RestartGame";
-import PageTemplate from "../templates/PageTemplate";
+import PageTemplate from "../layouts/PageLayout";
 import useSessionStore from "../stores/session-store";
 import ToggleMode from "../components/ToggleMode";
 import { useEffect, useState } from "react";
@@ -27,37 +27,28 @@ export default function Home() {
 
   return (
     <PageTemplate title={title}>
-      <Box
-        sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-      >
+      <Box className="flex flex-col items-center">
         {gameMode === "1" ? <GameOverAlertMode1 /> : null}
         {gameMode === "1" ? <GameMode1 /> : null}
         {gameMode === "2" ? <GameOverAlertMode2 /> : null}
         {gameMode === "2" ? <GameMode2 /> : null}
       </Box>
-      <Box display="flex" alignItems="center" justifyContent="center" p={4}>
-        <Box p={4}>
+      <div
+        // display="flex" alignItems="center" justifyContent="center" p={4}
+        className="flex justify-center items-center"
+      >
+        <div className="p-4">
           <RestartGame />
-        </Box>
-        <Box p={4}>
+        </div>
+        <div className="p-4">
           <ToggleMode />
-        </Box>
+        </div>
         {gameMode === "1" && (
-          <Box p={4}>
+          <div className="p-4">
             <DisableBackspace />
-          </Box>
+          </div>
         )}
-        {/* {gameMode === "2" && (
-          <Box p={4}>
-            <Timer />
-          </Box>
-        )}
-        {gameMode === "2" && (
-          <Box p={4}>
-            <Timer2 />
-          </Box>
-        )} */}
-      </Box>
+      </div>
     </PageTemplate>
   );
 }

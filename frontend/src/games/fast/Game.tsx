@@ -4,13 +4,7 @@ import TextField from "@mui/material/TextField";
 import SetInitialTime from "../../components/SetInitialTime";
 import Timer from "../../components/Timer";
 import Timer2 from "../../components/Timer2";
-import {
-  Box,
-  Paper,
-  Switch,
-  FormControlLabel,
-  CircularProgress,
-} from "@mui/material";
+import { Box, Switch, FormControlLabel, CircularProgress } from "@mui/material";
 import useSWR from "swr";
 
 import { useFocusInput, useSetCharColors, useSetColored } from "./game.hooks";
@@ -163,8 +157,14 @@ export default function Game() {
   );
 
   return (
-    <Box display="flex" flexDirection="column" gap={4} alignItems="center">
-      <Box sx={{ margin: 2 }} display="flex" gap={2} alignItems="center">
+    // <Box display="flex" flexDirection="column" gap={4} alignItems="center">
+    <Box className="flex flex-col space-y-4 items-center w-fit">
+      <Box
+        className="m-2 w-96 flex justify-center items-center"
+        display="flex"
+        gap={2}
+        alignItems="center"
+      >
         <Box>
           <SetInitialTime />
         </Box>
@@ -178,30 +178,12 @@ export default function Game() {
         </Box>
       </Box>
 
-      {/* <Box sx={{ width: "50rem", margin: 2 }}>
-        <TextField
-          disabled
-          value={textToBeShown}
-          InputProps={{
-            // readOnly: true,
-            inputProps: { sx: { color: "black" } },
-          }}
-          fullWidth
-        />
-      </Box> */}
-
       {isLoading ? (
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+        <Box className="flex justify-center items-center">
           <CircularProgress />
         </Box>
       ) : (
-        <Box sx={{ width: "50rem", margin: 2 }}>
+        <Box className="w-96 m-2">
           <TextField
             disabled
             value={textToBeShown}
@@ -214,7 +196,12 @@ export default function Game() {
         </Box>
       )}
 
-      <Box sx={{ width: "50rem", margin: 2 }}>
+      <Box
+        className="w-96 m-2 "
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
         <TextField
           inputRef={inputRef}
           onKeyDown={handleKeyDown}
@@ -223,10 +210,10 @@ export default function Game() {
           fullWidth
         />
       </Box>
-      <Box display="flex">
-        <Paper>{colored}</Paper>
+      <Box className="flex flex-wrap justify-center align-middle w-96 h-14 rounded-md border-2 border-gray-500 text-2xl">
+        {colored}
       </Box>
-      <Box>
+      <Box className="w-96 m-2 flex justify-center align-middle">
         <FormControlLabel
           control={
             <Switch

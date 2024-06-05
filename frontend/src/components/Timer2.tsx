@@ -88,44 +88,30 @@ export default function Timer2() {
         alignItems="center"
         justifyContent="center"
       >
-        <Box display="flex" alignItems="center" margin={2}>
-          <Box
-            p={2}
-            sx={{
-              border: 1,
-              borderRadius: "100%",
-              width: "2rem",
-              heigth: "2rem",
-            }}
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <AnimatedTypography variant="h5" style={animationSecTens}>
+        <Box display="flex" alignItems="center">
+          <Box className="p-2 border-2 border-pink-300 w-16 h-16 flex justify-center items-center m-1 rounded-full">
+            <AnimatedTypography
+              variant="h5"
+              style={animationSecTens}
+              className="text-pink-500 p-1 text-xl"
+            >
               {remainingTime === null
                 ? Math.floor(initialTimerValue / 10)
                 : secTens}
             </AnimatedTypography>
           </Box>
-          <Box
-            p={2}
-            sx={{
-              border: 1,
-              borderRadius: "100%",
-              width: "2rem",
-              heigth: "2rem",
-            }}
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <AnimatedTypography variant="h5" style={animationSecUnits}>
+          <Box className="p-2 border-2 border-pink-300 w-16 h-16 flex justify-center items-center m-1 rounded-full">
+            <AnimatedTypography
+              variant="h5"
+              style={animationSecUnits}
+              className="text-pink-500 p-1 text-xl"
+            >
               {remainingTime === null ? initialTimerValue % 10 : secUnits}
             </AnimatedTypography>
           </Box>
         </Box>
         <Box>
-          <Typography>seconds</Typography>
+          <Typography className="text-pink-500">seconds</Typography>
         </Box>
       </Box>
     </div>

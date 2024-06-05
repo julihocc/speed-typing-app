@@ -1,17 +1,18 @@
-import PageTemplate from "../templates/PageTemplate";
+import PageTemplate from "../layouts/PageLayout";
 import { Link } from "react-router-dom";
 
 import useIndexedStore from "../stores/indexed-store";
 import useSessionStore from "../stores/session-store";
 import { encrypt } from "../utils/encrypt";
 import { useNavigate } from "react-router-dom";
-import { TextField, Button, Typography, Container, Box } from "@mui/material";
+import { TextField } from "@mui/material";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { DevTool } from "@hookform/devtools";
 import PasswordError from "../components/PasswordError";
+import { Button } from "@mui/material";
 
 const loginSchema = z.object({
   email: z
@@ -81,50 +82,44 @@ export default function Login() {
 
   return (
     <PageTemplate title="Login">
-      <Container maxWidth="xs">
-        <Box mt={8} p={3} boxShadow={3}>
-          <Typography variant="h5" align="center" gutterBottom>
-            Login
-          </Typography>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <TextField
-              label="Email"
-              type="email"
-              fullWidth
-              margin="normal"
-              {...register("email")}
-              error={!!errors.email}
-              helperText={errors.email?.message}
-            />
-            <TextField
-              label="Password"
-              type="password"
-              fullWidth
-              margin="normal"
-              {...register("password")}
-              error={!!errors.password}
-              helperText={errors.password?.message}
-            />
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              fullWidth
-              sx={{ mt: 2 }}
-            >
+      <div className="flex flex-col items-center w-96">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="p-4 flex flex-col items-center w-96"
+        >
+          <TextField
+            label="Email"
+            type="email"
+            fullWidth
+            margin="normal"
+            {...register("email")}
+            error={!!errors.email}
+            helperText={errors.email?.message}
+          />
+          <TextField
+            label="Password"
+            type="password"
+            fullWidth
+            margin="normal"
+            {...register("password")}
+            error={!!errors.password}
+            helperText={errors.password?.message}
+          />
+          <Button type="submit" >
+            <div className="text-primary border-2 border-primary hover:bg-primary hover:text-white p-2 rounded-md cursor-pointer flex justify-center items-center mt-4 ">
               Login
-            </Button>
-            {passwordError && <PasswordError />}
-          </form>
-          <Box mt={2} textAlign="center">
-            <Link to="/SignUp">
-              <Typography variant="body2">
-                Don't have an account? Sign up
-              </Typography>
-            </Link>
-          </Box>
-        </Box>
-      </Container>
+            </div>
+          </Button>
+          {passwordError && <PasswordError />}
+        </form>
+        <div className="flex justify-center items-center mt-4">
+          <Link to="/SignUp">
+            <div className="text-primary hover:underline font-mono">
+              Don't have an account? Sign up
+            </div>
+          </Link>
+        </div>
+      </div>
 
       <DevTool control={control} />
     </PageTemplate>

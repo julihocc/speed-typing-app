@@ -1,0 +1,40 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap"); */
+
+@import url("https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Reddit+Mono:wght@200..900&display=swap");
+
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+/* 
+.text-red {
+  color: red;
+}
+.text-blue {
+  color: blue;
+}
+.text-green {
+  color: green;
+}
+.text-black {
+  color: black;
+}
+
+.bg-red {
+  background-color: lightcoral;
+}
+
+.bg-blue {
+  background-color: lightblue;
+}
+
+.bg-green {
+  background-color: lightgreen;
+}
+
+.bg-black {
+  background-color: gray;
+} */

@@ -1,4 +1,4 @@
-import PageTemplate from "../templates/PageTemplate";
+import PageTemplate from "../layouts/PageLayout";
 import { NavLink } from "react-router-dom";
 import {
   TextField,
@@ -95,112 +95,107 @@ function SignUp() {
 
   return (
     <PageTemplate title="Sign up">
-      <Container maxWidth="xs">
-        <Box mt={8} p={3} boxShadow={3}>
-          <Typography variant="h5" align="center" gutterBottom>
-            Sign Up
-          </Typography>
-          <form onSubmit={handleSubmit(onSubmit, onError)} noValidate>
-            <TextField
-              label="Firstname"
-              fullWidth
-              margin="normal"
-              {...register("firstName")}
-              error={!!errors.firstName}
-              helperText={errors.firstName?.message}
-            />
-            <TextField
-              label="Lastname"
-              fullWidth
-              margin="normal"
-              {...register("lastName")}
-              error={!!errors.lastName}
-              helperText={errors.lastName?.message}
-            />
-            <TextField
-              label="Email"
-              type="email"
-              fullWidth
-              margin="normal"
-              {...register("email")}
-              error={!!errors.email}
-              helperText={errors.email?.message}
-            />
-            <TextField
-              label="Password"
-              type="password"
-              fullWidth
-              margin="normal"
-              {...register("password")}
-              error={!!errors.password}
-              helperText={errors.password?.message}
-            />
-            <TextField
-              label="Confirm Password"
-              type="password"
-              fullWidth
-              margin="normal"
-              {...register("confirmPassword")}
-              error={!!errors.confirmPassword}
-              helperText={errors.confirmPassword?.message}
-            />
-            <Box
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-              mt={2}
-            >
-              <ImageList cols={3} sx={{ width: 300, height: 100 }}>
-                {avatars.map((avatar, index) => (
-                  <ImageListItem key={avatar.label}>
-                    <img
-                      src={avatar.image}
-                      alt={`Avatar ${index + 1}`}
-                      style={{
-                        width: "80px",
-                        height: "80px",
-                        borderRadius: "20%",
-                      }}
-                    />
-                  </ImageListItem>
-                ))}
-              </ImageList>
-            </Box>
-
-            <TextField
-              label="Pick an avatar"
-              select
-              fullWidth
-              margin="normal"
-              {...register("avatar")}
-              error={!!errors.avatar}
-              helperText={errors.avatar?.message}
-            >
-              {avatars.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
+      <div className="flex flex-col items-center w-96">
+        <form
+          onSubmit={handleSubmit(onSubmit, onError)}
+          noValidate
+          className="p-4 flex flex-col items-center w-96"
+        >
+          <TextField
+            label="Firstname"
+            fullWidth
+            margin="normal"
+            {...register("firstName")}
+            error={!!errors.firstName}
+            helperText={errors.firstName?.message}
+          />
+          <TextField
+            label="Lastname"
+            fullWidth
+            margin="normal"
+            {...register("lastName")}
+            error={!!errors.lastName}
+            helperText={errors.lastName?.message}
+          />
+          <TextField
+            label="Email"
+            type="email"
+            fullWidth
+            margin="normal"
+            {...register("email")}
+            error={!!errors.email}
+            helperText={errors.email?.message}
+          />
+          <TextField
+            label="Password"
+            type="password"
+            fullWidth
+            margin="normal"
+            {...register("password")}
+            error={!!errors.password}
+            helperText={errors.password?.message}
+          />
+          <TextField
+            label="Confirm Password"
+            type="password"
+            fullWidth
+            margin="normal"
+            {...register("confirmPassword")}
+            error={!!errors.confirmPassword}
+            helperText={errors.confirmPassword?.message}
+          />
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            mt={2}
+          >
+            <ImageList cols={3}>
+              {avatars.map((avatar, index) => (
+                <ImageListItem key={avatar.label}>
+                  <img
+                    src={avatar.image}
+                    alt={`Avatar ${index + 1}`}
+                    style={{
+                      width: "80px",
+                      height: "80px",
+                      borderRadius: "20%",
+                    }}
+                  />
+                </ImageListItem>
               ))}
-            </TextField>
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              fullWidth
-              sx={{ mt: 2 }}
-            >
-              Sign Up
-            </Button>
-          </form>
-          <Box mt={2} textAlign="center">
-            <NavLink to="/Login">
-              <Typography variant="body2">
-                Already have an account? Login
-              </Typography>
-            </NavLink>
+            </ImageList>
           </Box>
+
+          <TextField
+            label="Pick an avatar"
+            select
+            fullWidth
+            margin="normal"
+            {...register("avatar")}
+            error={!!errors.avatar}
+            helperText={errors.avatar?.message}
+          >
+            {avatars.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
+          <Button type="submit">
+            <div className="text-primary border-2 border-primary hover:bg-primary hover:text-white p-2 rounded-md cursor-pointer            flex justify-center items-center mt-4">
+              Sign Up
+            </div>
+          </Button>
+        </form>
+        <Box mt={2} textAlign="center">
+          <NavLink to="/Login">
+            <Typography variant="body2">
+              Already have an account? Login
+            </Typography>
+          </NavLink>
         </Box>
-      </Container>
+      </div>
 
       <DevTool control={control} />
     </PageTemplate>
