@@ -1,5 +1,5 @@
 import ResetMatchRecords from "../components/ResetMatchRecords";
-import PageTemplate from "../templates/PageTemplate";
+import PageTemplate from "./PageLayout";
 
 import { Box, Button } from "@mui/material";
 import { NavLink, Outlet, useLocation } from "react-router-dom";

@@ -18,7 +18,7 @@ import SpeedWatcher from "../components/SpeedWatcher";
 
 // layouts
 import RootLayouts from "../layouts/RootLayout.tsx";
-import PrivateLayout from "../layouts/PrivateLayout.tsx";
+import ProtectedRoutes from "./ProtectedRoutes.tsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -26,7 +26,7 @@ const router = createBrowserRouter(
       <Route path="/" element={<Home />} />
       <Route path="login" element={<Login />} />
       <Route path="signUp" element={<SignUp />} />
-      <Route element={<PrivateLayout />}>
+      <Route element={<ProtectedRoutes />}>
         <Route path="dashboard" element={<Dashboard />}>
           <Route path="speedwatcher" element={<SpeedWatcher />} />
           <Route

@@ -1,4 +1,4 @@
-import PageTemplate from "../templates/PageTemplate";
+import PageTemplate from "../layouts/PageLayout";
 import { NavLink } from "react-router-dom";
 import {
   TextField,

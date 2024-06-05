@@ -1,4 +1,4 @@
-import PageTemplate from "../templates/PageTemplate";
+import PageTemplate from "../layouts/PageLayout";
 import { Link } from "react-router-dom";
 
 import useIndexedStore from "../stores/indexed-store";

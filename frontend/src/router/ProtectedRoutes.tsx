@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
 import useSessionStore from "../stores/session-store";
 
-const PrivateLayout = () => {
+const ProtectedRoutes = () => {
   const { currentUserEmail } = useSessionStore();
 
   if (!currentUserEmail) {
@@ -11,4 +11,4 @@ const PrivateLayout = () => {
   return <Outlet />;
 };
 
-export default PrivateLayout;
+export default ProtectedRoutes;

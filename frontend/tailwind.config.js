@@ -14,7 +14,13 @@ export default {
     },
   },
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: "#2a2139",
+        secondary: "#00ff7f",
+        tertiary: "#ff00ff",
+      },
+    },
   },
   plugins: [],
 };
