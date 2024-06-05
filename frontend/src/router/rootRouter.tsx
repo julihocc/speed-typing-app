@@ -17,7 +17,7 @@ import HistoricalMatchAccuracy from "../components/HistoricalMatchAccuracy";
 import SpeedWatcher from "../components/SpeedWatcher";
 
 // layouts
-import RootLayouts from "../layouts/RootLayout.tsx";
+import RootLayouts from "../layouts/MainLayout.tsx";
 import ProtectedRoutes from "./ProtectedRoutes.tsx";
 
 const router = createBrowserRouter(

@@ -1,6 +1,4 @@
 import useSessionStore from "../stores/session-store";
-// import { Button } from "@radix-ui/themes";
-import Button from "@mui/material/Button";
 
 export default function RestartGame() {
   const resetGame = useSessionStore((state) => state.resetGame);
@@ -8,16 +6,14 @@ export default function RestartGame() {
   // const gameEndTime = useSessionStore((state) => state.gameEndTime);
 
   return (
-    <Button
-      variant="contained"
-      color="primary"
+    <div
       onClick={() => {
         resetGame();
         resetTimer();
       }}
-      // disabled={gameEndTime === null ? true : false}
+      className="text-primary border-2 border-primary hover:bg-primary hover:text-white p-2 rounded-md cursor-pointer"
     >
       Restart Game
-    </Button>
+    </div>
   );
 }

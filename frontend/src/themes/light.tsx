@@ -22,13 +22,6 @@ const light = createTheme({
   },
   typography: {
     fontFamily: "'Courier Prime', monospace",
-    h1: {
-      fontSize: "3rem",
-      fontWeight: 700,
-    },
-    h2: {
-      fontSize: "2.5rem",
-    },
   },
   // spacing: 8,
   // breakpoints: {

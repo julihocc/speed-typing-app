@@ -20,6 +20,10 @@ export default {
         secondary: "#00ff7f",
         tertiary: "#ff00ff",
       },
+      fontFamily: {
+        sans: ["Inter", "sans-serif"],
+        mono: ["Courier Prime", "monospace"],
+      },
     },
   },
   plugins: [],

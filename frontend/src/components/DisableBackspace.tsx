@@ -1,4 +1,3 @@
-import { Button } from "@mui/material";
 import useSessionStore from "../stores/session-store";
 
 export default function DisableBackspace() {
@@ -9,10 +8,11 @@ export default function DisableBackspace() {
   };
 
   return (
-    <div>
-      <Button onClick={handleClick}>
-        {backspaceDisabled ? "Enable" : "Disable"} Backspace
-      </Button>
+    <div
+      onClick={handleClick}
+      className="text-primary border-2 border-primary hover:bg-primary hover:text-white p-2 rounded-md cursor-pointer"
+    >
+      {backspaceDisabled ? "Enable" : "Disable"} Backspace
     </div>
   );
 }

@@ -33,19 +33,22 @@ export default function Home() {
         {gameMode === "2" ? <GameOverAlertMode2 /> : null}
         {gameMode === "2" ? <GameMode2 /> : null}
       </Box>
-      <Box display="flex" alignItems="center" justifyContent="center" p={4}>
-        <Box p={4}>
+      <div
+        // display="flex" alignItems="center" justifyContent="center" p={4}
+        className="flex justify-center items-center"
+      >
+        <div className="p-4">
           <RestartGame />
-        </Box>
-        <Box p={4}>
+        </div>
+        <div className="p-4">
           <ToggleMode />
-        </Box>
+        </div>
         {gameMode === "1" && (
-          <Box p={4}>
+          <div className="p-4">
             <DisableBackspace />
-          </Box>
+          </div>
         )}
-      </Box>
+      </div>
     </PageTemplate>
   );
 }
