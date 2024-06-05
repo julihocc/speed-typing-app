@@ -19,7 +19,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={light}>
-        // <App />
+        <App />
       </ThemeProvider>
     </StyledEngineProvider>
   </React.StrictMode>
