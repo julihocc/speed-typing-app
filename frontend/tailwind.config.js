@@ -10,21 +10,11 @@ export default {
         "bg-red-500",
         "text-green-500",
         "bg-green-500",
-        // Add more combinations as needed
       ],
     },
   },
   theme: {
-    extend: {
-      width: {
-        custom: "calc(100% - 8rem)",
-        // custom: 400,
-      },
-
-      fontFamily: {
-        body: ["Courier Prime", "monospace"],
-      },
-    },
+    extend: {},
   },
   plugins: [],
 };

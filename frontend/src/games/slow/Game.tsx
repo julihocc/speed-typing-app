@@ -124,7 +124,6 @@ export default function Game() {
           </div>
         </Box>
       )}
-
       <TextField
         inputRef={inputRef}
         onKeyDown={handleKeyDown}

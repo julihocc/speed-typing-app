@@ -210,7 +210,7 @@ export default function Game() {
           fullWidth
         />
       </Box>
-      <Box className="flex flex-wrap justify-center align-middle w-96 h-16 bg-gray-100 rounded-md border-2">
+      <Box className="flex flex-wrap justify-center align-middle w-96 h-14 rounded-md border-2 border-gray-500 text-2xl">
         {colored}
       </Box>
       <Box className="w-96 m-2 flex justify-center align-middle">
