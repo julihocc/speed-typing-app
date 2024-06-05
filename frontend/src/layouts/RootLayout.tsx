@@ -32,20 +32,19 @@ export default function RootLayout() {
                 color="secondary"
                 variant="contained"
                 disableElevation
-                className="flex-grow"
               >
                 <NavLink
                   to="/"
                   // style={{ textDecoration: "none", color: "inherit" }}
                 >
-                  <Button className="h-16">Let's play! 🚀 </Button>
+                  <Button className="inline h-12 w-48">Let's play! 🚀 </Button>
                 </NavLink>
 
                 <NavLink
                   to="/Dashboard"
                   // style={{ textDecoration: "none", color: "inherit" }}
                 >
-                  <Button className="h-16">Dashboard </Button>
+                  <Button className="h-12 w-24">Dashboard </Button>
                 </NavLink>
 
                 {!currentUserIsAuthenticated ? (
@@ -54,7 +53,7 @@ export default function RootLayout() {
                     // style={{ textDecoration: "none", color: "inherit" }}
                   >
                     {" "}
-                    <Button className="h-16">Login</Button>
+                    <Button className="h-12 w-24">Login</Button>
                   </NavLink>
                 ) : (
                   <Logout />
