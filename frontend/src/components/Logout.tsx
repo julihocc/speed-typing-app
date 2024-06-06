@@ -13,6 +13,7 @@ const Logout = () => {
         logout();
         // resetMatchRecords(currentUserEmail);
       }}
+      className="md:h-12 md:w-24 bg-secondary text-black"
     >
       Logout
     </Button>

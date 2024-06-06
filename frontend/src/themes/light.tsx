@@ -5,15 +5,13 @@ const light = createTheme({
     mode: "light",
     primary: {
       main: "#6441a5",
-      light: "#9067cc",
-      dark: "#4e3580",
     },
     secondary: {
       main: "#00ff7f",
     },
     background: {
       default: "#18181b",
-      paper: "#fe8d59",
+      paper: "#ff00ff",
     },
     text: {
       primary: "#131314",
